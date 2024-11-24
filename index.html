@@ -1,64 +1,111 @@
 <!DOCTYPE html>
 <html lang="en-US">
 <head>
-    <!-- Font Awesome -->
-    <script src="https://kit.fontawesome.com/00062efd1d.js" crossorigin="anonymous"></script>
-    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prashanth Paul - Portfolio</title>
+
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
     
-    <!-- Bootstrap JS Bundle (includes Popper) -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     
-    <!-- Additional CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    
-    <!-- Custom CSS -->
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
     <style>
-        /* Add these styles for better appearance */
         body {
             font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+            color: #333;
         }
-        
+
         .elementor-section {
             padding: 80px 0;
         }
-        
+
         .elementor-heading-title {
-            margin-bottom: 50px;
             text-align: center;
-            font-weight: bold;
+            font-weight: 600;
+            font-size: 2.5em;
+            margin-bottom: 50px;
         }
-        
+
+        /* Header Styles */
+        .header-full-menu {
+            background: #fff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 15px 0;
+        }
+
+        /* Portfolio Styles */
         .portfolio-text-holder {
             background: white;
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 2px 15px rgba(0,0,0,0.05);
             margin-bottom: 30px;
+            transition: transform 0.3s ease;
         }
-        
+
+        .portfolio-text-holder:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Skills Styles */
         .skill-card {
             background: white;
             padding: 25px;
             border-radius: 10px;
             box-shadow: 0 2px 15px rgba(0,0,0,0.05);
             height: 100%;
+            margin-bottom: 20px;
         }
-        
+
+        /* Experience Styles */
         .experience-card {
             background: white;
             padding: 25px;
             border-radius: 10px;
             box-shadow: 0 2px 15px rgba(0,0,0,0.05);
             margin-bottom: 30px;
+            transition: transform 0.3s ease;
+        }
+
+        .experience-card:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Contact Section */
+        .contact-info {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Footer */
+        .footer {
+            background: #333;
+            color: #fff;
+            padding: 30px 0;
+            margin-top: 50px;
+        }
+
+        .social-links a {
+            color: #fff;
+            font-size: 24px;
+            margin: 0 15px;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: #007bff;
         }
     </style>
-    <link rel='dns-prefetch' href='http://fonts.googleapis.com/' />
-    <link rel='stylesheet' id='cocobasic-google-fonts-css'  href='http://fonts.googleapis.com/css?family=Montserrat%3A200%2C300%2C400%2C500%2C600%2C700%2C800%7CAlata&amp;ver=1.0.0' type='text/css' media='all' />
-    <link rel='stylesheet' id='elementor-post-8-css'  href='wp-content/cache/autoptimize/css/autoptimize_single_432871b4b389a466a2d66c04b604ad89.css' type='text/css' media='all' />
-    <link rel='stylesheet' id='elementor-post-313-css'  href='wp-content/cache/autoptimize/css/autoptimize_single_8ff2dfcb4333f530451d18c50cb055b6.css' type='text/css' media='all' />
-    <link rel='stylesheet' id='google-fonts-1-css'  href='https://fonts.googleapis.com/css?family=Roboto%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic%7CRoboto+Slab%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic%7CNova+Round%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic%7CAlata%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic&amp;ver=5.5.3' type='text/css' media='all' />
 </head>
 <body class="home page-template page-template-onepage page-template-onepage-php page page-id-313 chrome windows elementor-default elementor-kit-8 elementor-page elementor-page-313">
     <div class="doc-loader"></div>
@@ -640,7 +687,18 @@
 </footer>
 
 <!-- Scripts -->
-<script type='text/javascript' src='wp-includes/js/jquery/jquery.min.js'></script>
-<script type='text/javascript' src='wp-content/cache/autoptimize/js/autoptimize_660a5b16713abc688854b613bf85734a.js'></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    // Enable smooth scrolling
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    });
+</script>
 </body>
 </html>

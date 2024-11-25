@@ -19,10 +19,15 @@
             font-family: 'Montserrat', sans-serif;
             line-height: 1.6;
             color: #333;
+            background-color: #f8f9fa;
         }
 
         .elementor-section {
             padding: 80px 0;
+            background: white;
+            margin-bottom: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
         }
 
         .elementor-heading-title {
@@ -30,6 +35,7 @@
             font-weight: 600;
             font-size: 2.5em;
             margin-bottom: 50px;
+            color: #333;
         }
 
         /* Header Styles */
@@ -37,9 +43,42 @@
             background: #fff;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
             padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
 
-        /* Portfolio Styles */
+        .main-menu {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .main-menu li {
+            margin: 0 15px;
+        }
+
+        .main-menu a {
+            color: #333;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .main-menu a:hover {
+            color: #007bff;
+        }
+
+        /* Home Section */
+        .elementor-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        /* Portfolio Section */
         .portfolio-text-holder {
             background: white;
             padding: 20px;
@@ -53,23 +92,27 @@
             transform: translateY(-5px);
         }
 
-        /* Skills Styles */
+        /* Skills Section */
         .skill-card {
             background: white;
             padding: 25px;
             border-radius: 10px;
             box-shadow: 0 2px 15px rgba(0,0,0,0.05);
             height: 100%;
-            margin-bottom: 20px;
+            transition: transform 0.3s ease;
         }
 
-        /* Experience Styles */
+        .skill-card:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Experience Section */
         .experience-card {
             background: white;
             padding: 25px;
             border-radius: 10px;
             box-shadow: 0 2px 15px rgba(0,0,0,0.05);
-            margin-bottom: 30px;
+            margin-bottom: 20px;
             transition: transform 0.3s ease;
         }
 
@@ -83,8 +126,6 @@
             padding: 30px;
             border-radius: 10px;
             box-shadow: 0 2px 15px rgba(0,0,0,0.05);
-            max-width: 800px;
-            margin: 0 auto;
         }
 
         /* Footer */
@@ -105,600 +146,238 @@
         .social-links a:hover {
             color: #007bff;
         }
+
+        .coco-button {
+            display: inline-block;
+            padding: 12px 30px;
+            background: #007bff;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+
+        .coco-button:hover {
+            background: #0056b3;
+            color: #fff;
+        }
+
+        /* Research Publications */
+        .research-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+            height: 300px;
+            background-size: cover;
+            background-position: center;
+            margin: 10px;
+        }
     </style>
 </head>
-<body class="home page-template page-template-onepage page-template-onepage-php page page-id-313 chrome windows elementor-default elementor-kit-8 elementor-page elementor-page-313">
-    <div class="doc-loader"></div>
+<body>
     <header>
-        <div class="header-right-part-holder">
-            <div class="header-right-part">
-                <div class="header-logo">
-                    <a href="index.html"></a>
-                </div>
-                <div class="toggle-holder">
-                    <div id="toggle" class="">
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                    </div>
-                </div>
-            </div>
-        </div>
         <div class="header-full-menu">
-            <div class="menu-wrapper center-relative relative">
-                <div class="custom-menu-title">MENU</div>
-                <div class="menu-holder">
-                    <nav id="header-main-menu" class="menu-menu-1-container">
-                        <ul id="menu-menu-1" class="main-menu sm sm-clean">
-                            <li id="menu-item-58" class="one-page-section menu-item menu-item-type-custom menu-item-object-custom menu-item-58">
-                                <a href="#home">Home</a>
-                            </li>
-                            <li id="menu-item-41" class="one-page-section menu-item menu-item-type-custom menu-item-object-custom menu-item-41">
-                                <a href="#about">About Me</a>
-                            </li>
-                            <li id="menu-item-42" class="one-page-section menu-item menu-item-type-custom menu-item-object-custom menu-item-42">
-                                <a href="#portfolio">Portfolio</a>
-                            </li>
-                            <li id="menu-item-43" class="one-page-section menu-item menu-item-type-custom menu-item-object-custom menu-item-43">
-                                <a href="#education">Education</a>
-                            </li>
-                            <li id="menu-item-44" class="one-page-section menu-item menu-item-type-custom menu-item-object-custom menu-item-44">
-                                <a href="#skills">Skills</a>
-                            </li>
-                            <li id="menu-item-45" class="one-page-section menu-item menu-item-type-custom menu-item-object-custom menu-item-45">
-                                <a href="#experience">Experience</a>
-                            </li>
-                            <li id="menu-item-48" class="one-page-section menu-item menu-item-type-custom menu-item-object-custom menu-item-48">
-                                <a href="#testimonial">Testimonial</a>
-                            </li>
-                            <li id="menu-item-49" class="one-page-section menu-item menu-item-type-custom menu-item-object-custom menu-item-49">
-                                <a href="#contact">Contact</a>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
-            </div>
+            <nav class="container">
+                <ul class="main-menu">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About Me</a></li>
+                    <li><a href="#portfolio">Portfolio</a></li>
+                    <li><a href="#education">Education</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#experience">Experience</a></li>
+                    <li><a href="#testimonial">Testimonial</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
         </div>
     </header>
 
-    <!-- Main Content Wrapper -->
-    <div id="post-313" class="post-313 page type-page status-publish hentry">
-        <div class="one-page-content-wrapper">
-            <div data-elementor-type="wp-page" data-elementor-id="313" class="elementor elementor-313" data-elementor-settings="[]">
-                <div class="elementor-inner">
-                    <div class="elementor-section-wrap">
-                        <!-- Home Section -->
-                        <section class="elementor-section elementor-top-section elementor-element elementor-element-615010ce op-section elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="615010ce" data-element_type="section" id="home" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
-                            <div class="elementor-container elementor-column-gap-no">
-                                <div class="elementor-row">
-                                    <div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-5a53021d cocobasic-dark-section" data-id="5a53021d" data-element_type="column" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
-                                        <div class="elementor-column-wrap elementor-element-populated">
-                                            <div class="elementor-widget-wrap">
-                                                <section class="elementor-section elementor-inner-section elementor-element elementor-element-1fc62f4 elementor-reverse-mobile elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="1fc62f4" data-element_type="section">
-                                                    <div class="elementor-container elementor-column-gap-no">
-                                                        <div class="elementor-row">
-                                                            <div class="elementor-column elementor-col-50 elementor-inner-column elementor-element elementor-element-4347e2a6" data-id="4347e2a6" data-element_type="column">
-                                                                <div class="elementor-column-wrap elementor-element-populated">
-                                                                    <div class="elementor-widget-wrap">
-                                                                        <div class="elementor-element elementor-element-5ff92df2 elementor-widget elementor-widget-heading" data-id="5ff92df2" data-element_type="widget" data-widget_type="heading.default">
-                                                                            <div class="elementor-widget-container">
-                                                                                <h1 class="elementor-heading-title elementor-size-default">Hello <br>I'm Prashanth <br>Paul</h1>
-                                                                                <br><br><br>
-                                                                            </div>
-                                                                            <br>
-                                                                        </div>
-                                                                        <div class="elementor-element elementor-element-62c88949 elementor-widget elementor-widget-coco-button" data-id="62c88949" data-element_type="widget" data-widget_type="coco-button.default">
-                                                                            <div class="elementor-widget-container">
-                                                                                <a class="coco-button slow-scroll" href="https://drive.google.com/file/d/1gLEZK0r1cFzrglL47NCngMbiiAq_NzxX/view?usp=sharing" target="_blank" rel="nofollow">
-                                                                                    <span>DOWNLOAD CV</span>
-                                                                                </a>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="elementor-column elementor-col-50 elementor-inner-column elementor-element elementor-element-5966a3d4" data-id="5966a3d4" data-element_type="column">
-                                                                <div class="elementor-column-wrap elementor-element-populated">
-                                                                    <div class="elementor-widget-wrap">
-                                                                        <div class="elementor-element elementor-element-324c31ff parallax_-40_0 elementor-widget elementor-widget-image" data-id="324c31ff" data-element_type="widget" data-widget_type="image.default">
-                                                                            <div class="elementor-widget-container">
-                                                                                <div class="elementor-image">
-                                                                                    <img src="1705879015952.jpg" />
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </section>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </section>
-			<!-- About Me Section -->
-<section class="elementor-section elementor-top-section elementor-element elementor-element-32f1c685 op-section elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="32f1c685" data-element_type="section" id="about" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
-    <div class="elementor-container elementor-column-gap-no">
-        <div class="elementor-row">
-            <div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-de16cd5 cocobasic-light-section" data-id="de16cd5" data-element_type="column" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
-                <div class="elementor-column-wrap elementor-element-populated">
-                    <div class="elementor-widget-wrap">
-                        <!-- Section Title -->
-                        <div class="elementor-element elementor-element-383285e1 elementor-widget elementor-widget-heading" data-id="383285e1" data-element_type="widget" data-widget_type="heading.default">
-                            <div class="elementor-widget-container">
-                                <h2 class="elementor-heading-title elementor-size-default" style="text-align: center; margin-bottom: 40px; font-size: 2.5em;">About Me</h2>
-                            </div>
-                        </div>
+    <!-- Home Section -->
+    <section id="home" class="container my-5">
+        <div class="row align-items-center">
+            <div class="col-md-6">
+                <h1 class="display-4 fw-bold mb-4">Hello<br>I'm Prashanth<br>Paul</h1>
+                <a href="https://drive.google.com/file/d/1gLEZK0r1cFzrglL47NCngMbiiAq_NzxX/view?usp=sharing" 
+                   target="_blank" class="coco-button">DOWNLOAD CV</a>
+            </div>
+            <div class="col-md-6">
+                <img src="1705879015952.jpg" class="img-fluid rounded-3 shadow" alt="Prashanth Paul">
+            </div>
+        </div>
+    </section>
 
-                        <!-- About Me Text -->
-                        <div class="elementor-element elementor-element-4175bd02 elementor-widget__width-initial elementor-widget elementor-widget-text-editor" data-id="4175bd02" data-element_type="widget" data-widget_type="text-editor.default">
-                            <div class="elementor-widget-container">
-                                <div class="elementor-text-editor elementor-clearfix">
-                                    <div style="max-width: 800px; margin: 0 auto; text-align: justify; padding: 20px;">
-                                        <p style="line-height: 1.8; font-size: 1.1em; color: #333; margin-bottom: 30px;">
-                                            A zealous Individual filled with curiosity that makes me think above & beyond, with high capabilities to see things in a different perspective with the use of technical skills
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Research Publications Title -->
-                        <div class="container" style="margin-top: 60px;">
-                            <div class="row">
-                                <div class="col-12">
-                                    <h1 style="text-align: center; margin-bottom: 40px; font-size: 2em; color: #333;">INTERNATIONAL RESEARCH PUBLICATIONS</h1>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Research Publications Images -->
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-sm" style="height: 300px; background: transparent url('1.jpeg') no-repeat center center /cover; border-radius: 10px; margin: 10px;"></div>
-                                <div class="col-sm" style="height: 300px; background: transparent url('2.jpeg') no-repeat center center /cover; border-radius: 10px; margin: 10px;"></div>
-                                <div class="col-sm" style="height: 300px; background: transparent url('3.jpeg') no-repeat center center /cover; border-radius: 10px; margin: 10px;"></div>
-                            </div>
-                        </div>
-                    </div>
+    <!-- About Section -->
+    <section id="about" class="container my-5">
+        <h2 class="elementor-heading-title">About Me</h2>
+        <div class="row">
+            <div class="col-12">
+                <div class="mb-5 text-center">
+                    <p class="lead">
+                        A zealous Individual filled with curiosity that makes me think above & beyond, 
+                        with high capabilities to see things in a different perspective with the use of technical skills
+                    </p>
                 </div>
             </div>
         </div>
-    </div>
-</section>
 
-<!-- Portfolio Section -->
-<section class="elementor-section elementor-top-section elementor-element elementor-element-3032c997 op-section elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="3032c997" data-element_type="section" id="portfolio" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
-    <div class="elementor-container elementor-column-gap-no">
-        <div class="elementor-row">
-            <div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-e43fc03 cocobasic-dark-section" data-id="e43fc03" data-element_type="column" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
-                <div class="elementor-column-wrap elementor-element-populated">
-                    <div class="elementor-widget-wrap">
-                        <div class="elementor-element elementor-element-467d4055 elementor-widget elementor-widget-heading" data-id="467d4055" data-element_type="widget" data-widget_type="heading.default">
-                            <div class="elementor-widget-container">
-                                <h2 class="elementor-heading-title elementor-size-default">Projects</h2>
-                            </div>
-                        </div>
+        <h3 class="text-center mb-4">International Research Publications</h3>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="research-card" style="background-image: url('1.jpeg')"></div>
+            </div>
+            <div class="col-md-4">
+                <div class="research-card" style="background-image: url('2.jpeg')"></div>
+            </div>
+            <div class="col-md-4">
+                <div class="research-card" style="background-image: url('3.jpeg')"></div>
+            </div>
+        </div>
+    </section>
 
-                        <div class="elementor-element elementor-element-2d846986 elementor-widget elementor-widget-coco-portfolio" data-id="2d846986" data-element_type="widget" data-widget_type="coco-portfolio.default">
-                            <div class="elementor-widget-container">
-                                <div id="portfolio-wrapper" class="relative">
-                                    <div class="portfolio-load-content-holder content-670"></div>
-                                    <div class="grid first-active" id="portfolio-grid">
-                                        <!-- Project 1 -->
-                                        <div id="p-item-32" class="grid-item element-item">
-                                            <a class="item-link" href="https://github.com/prashanthpaul/fake-news-detection" data-id="32">
-                                                <div class="portfolio-text-holder">
-                                                    <h6 class="portfolio-num">01</h6>
-                                                    <h3 class="portfolio-text">Fake-News-Detection<br> Using Machine Learning</h3>
-                                                    <div class="portfolio-image parallax_-40_0">
-                                                        <img width="400" height="460" src="fake.png" class="attachment-medium_large size-medium_large wp-post-image" alt="" loading="lazy" srcset="fake.png 400w, fake.png 214w" sizes="(max-width: 400px) 100vw, 400px" />
-                                                    </div>
-                                                </div>
-                                            </a>
-                                        </div>
-
-                                        <!-- Project 2 -->
-                                        <div id="p-item-30" class="grid-item element-item">
-                                            <a class="item-link" href="https://github.com/prashanthpaul/Breast_Cancer_Detection-Using-Machine-Learning" data-id="30">
-                                                <div class="portfolio-text-holder">
-                                                    <h6 class="portfolio-num">02</h6>
-                                                    <h3 class="portfolio-text">Breast-Cancer-Detection <br> Using Machine Learning</h3>
-                                                    <div class="portfolio-image parallax_-40_0">
-                                                        <img width="400" height="560" src="bcp.png" class="attachment-medium_large size-medium_large wp-post-image" alt="" loading="lazy" srcset="bcp.png 400w, bcp.png 214w" sizes="(max-width: 400px) 100vw, 400px" />
-                                                    </div>
-                                                </div>
-                                            </a>
-                                        </div>
-
-                                        <!-- Project 3 -->
-                                        <div id="p-item-28" class="grid-item element-item">
-                                            <a class="item-link" href="https://github.com/prashanthpaul/Emergency-Traffic-Clearance" data-id="28">
-                                                <div class="portfolio-text-holder">
-                                                    <h6 class="portfolio-num">03</h6>
-                                                    <h3 class="portfolio-text">Emergency Traffic Clearance<br> Using Sql</h3>
-                                                    <div class="portfolio-image parallax_-40_0">
-                                                        <img width="400" height="560" src="etc.jpg" class="attachment-medium_large size-medium_large wp-post-image" alt="" loading="lazy" srcset="etc.jpg 400w, etc.jpg 214w" sizes="(max-width: 400px) 100vw, 400px" />
-                                                    </div>
-                                                </div>
-                                            </a>
-                                        </div>
-
-                                        <!-- Project 4 -->
-                                        <div id="p-item-26" class="grid-item element-item">
-                                            <a class="item-link" href="https://github.com/prashanthpaul/Rainfal-Prediction" data-id="26">
-                                                <div class="portfolio-text-holder">
-                                                    <h6 class="portfolio-num">04</h6>
-                                                    <h3 class="portfolio-text">Rainfal Prediction <br> Using Machine Learning</h3>
-                                                    <div class="portfolio-image parallax_-40_0">
-                                                        <img width="400" height="560" src="rainfall.png" class="attachment-medium_large size-medium_large wp-post-image" alt="" loading="lazy" srcset="rainfall.png 400w, rainfall.png 214w" sizes="(max-width: 400px) 100vw, 400px" />
-                                                    </div>
-                                                </div>
-                                            </a>
-                                        </div>
-
-                                        <!-- Project 5 -->
-                                        <div id="p-item-26" class="grid-item element-item">
-                                            <a class="item-link" href="https://github.com/prashanthpaul/Data-Science-Web-App-with-Streamlit-and-Python/tree/main" data-id="26">
-                                                <div class="portfolio-text-holder">
-                                                    <h6 class="portfolio-num">05</h6>
-                                                    <h3 class="portfolio-text">Data-Science-Web-App<br> with-Streamlit And Python</h3>
-                                                    <div class="portfolio-image parallax_-40_0">
-                                                        <img width="400" height="560" src="bd.jpg" class="attachment-medium_large size-medium_large wp-post-image" alt="" loading="lazy" srcset="bd.jpg 400w, bd.jpg 214w" sizes="(max-width: 400px) 100vw, 400px" />
-                                                    </div>
-                                                </div>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="container my-5">
+        <h2 class="elementor-heading-title">Projects</h2>
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <a href="https://github.com/prashanthpaul/fake-news-detection" class="text-decoration-none">
+                    <div class="portfolio-text-holder">
+                        <h3 class="h5">Fake-News-Detection</h3>
+                        <p>Using Machine Learning</p>
+                        <img src="fake.png" class="img-fluid" alt="Fake News Detection">
                     </div>
+                </a>
+            </div>
+            <div class="col-md-4 mb-4">
+                <a href="https://github.com/prashanthpaul/Breast_Cancer_Detection-Using-Machine-Learning" class="text-decoration-none">
+                    <div class="portfolio-text-holder">
+                        <h3 class="h5">Breast-Cancer-Detection</h3>
+                        <p>Using Machine Learning</p>
+                        <img src="bcp.png" class="img-fluid" alt="Breast Cancer Detection">
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-4 mb-4">
+                <a href="https://github.com/prashanthpaul/Emergency-Traffic-Clearance" class="text-decoration-none">
+                    <div class="portfolio-text-holder">
+                        <h3 class="h5">Emergency Traffic Clearance</h3>
+                        <p>Using SQL</p>
+                        <img src="etc.jpg" class="img-fluid" alt="Emergency Traffic">
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-4 mb-4">
+                <a href="https://github.com/prashanthpaul/Rainfal-Prediction" class="text-decoration-none">
+                    <div class="portfolio-text-holder">
+                        <h3 class="h5">Rainfall Prediction</h3>
+                        <p>Using Machine Learning</p>
+                        <img src="rainfall.png" class="img-fluid" alt="Rainfall Prediction">
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-4 mb-4">
+                <a href="https://github.com/prashanthpaul/Data-Science-Web-App-with-Streamlit-and-Python/tree/main" class="text-decoration-none">
+                    <div class="portfolio-text-holder">
+                        <h3 class="h5">Data Science Web App</h3>
+                        <p>Using Streamlit and Python</p>
+                        <img src="bd.jpg" class="img-fluid" alt="Data Science Web App">
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="container my-5">
+        <h2 class="elementor-heading-title">Education</h2>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="experience-card">
+                    <h3 class="h5">Master's In Data Analytics and Engineering</h3>
+                    <p class="mb-1">George Mason University • Fairfax, Virginia</p>
+                    <small class="text-muted">2021 - 2023</small>
+                </div>
+                
+                <div class="experience-card">
+                    <h3 class="h5">Bachelor of Engineering - Information Science</h3>
+                    <p class="mb-1">New Horizon College of Engineering • Bangalore, Karnataka</p>
+                    <small class="text-muted">2016 - 2020</small>
+                </div>
+                
+                <div class="experience-card">
+                    <h3 class="h5">The Indiranagar Cambridge School</h3>
+                    <p class="mb-1">Bangalore, Karnataka</p>
+                    <small class="text-muted">2004 - 2014</small>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="experience-card">
+                    <h3 class="h5">Pre-University College</h3>
+                    <p class="mb-1">New Horizon Pre-University College • Bengaluru, Karnataka</p>
+                    <small class="text-muted">2014 - 2016</small>
                 </div>
             </div>
         </div>
-    </div>
-</section>
-<!-- Education Section -->
-<section class="elementor-section elementor-top-section elementor-element elementor-element-3563b779 op-section elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="3563b779" data-element_type="section" id="education" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
-    <div class="elementor-container elementor-column-gap-no">
-        <div class="elementor-row">
-            <div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-1b2a5f75 cocobasic-light-section" data-id="1b2a5f75" data-element_type="column" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
-                <div class="elementor-column-wrap elementor-element-populated">
-                    <div class="elementor-widget-wrap">
-                        <div class="elementor-element elementor-element-87ea14c elementor-widget elementor-widget-heading" data-id="87ea14c" data-element_type="widget" data-widget_type="heading.default">
-                            <div class="elementor-widget-container">
-                                <h2 class="elementor-heading-title elementor-size-default">Education</h2>
-                            </div>
-                        </div>
-                        
-                        <section class="elementor-section elementor-inner-section elementor-element elementor-element-31a96ff7 elementor-section-full_width elementor-section-height-default elementor-section-height-default" data-id="31a96ff7" data-element_type="section">
-                            <div class="elementor-container elementor-column-gap-no">
-                                <div class="elementor-row">
-                                    <div class="elementor-column elementor-col-50 elementor-inner-column elementor-element elementor-element-5f71dda1" data-id="5f71dda1" data-element_type="column" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
-                                        <div class="elementor-column-wrap elementor-element-populated">
-                                            <div class="elementor-widget-wrap">
-                                                <div class="elementor-element elementor-element-7d47d497 elementor-invisible elementor-widget elementor-widget-text-editor" data-id="7d47d497" data-element_type="widget" data-settings="{&quot;_animation&quot;:&quot;fadeIn&quot;}" data-widget_type="text-editor.default">
-                                                    <div class="elementor-widget-container">
-                                                        <div class="elementor-text-editor elementor-clearfix">
-                                                            <!-- Master's Degree -->
-                                                            <p><strong>2021 &#8211; 2023</strong></p>
-                                                            <p>Master's In Data Analytics and Engineering<br>
-                                                            George Mason University • Fairfax, Virginia</p>
-                                                           
-                                                            <br><br>
-                                                            <!-- Bachelor's Degree -->
-                                                            <p><strong>2016 &#8211; 2020</strong></p>
-                                                            <p>Bachelor of Engineering - InformationScience<br>
-                                                            New Horizon College of Engineering • Bangalore, Karnataka</p>
-                                                           
-                                                            <br><br>
-                                                            <!-- School Entry -->
-                                                            <p><strong>2004 &#8211; 2014</strong></p>
-                                                            <p>The Indiranagar Cambridge School<br>
-                                                            Bangalore, Karnataka</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="elementor-column elementor-col-50 elementor-inner-column elementor-element elementor-element-320e165e" data-id="320e165e" data-element_type="column" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
-                                        <div class="elementor-column-wrap elementor-element-populated">
-                                            <div class="elementor-widget-wrap">
-                                                <div class="elementor-element elementor-element-175d26ef elementor-invisible elementor-widget elementor-widget-text-editor" data-id="175d26ef" data-element_type="widget" data-settings="{&quot;_animation&quot;:&quot;fadeIn&quot;}" data-widget_type="text-editor.default">
-                                                    <div class="elementor-widget-container">
-                                                        <div class="elementor-text-editor elementor-clearfix">
-                                                            <p><strong>2014 &#8211; 2016</strong></p>
-                                                            <p>New Horizon Pre-University College • Bengaluru, Karnataka</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </section>
-                    </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="container my-5">
+        <h2 class="elementor-heading-title">Skills</h2>
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="skill-card">
+                    <h3 class="h5 text-center mb-4">Programming Languages</h3>
+                    <ul class="list-unstyled">
+                        <li class="mb-3">• Python</li>
+                        <li class="mb-3">• Java</li>
+                        <li class="mb-3">• SQL</li>
+                        <li class="mb-3">• R</li>
+                        <li>• C++</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="skill-card">
+                    <h3 class="h5 text-center mb-4">Data Analysis Tools</h3>
+                    <ul class="list-unstyled">
+                        <li class="mb-3">• Tableau</li>
+                        <li class="mb-3">• MS Excel</li>
+                        <li class="mb-3">• Power BI</li>
+                        <li class="mb-3">• MATLAB</li>
+                        <li>• MySQL</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="skill-card">
+                    <h3 class="h5 text-center mb-4">Technologies</h3>
+                    <ul class="list-unstyled">
+                        <li class="mb-3">• AWS</li>
+                        <li class="mb-3">• Git</li>
+                        <li class="mb-3">• Linux</li>
+                        <li class="mb-3">• Docker</li>
+                        <li>• Kubernetes</li>
+                    </ul>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<!-- Skills Section -->
-<section class="elementor-section elementor-top-section elementor-element elementor-element-1ea0eb4a op-section elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="1ea0eb4a" data-element_type="section" id="skills" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
-    <div class="elementor-container elementor-column-gap-no">
-        <div class="elementor-row">
-            <div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-73035a64 cocobasic-dark-section" data-id="73035a64" data-element_type="column" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
-                <div class="elementor-column-wrap elementor-element-populated">
-                    <div class="elementor-widget-wrap">
-                        <!-- Skills Header -->
-                        <div class="elementor-element elementor-element-6928e74c elementor-widget elementor-widget-heading" data-id="6928e74c" data-element_type="widget" data-widget_type="heading.default">
-                            <div class="elementor-widget-container">
-                                <h2 class="elementor-heading-title elementor-size-default" style="text-align: center; margin-bottom: 50px;">Skills</h2>
-                            </div>
+    <!-- Experience Section -->
+    <section id="experience" class="container my-5">
+        <h2 class="elementor-heading-title">Experience</h2>
+        <div class="row">
+            <div class="col-12">
+                <div class="experience-card">
+                    <div class="d-flex justify-content-between align-items-top">
+                        <div>
+                            <h3 class="h5">Technical Data Scientist</h3>
+                            <p class="mb-0">COM4 Global</p>
                         </div>
-
-                        <!-- Skills Grid Container -->
-                        <div class="container" style="max-width: 1000px; margin: 0 auto; padding: 20px;">
-                            <div class="row" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 30px;">
-                                
-                                <!-- Programming Languages -->
-                                <div class="col-md-4" style="margin-bottom: 40px;">
-                                    <div style="background: #ffffff; padding: 25px; border-radius: 10px; box-shadow: 0 2px 15px rgba(0,0,0,0.05);">
-                                        <h3 style="color: #333; font-size: 1.2em; margin-bottom: 20px; text-align: center;">Programming Languages</h3>
-                                        <ul style="list-style: none; padding: 0; margin: 0;">
-                                            <li style="margin-bottom: 15px; color: #666;">• Python</li>
-                                            <li style="margin-bottom: 15px; color: #666;">• Java</li>
-                                            <li style="margin-bottom: 15px; color: #666;">• SQL</li>
-                                            <li style="margin-bottom: 15px; color: #666;">• R</li>
-                                            <li style="color: #666;">• C++</li>
-                                        </ul>
-                                    </div>
-                                </div>
-
-                                <!-- Data Analysis Tools -->
-                                <div class="col-md-4" style="margin-bottom: 40px;">
-                                    <div style="background: #ffffff; padding: 25px; border-radius: 10px; box-shadow: 0 2px 15px rgba(0,0,0,0.05);">
-                                        <h3 style="color: #333; font-size: 1.2em; margin-bottom: 20px; text-align: center;">Data Analysis Tools</h3>
-                                        <ul style="list-style: none; padding: 0; margin: 0;">
-                                            <li style="margin-bottom: 15px; color: #666;">• Tableau</li>
-                                            <li style="margin-bottom: 15px; color: #666;">• MS Excel</li>
-                                            <li style="margin-bottom: 15px; color: #666;">• Power BI</li>
-                                            <li style="margin-bottom: 15px; color: #666;">• MATLAB</li>
-                                            <li style="color: #666;">• MySQL</li>
-                                        </ul>
-                                    </div>
-                                </div>
-
-                                <!-- Technologies -->
-                                <div class="col-md-4" style="margin-bottom: 40px;">
-                                    <div style="background: #ffffff; padding: 25px; border-radius: 10px; box-shadow: 0 2px 15px rgba(0,0,0,0.05);">
-                                        <h3 style="color: #333; font-size: 1.2em; margin-bottom: 20px; text-align: center;">Technologies</h3>
-                                        <ul style="list-style: none; padding: 0; margin: 0;">
-                                            <li style="margin-bottom: 15px; color: #666;">• AWS</li>
-                                            <li style="margin-bottom: 15px; color: #666;">• Git</li>
-                                            <li style="margin-bottom: 15px; color: #666;">• Linux</li>
-                                            <li style="margin-bottom: 15px; color: #666;">• Docker</li>
-                                            <li style="color: #666;">• Kubernetes</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="text-end">
+                            <p class="mb-0">July 2023 - Present</p>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- Experience Section -->
-<section class="elementor-section elementor-top-section elementor-element elementor-element-2589d9b0 op-section elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="2589d9b0" data-element_type="section" id="experience" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
-    <div class="elementor-container elementor-column-gap-no">
-        <div class="elementor-row">
-            <div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-1175622e cocobasic-light-section" data-id="1175622e" data-element_type="column" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
-                <div class="elementor-column-wrap elementor-element-populated">
-                    <div class="elementor-widget-wrap">
-                        <!-- Experience Header -->
-                        <div class="elementor-element elementor-element-3c8a0996 elementor-widget elementor-widget-heading" data-id="3c8a0996" data-element_type="widget" data-widget_type="heading.default">
-                            <div class="elementor-widget-container">
-                                <h2 class="elementor-heading-title elementor-size-default">Experience</h2>
-                            </div>
-                        </div>
 
-                        <!-- Experience Grid Container -->
-                        <div class="container" style="max-width: 1000px; margin: 0 auto; padding: 20px;">
-                            <!-- COM4 Global -->
-                            <div class="row" style="margin-bottom: 30px; padding: 20px; background: #ffffff; border-radius: 10px; box-shadow: 0 2px 15px rgba(0,0,0,0.05);">
-                                <div class="col-md-8">
-                                    <h3 style="color: #333; margin-bottom: 10px;">Technical Data Scientist</h3>
-                                    <h4 style="color: #666; margin-bottom: 10px;">COM4 Global</h4>
-                                </div>
-                                <div class="col-md-4 text-md-right">
-                                    <p style="color: #666;">July 2023 - Present</p>
-                                </div>
-                            </div>
-
-                            <!-- MITRE -->
-                            <div class="row" style="margin-bottom: 30px; padding: 20px; background: #ffffff; border-radius: 10px; box-shadow: 0 2px 15px rgba(0,0,0,0.05);">
-                                <div class="col-md-8">
-                                    <h3 style="color: #333; margin-bottom: 10px;">Data Scientist</h3>
-                                    <h4 style="color: #666; margin-bottom: 10px;">MITRE</h4>
-                                </div>
-                                <div class="col-md-4 text-md-right">
-                                    <p style="color: #666;">August 2022 - December 2022</p>
-                                </div>
-                            </div>
-
-                            <!-- Avalara -->
-                            <div class="row" style="margin-bottom: 30px; padding: 20px; background: #ffffff; border-radius: 10px; box-shadow: 0 2px 15px rgba(0,0,0,0.05);">
-                                <div class="col-md-8">
-                                    <h3 style="color: #333; margin-bottom: 10px;">Data Analyst</h3>
-                                    <h4 style="color: #666; margin-bottom: 10px;">Avalara</h4>
-                                </div>
-                                <div class="col-md-4 text-md-right">
-                                    <p style="color: #666;">June 2022 - October 2022</p>
-                                </div>
-                            </div>
-
-                            <!-- Powerforward -->
-                            <div class="row" style="margin-bottom: 30px; padding: 20px; background: #ffffff; border-radius: 10px; box-shadow: 0 2px 15px rgba(0,0,0,0.05);">
-                                <div class="col-md-8">
-                                    <h3 style="color: #333; margin-bottom: 10px;">Data Scientist</h3>
-                                    <h4 style="color: #666; margin-bottom: 10px;">Powerforward</h4>
-                                </div>
-                                <div class="col-md-4 text-md-right">
-                                    <p style="color: #666;">January 2021 - July 2021</p>
-                                </div>
-                            </div>
-
-                            <!-- MicroGenesis -->
-                            <div class="row" style="margin-bottom: 30px; padding: 20px; background: #ffffff; border-radius: 10px; box-shadow: 0 2px 15px rgba(0,0,0,0.05);">
-                                <div class="col-md-8">
-                                    <h3 style="color: #333; margin-bottom: 10px;">Software Engineer Intern</h3>
-                                    <h4 style="color: #666; margin-bottom: 10px;">MicroGenesis Techsoft Pvt. Ltd</h4>
-                                </div>
-                                <div class="col-md-4 text-md-right">
-                                    <p style="color: #666;">February 2020 - October 2020</p>
-                                </div>
-                            </div>
-
-                            <!-- Ampcome -->
-                            <div class="row" style="margin-bottom: 30px; padding: 20px; background: #ffffff; border-radius: 10px; box-shadow: 0 2px 15px rgba(0,0,0,0.05);">
-                                <div class="col-md-8">
-                                    <h3 style="color: #333; margin-bottom: 10px;">Data Analyst Intern</h3>
-                                    <h4 style="color: #666; margin-bottom: 10px;">Ampcome Technologies Pvt Ltd</h4>
-                                </div>
-                                <div class="col-md-4 text-md-right">
-                                    <p style="color: #666;">October 2019 - December 2019</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- Testimonial Section -->
-<section class="elementor-section elementor-top-section elementor-element elementor-element-6309eb60 op-section elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="6309eb60" data-element_type="section" id="testimonial" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
-    <div class="elementor-container elementor-column-gap-no">
-        <div class="elementor-row">
-            <div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-3d38f4a8 cocobasic-light-section" data-id="3d38f4a8" data-element_type="column" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
-                <div class="elementor-column-wrap elementor-element-populated">
-                    <div class="elementor-widget-wrap">
-                        <div class="elementor-element elementor-element-7fc9d617 elementor-widget elementor-widget-heading" data-id="7fc9d617" data-element_type="widget" data-widget_type="heading.default">
-                            <div class="elementor-widget-container">
-                                <h2 class="elementor-heading-title elementor-size-default">Testimonials</h2>
-                            </div>
-                        </div>
-                        <div class="elementor-element elementor-element-2fe45728 elementor-widget elementor-widget-coco-carouseltestimonial" data-id="2fe45728" data-element_type="widget" data-widget_type="coco-carouseltestimonial.default">
-                            <div class="elementor-widget-container">
-                                <div id="Testimonial-1" class="carousel-testimonial-wrapper relative swiper-container" data-speed="2000" data-auto="false">
-                                    <div class="swiper-wrapper testimonial-slider slider">
-                                        <div class="swiper-slide" style="background: #ffffff; padding: 30px; border-radius: 10px; box-shadow: 0 2px 15px rgba(0,0,0,0.05); margin: 20px;">
-                                            <div class="swiper-slide-quote-image">
-                                                <img width="70" height="48" src="wp-content/uploads/2020/09/quote.png" class="attachment-thumbnail size-thumbnail" alt="" loading="lazy" />
-                                            </div>
-                                            <div class="swiper-slide-testimonial-text" style="color: #666; line-height: 1.8; margin: 20px 0;">
-                                                Ridiculously efficient is the phrase that comes to mind when I think about Prashanth Paul. I had the pleasure of working with him for three years at the New Horizon College of Engineering, collaborating on research publications. Prashanth would be an asset to any team.
-                                            </div>
-                                            <p class="swiper-slide-name" style="color: #333; font-weight: bold;">
-                                                DR. Gopalakrishnan Kanapathy<br>
-                                                <span style="font-weight: normal; color: #666;">Professor & Dean(R&D)<br>New Horizon College of Engineering, Bangalore</span>
-                                            </p>
-                                        </div>
-                                        <div class="swiper-slide" style="background: #ffffff; padding: 30px; border-radius: 10px; box-shadow: 0 2px 15px rgba(0,0,0,0.05); margin: 20px;">
-                                            <div class="swiper-slide-quote-image">
-                                                <img width="70" height="48" src="wp-content/uploads/2020/09/quote.png" class="attachment-thumbnail size-thumbnail" alt="" loading="lazy" />
-                                            </div>
-                                            <div style="text-align: justify;" class="swiper-slide-testimonial-text" style="color: #666; line-height: 1.8; margin: 20px 0;">
-                                                It's rare that you come across standout talent like Prashanth Paul. I was particularly impressed by his ability to handle even the toughest projects—effortlessly. That skill often takes years to develop among students and professionals, but it seemed to come perfectly naturally to him. As a head of department, Prashanth earns my highest recommendation.
-                                            </div>
-                                            <p class="swiper-slide-name" style="color: #333; font-weight: bold;">
-                                                DR. R. J Anandhi<br>
-                                                <span style="font-weight: normal; color: #666;">Professor & Head of Department - Information Science<br>New Horizon College of Engineering, Bangalore</span>
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="swiper-scrollbar swiper-scrollbar-Testimonial-1"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Contact Section -->
-<section class="elementor-section elementor-top-section elementor-element elementor-element-17ee12d3 op-section elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="17ee12d3" data-element_type="section" id="contact" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
-    <div class="elementor-container elementor-column-gap-no">
-        <div class="elementor-row">
-            <div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-511e4ecd cocobasic-light-section" data-id="511e4ecd" data-element_type="column" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
-                <div class="elementor-column-wrap elementor-element-populated">
-                    <div class="elementor-widget-wrap">
-                        <div class="elementor-element elementor-element-21caefd9 elementor-widget elementor-widget-heading" data-id="21caefd9" data-element_type="widget" data-widget_type="heading.default">
-                            <div class="elementor-widget-container">
-                                <h2 class="elementor-heading-title elementor-size-default">Contact</h2>
-                            </div>
-                        </div>
-                        <div style="max-width: 800px; margin: 0 auto; padding: 30px; background: #ffffff; border-radius: 10px; box-shadow: 0 2px 15px rgba(0,0,0,0.05);">
-                            <div class="elementor-text-editor elementor-clearfix">
-                                <p style="margin-bottom: 15px;">
-                                    <strong style="color: #333; width: 100px; display: inline-block;">Name:</strong>
-                                    <span style="color: #666;">Prashanth Paul</span>
-                                </p>
-                                <p style="margin-bottom: 15px;">
-                                    <strong style="color: #333; width: 100px; display: inline-block;">Address:</strong>
-                                    <span style="color: #666;">Fairfax, Virginia, United States</span>
-                                </p>
-                                <p>
-                                    <strong style="color: #333; width: 100px; display: inline-block;">Email:</strong>
-                                    <span style="color: #666;">prashanth.dec12@gmail.com</span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Footer -->
-<footer class="footer center-relative" style="background-color: #333; padding: 30px 0; margin-top: 50px;">
-    <div class="footer-content">
-        <div style="text-align: center;">
-            <div style="margin-bottom: 20px;">
-                <a href="https://www.linkedin.com/in/prashanthpaul/" style="color: #fff; margin: 0 15px; font-size: 24px;" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-                <a href="https://github.com/prashanthpaul" style="color: #fff; margin: 0 15px; font-size: 24px;" target="_blank"><i class="fab fa-github"></i></a>
-                <a href="mailto:prashanth.dec12@gmail.com" style="color: #fff; margin: 0 15px; font-size: 24px;"><i class="far fa-envelope"></i></a>
-            </div>
-            <p style="color: #999; font-size: 14px;">© 2024 Prashanth Paul. All rights reserved.</p>
-        </div>
-    </div>
-</footer>
-
-<!-- Scripts -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
-<script>
-    // Enable smooth scrolling
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            document.querySelector(this.getAttribute('href')).scrollIntoView({
-                behavior: 'smooth'
-            });
-        });
-    });
-</script>
-</body>
-</html>
+                <div class="experience-card">

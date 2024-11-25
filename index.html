@@ -1,383 +1,251 @@
 <!DOCTYPE html>
 <html lang="en-US">
+
+<!-- =============================================
+     META INFORMATION AND RESOURCES
+     ============================================= -->
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8"/>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+    <!-- External Resources -->
+    <script src="https://kit.fontawesome.com/00062efd1d.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- Bootstrap Resources -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj" crossorigin="anonymous"></script>
+
+    <!-- WordPress Theme Resources -->
+    <link media="all" href="wp-content/cache/autoptimize/css/autoptimize_5935bab86546be4715eb157c0207ae76.css" rel="stylesheet" />
+    <link href='wp-content/cache/autoptimize/css/autoptimize_single_432871b4b389a466a2d66c04b604ad89.css' rel='stylesheet' type='text/css' media='all' />
+    <link href='wp-content/cache/autoptimize/css/autoptimize_single_8ff2dfcb4333f530451d18c50cb055b6.css' rel='stylesheet' type='text/css' media='all' />
     <title>Prashanth Paul - Portfolio</title>
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-    <style>
-        body {
-            font-family: 'Montserrat', sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background-color: #f8f9fa;
-        }
-
-        .elementor-section {
-            padding: 80px 0;
-            background: white;
-            margin-bottom: 30px;
-            border-radius: 10px;
-            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
-        }
-
-        .elementor-heading-title {
-            text-align: center;
-            font-weight: 600;
-            font-size: 2.5em;
-            margin-bottom: 50px;
-            color: #333;
-        }
-
-        /* Header Styles */
-        .header-full-menu {
-            background: #fff;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            padding: 15px 0;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .main-menu {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            display: flex;
-            justify-content: center;
-        }
-
-        .main-menu li {
-            margin: 0 15px;
-        }
-
-        .main-menu a {
-            color: #333;
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-
-        .main-menu a:hover {
-            color: #007bff;
-        }
-
-        /* Home Section */
-        .elementor-image img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 10px;
-        }
-
-        /* Portfolio Section */
-        .portfolio-text-holder {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
-            margin-bottom: 30px;
-            transition: transform 0.3s ease;
-        }
-
-        .portfolio-text-holder:hover {
-            transform: translateY(-5px);
-        }
-
-        /* Skills Section */
-        .skill-card {
-            background: white;
-            padding: 25px;
-            border-radius: 10px;
-            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
-            height: 100%;
-            transition: transform 0.3s ease;
-        }
-
-        .skill-card:hover {
-            transform: translateY(-5px);
-        }
-
-        /* Experience Section */
-        .experience-card {
-            background: white;
-            padding: 25px;
-            border-radius: 10px;
-            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
-            margin-bottom: 20px;
-            transition: transform 0.3s ease;
-        }
-
-        .experience-card:hover {
-            transform: translateY(-5px);
-        }
-
-        /* Contact Section */
-        .contact-info {
-            background: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
-        }
-
-        /* Footer */
-        .footer {
-            background: #333;
-            color: #fff;
-            padding: 30px 0;
-            margin-top: 50px;
-        }
-
-        .social-links a {
-            color: #fff;
-            font-size: 24px;
-            margin: 0 15px;
-            transition: color 0.3s ease;
-        }
-
-        .social-links a:hover {
-            color: #007bff;
-        }
-
-        .coco-button {
-            display: inline-block;
-            padding: 12px 30px;
-            background: #007bff;
-            color: #fff;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: background 0.3s ease;
-        }
-
-        .coco-button:hover {
-            background: #0056b3;
-            color: #fff;
-        }
-
-        /* Research Publications */
-        .research-card {
-            background: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
-            height: 300px;
-            background-size: cover;
-            background-position: center;
-            margin: 10px;
-        }
+    <!-- Custom Styles -->
+    <style id="cocobasic-customizer-style" type="text/css">
+        body .header-logo img{width: 60px;}
+        body .header-logo{right: -60px;}
     </style>
+
+    <!-- Google Fonts -->
+    <link rel='dns-prefetch' href='http://fonts.googleapis.com/' />
+    <link rel='stylesheet' id='cocobasic-google-fonts-css' href='http://fonts.googleapis.com/css?family=Montserrat%3A200%2C300%2C400%2C500%2C600%2C700%2C800%7CAlata&amp;ver=1.0.0' type='text/css' media='all' />
+    <link rel='stylesheet' id='google-fonts-1-css' href='https://fonts.googleapis.com/css?family=Roboto%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic%7CRoboto+Slab%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic%7CNova+Round%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic%7CAlata%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic&amp;ver=5.5.3' type='text/css' media='all' />
+
+    <!-- WordPress Core Scripts -->
+    <script type='text/javascript' src='wp-includes/js/jquery/jquery.js' id='jquery-core-js'></script>
+    
+    <!-- IE Compatibility Scripts -->
+    <!--[if lt IE 9]>
+    <script type='text/javascript' src='wp-content/themes/romea-wp/js/html5shiv.min.js' id='html5shiv-js'></script>
+    <script type='text/javascript' src='wp-content/themes/romea-wp/js/respond.min.js' id='respond-js'></script>
+    <![endif]-->
+
+    <!-- WordPress API Links -->
+    <link rel="https://api.w.org/" href="wp-json/index.html" />
+    <link rel="alternate" type="application/json" href="wp-json/wp/v2/pages/313.json" />
+    <link rel="EditURI" type="application/rsd+xml" title="RSD" href="xmlrpc0db0.php?rsd" />
+    <link rel="wlwmanifest" type="application/wlwmanifest+xml" href="wp-includes/wlwmanifest.xml" />
+    
+    <!-- WordPress Meta -->
+    <meta name="generator" content="WordPress 5.5.3" />
+    <link rel="canonical" href="index.html" />
+    <link rel='shortlink' href='index.html' />
+
+    <!-- Favicon -->
+    <link rel="icon" href="wp-content/uploads/2020/09/cropped-favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" href="wp-content/uploads/2020/09/cropped-favicon-192x192.png" sizes="192x192" />
+    <link rel="apple-touch-icon" href="wp-content/uploads/2020/09/cropped-favicon-180x180.png" />
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-90924782-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-90924782-1', { 'anonymize_ip': true });
+    </script>
 </head>
-<body>
+
+<!-- =============================================
+     BODY CONTENT
+     ============================================= -->
+<body class="home page-template page-template-onepage page-template-onepage-php page page-id-313 chrome windows elementor-default elementor-kit-8 elementor-page elementor-page-313">
+    <!-- Loading Animation -->
+    <div class="doc-loader"></div>
+
+    <!-- =============================================
+         HEADER AND NAVIGATION
+         ============================================= -->
     <header>
+        <div class="header-right-part-holder">
+            <div class="header-right-part">
+                <div class="header-logo">
+                    <a href="index.html"></a>
+                </div>
+                <div class="toggle-holder">
+                    <div id="toggle">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Navigation Menu -->
         <div class="header-full-menu">
-            <nav class="container">
-                <ul class="main-menu">
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#about">About Me</a></li>
-                    <li><a href="#portfolio">Portfolio</a></li>
-                    <li><a href="#education">Education</a></li>
-                    <li><a href="#skills">Skills</a></li>
-                    <li><a href="#experience">Experience</a></li>
-                    <li><a href="#testimonial">Testimonial</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </nav>
+            <div class="menu-wrapper center-relative relative">
+                <div class="custom-menu-title">MENU</div>
+                <div class="menu-holder">
+                    <nav id="header-main-menu" class="menu-menu-1-container">
+                        <ul id="menu-menu-1" class="main-menu sm sm-clean">
+                            <li class="menu-item"><a href="#home">Home</a></li>
+                            <li class="menu-item"><a href="#about">About Me</a></li>
+                            <li class="menu-item"><a href="#portfolio">Portfolio</a></li>
+                            <li class="menu-item"><a href="#education">Education</a></li>
+                            <li class="menu-item"><a href="#skills">Skills</a></li>
+                            <li class="menu-item"><a href="#experience">Experience</a></li>
+                            <li class="menu-item"><a href="#blog">Favorite Articles</a></li>
+                            <li class="menu-item"><a href="#testimonial">Testimonial</a></li>
+                            <li class="menu-item"><a href="#contact">Contact</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+
+            <!-- Menu Text Description -->
+            <div class="menu-text-holder">
+                <div class="elementor-text-editor elementor-clearfix">
+                    A zealous graduate filled with curiosity that makes me think above & beyond, with high capabilities to see things in a different perspective with the use of technical skills
+                </div>
+            </div>
         </div>
     </header>
 
-    <!-- Home Section -->
-    <section id="home" class="container my-5">
-        <div class="row align-items-center">
-            <div class="col-md-6">
-                <h1 class="display-4 fw-bold mb-4">Hello<br>I'm Prashanth<br>Paul</h1>
-                <a href="https://drive.google.com/file/d/1gLEZK0r1cFzrglL47NCngMbiiAq_NzxX/view?usp=sharing" 
-                   target="_blank" class="coco-button">DOWNLOAD CV</a>
-            </div>
-            <div class="col-md-6">
-                <img src="1705879015952.jpg" class="img-fluid rounded-3 shadow" alt="Prashanth Paul">
-            </div>
-        </div>
-    </section>
+    <!-- =============================================
+         MAIN CONTENT SECTIONS
+         ============================================= -->
+    <div id="post-313" class="post-313 page type-page status-publish hentry">
+        <div class="one-page-content-wrapper">
 
-    <!-- About Section -->
-    <section id="about" class="container my-5">
-        <h2 class="elementor-heading-title">About Me</h2>
-        <div class="row">
-            <div class="col-12">
-                <div class="mb-5 text-center">
-                    <p class="lead">
-                        A zealous Individual filled with curiosity that makes me think above & beyond, 
-                        with high capabilities to see things in a different perspective with the use of technical skills
-                    </p>
-                </div>
-            </div>
-        </div>
-
-        <h3 class="text-center mb-4">International Research Publications</h3>
-        <div class="row">
-            <div class="col-md-4">
-                <div class="research-card" style="background-image: url('1.jpeg')"></div>
-            </div>
-            <div class="col-md-4">
-                <div class="research-card" style="background-image: url('2.jpeg')"></div>
-            </div>
-            <div class="col-md-4">
-                <div class="research-card" style="background-image: url('3.jpeg')"></div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Portfolio Section -->
-    <section id="portfolio" class="container my-5">
-        <h2 class="elementor-heading-title">Projects</h2>
-        <div class="row">
-            <div class="col-md-4 mb-4">
-                <a href="https://github.com/prashanthpaul/fake-news-detection" class="text-decoration-none">
-                    <div class="portfolio-text-holder">
-                        <h3 class="h5">Fake-News-Detection</h3>
-                        <p>Using Machine Learning</p>
-                        <img src="fake.png" class="img-fluid" alt="Fake News Detection">
-                    </div>
-                </a>
-            </div>
-            <div class="col-md-4 mb-4">
-                <a href="https://github.com/prashanthpaul/Breast_Cancer_Detection-Using-Machine-Learning" class="text-decoration-none">
-                    <div class="portfolio-text-holder">
-                        <h3 class="h5">Breast-Cancer-Detection</h3>
-                        <p>Using Machine Learning</p>
-                        <img src="bcp.png" class="img-fluid" alt="Breast Cancer Detection">
-                    </div>
-                </a>
-            </div>
-            <div class="col-md-4 mb-4">
-                <a href="https://github.com/prashanthpaul/Emergency-Traffic-Clearance" class="text-decoration-none">
-                    <div class="portfolio-text-holder">
-                        <h3 class="h5">Emergency Traffic Clearance</h3>
-                        <p>Using SQL</p>
-                        <img src="etc.jpg" class="img-fluid" alt="Emergency Traffic">
-                    </div>
-                </a>
-            </div>
-            <div class="col-md-4 mb-4">
-                <a href="https://github.com/prashanthpaul/Rainfal-Prediction" class="text-decoration-none">
-                    <div class="portfolio-text-holder">
-                        <h3 class="h5">Rainfall Prediction</h3>
-                        <p>Using Machine Learning</p>
-                        <img src="rainfall.png" class="img-fluid" alt="Rainfall Prediction">
-                    </div>
-                </a>
-            </div>
-            <div class="col-md-4 mb-4">
-                <a href="https://github.com/prashanthpaul/Data-Science-Web-App-with-Streamlit-and-Python/tree/main" class="text-decoration-none">
-                    <div class="portfolio-text-holder">
-                        <h3 class="h5">Data Science Web App</h3>
-                        <p>Using Streamlit and Python</p>
-                        <img src="bd.jpg" class="img-fluid" alt="Data Science Web App">
-                    </div>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Education Section -->
-    <section id="education" class="container my-5">
-        <h2 class="elementor-heading-title">Education</h2>
-        <div class="row">
-            <div class="col-md-6">
-                <div class="experience-card">
-                    <h3 class="h5">Master's In Data Analytics and Engineering</h3>
-                    <p class="mb-1">George Mason University • Fairfax, Virginia</p>
-                    <small class="text-muted">2021 - 2023</small>
-                </div>
-                
-                <div class="experience-card">
-                    <h3 class="h5">Bachelor of Engineering - Information Science</h3>
-                    <p class="mb-1">New Horizon College of Engineering • Bangalore, Karnataka</p>
-                    <small class="text-muted">2016 - 2020</small>
-                </div>
-                
-                <div class="experience-card">
-                    <h3 class="h5">The Indiranagar Cambridge School</h3>
-                    <p class="mb-1">Bangalore, Karnataka</p>
-                    <small class="text-muted">2004 - 2014</small>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="experience-card">
-                    <h3 class="h5">Pre-University College</h3>
-                    <p class="mb-1">New Horizon Pre-University College • Bengaluru, Karnataka</p>
-                    <small class="text-muted">2014 - 2016</small>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Skills Section -->
-    <section id="skills" class="container my-5">
-        <h2 class="elementor-heading-title">Skills</h2>
-        <div class="row">
-            <div class="col-md-4 mb-4">
-                <div class="skill-card">
-                    <h3 class="h5 text-center mb-4">Programming Languages</h3>
-                    <ul class="list-unstyled">
-                        <li class="mb-3">• Python</li>
-                        <li class="mb-3">• Java</li>
-                        <li class="mb-3">• SQL</li>
-                        <li class="mb-3">• R</li>
-                        <li>• C++</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-md-4 mb-4">
-                <div class="skill-card">
-                    <h3 class="h5 text-center mb-4">Data Analysis Tools</h3>
-                    <ul class="list-unstyled">
-                        <li class="mb-3">• Tableau</li>
-                        <li class="mb-3">• MS Excel</li>
-                        <li class="mb-3">• Power BI</li>
-                        <li class="mb-3">• MATLAB</li>
-                        <li>• MySQL</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-md-4 mb-4">
-                <div class="skill-card">
-                    <h3 class="h5 text-center mb-4">Technologies</h3>
-                    <ul class="list-unstyled">
-                        <li class="mb-3">• AWS</li>
-                        <li class="mb-3">• Git</li>
-                        <li class="mb-3">• Linux</li>
-                        <li class="mb-3">• Docker</li>
-                        <li>• Kubernetes</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Experience Section -->
-    <section id="experience" class="container my-5">
-        <h2 class="elementor-heading-title">Experience</h2>
-        <div class="row">
-            <div class="col-12">
-                <div class="experience-card">
-                    <div class="d-flex justify-content-between align-items-top">
-                        <div>
-                            <h3 class="h5">Technical Data Scientist</h3>
-                            <p class="mb-0">COM4 Global</p>
+            <!-- Home Section -->
+            <section id="home" class="elementor-section elementor-top-section op-section">
+                <div class="elementor-container">
+                    <div class="elementor-row">
+                        <div class="elementor-column">
+                            <div class="elementor-widget-wrap">
+                                <h1 class="elementor-heading-title">
+                                    Hello <br>
+                                    I'm Prashanth<br>
+                                    Paul
+                                </h1>
+                                <a class="coco-button" href="https://drive.google.com/file/d/1gLEZK0r1cFzrglL47NCngMbiiAq_NzxX/view?usp=sharing" target="_blank">
+                                    <span>DOWNLOAD CV</span>
+                                </a>
+                            </div>
                         </div>
-                        <div class="text-end">
-                            <p class="mb-0">July 2023 - Present</p>
+                        <div class="elementor-column">
+                            <img src="paul.JPEG" alt="Prashanth Paul"/>
                         </div>
                     </div>
                 </div>
+            </section>
 
-                <div class="experience-card">
+            <!-- About Section -->
+            <section id="about" class="elementor-section op-section">
+                <div class="elementor-container">
+                    <h2>About Me</h2>
+                    <div class="elementor-text-editor">
+                        <p>A zealous Individual filled with curiosity that makes me think above & beyond, 
+                        with high capabilities to see things in a different perspective with the use of technical skills</p>
+                    </div>
+
+                    <!-- Research Publications -->
+                    <div class="container">
+                        <div class="row" style="text-align:center;">
+                            <h1>INTERNATIONAL RESEARCH PUBLICATIONS</h1>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm publication-1"></div>
+                            <div class="col-sm publication-2"></div>
+                            <div class="col-sm publication-3"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Portfolio Section -->
+            <section id="portfolio" class="elementor-section op-section">
+                <h2>Projects</h2>
+                <div id="portfolio-wrapper">
+                    <div class="portfolio-load-content-holder content-670"></div>
+                    <div class="grid first-active" id="portfolio-grid">
+                        <!-- Project Items -->
+                        <div class="grid-item element-item">
+                            <a class="item-link" href="https://github.com/prashanthpaul/fake-news-detection">
+                                <div class="portfolio-text-holder">
+                                    <h6 class="portfolio-num">01</h6>
+                                    <h3 class="portfolio-text">Fake-News-Detection<br> Using Machine Learning</h3>
+                                    <div class="portfolio-image">
+                                        <img src="fake.png" alt="Fake News Detection"/>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <!-- Additional project items... -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Skills Section -->
+            <section id="skills" class="elementor-section op-section">
+                <h2>Skills</h2>
+                <div class="skills-holder">
+                    <!-- Python Skill -->
+                    <div class="skill-holder">
+                        <div class="skill">
+                            <div class="skill-text">PYTHON</div>
+                            <div class="skill-fill" data-fill="85"></div>
+                            <div class="skill-fill-mask" data-fill="85"></div>
+                        </div>
+                        <div class="skill-num">85%</div>
+                    </div>
+                    <!-- Additional skills... -->
+                </div>
+            </section>
+
+            <!-- Experience Section -->
+            <section id="experience" class="elementor-section op-section">
+                <h2>Experience</h2>
+                <!-- Company details and positions -->
+            </section>
+
+            <!-- Contact Section -->
+            <section id="contact" class="elementor-section op-section">
+                <h2>Contact</h2>
+                <div class="contact-info">
+                    <p><strong>Name:</strong> Prashanth Paul</p>
+                    <p><strong>Address:</strong> Bangalore, India</p>
+                    <p><strong>Phone:</strong> +91 8105096174</p>
+                </div>
+                <!-- Contact form -->
+            </section>
+        </div>
+    </div>
+
+    <!-- =============================================
+         FOOTER
+         ============================================= -->
+    <footer class="footer center-relative">
+        <div class="footer-content">
+            <div class="social-links">
+                <a href=""><i class="fab fa-facebook"></i></a>
+                <a href="https://github.com/prashanthpaul"><i class="fab fa-github"></i></a>
+                <a href=""><i class="fab fa-linkedin-in"></i></a>
+            </div>
+            <p>

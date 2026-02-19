@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Breast Cancer Detection — Prashanth Paul</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+    <nav class="nav" id="nav">
+        <div class="nav-inner">
+            <a href="../index.html" class="nav-logo">PP</a>
+            <div class="nav-links">
+                <a href="../index.html#about">About</a>
+                <a href="../index.html#projects">Projects</a>
+                <a href="../index.html#skills">Skills</a>
+                <a href="../index.html#experience">Experience</a>
+                <a href="../index.html#publications">Research</a>
+                <a href="../index.html#contact">Contact</a>
+            </div>
+            <div class="nav-right">
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                    <span class="theme-toggle-track"><span class="theme-toggle-thumb"></span></span>
+                </button>
+                <a href="https://drive.google.com/file/d/1gLEZK0r1cFzrglL47NCngMbiiAq_NzxX/view?usp=sharing" target="_blank" class="nav-cta">Download CV</a>
+            </div>
+            <button class="nav-toggle" aria-label="Toggle menu"><span></span><span></span></button>
+        </div>
+    </nav>
+
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="../index.html#about">About</a>
+        <a href="../index.html#projects">Projects</a>
+        <a href="../index.html#skills">Skills</a>
+        <a href="../index.html#experience">Experience</a>
+        <a href="../index.html#publications">Research</a>
+        <a href="../index.html#contact">Contact</a>
+        <a href="https://drive.google.com/file/d/1gLEZK0r1cFzrglL47NCngMbiiAq_NzxX/view?usp=sharing" target="_blank" class="nav-cta">Download CV</a>
+    </div>
+
+    <!-- PROJECT HERO -->
+    <div class="project-hero">
+        <div class="container">
+            <a href="../index.html#projects" class="back-link">&#8592; Back to Projects</a>
+            <div class="project-hero-content">
+                <h1 class="project-hero-title">Breast Cancer<br><span class="accent">Detection</span></h1>
+                <p class="project-hero-subtitle">Predictive machine learning model for early-stage breast cancer detection using diagnostic measurement data and classification algorithms to assist medical decision-making.</p>
+                <div class="project-tech" style="margin-bottom: 32px;">
+                    <span>Python</span><span>Machine Learning</span><span>Pandas</span><span>Scikit-learn</span><span>Classification</span><span>Data Analysis</span>
+                </div>
+                <a href="https://github.com/prashanthpaul/Breast_Cancer_Detection-Using-Machine-Learning" target="_blank" class="btn btn-primary">View on GitHub &nearr;</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- OVERVIEW -->
+    <section class="section">
+        <div class="container">
+            <div class="detail-grid reveal">
+                <div class="detail-label">
+                    <span class="label-tag">Overview</span>
+                </div>
+                <div class="detail-content">
+                    <p>Early detection of breast cancer significantly improves patient outcomes. This project applies machine learning classification to the Wisconsin Breast Cancer Dataset, which contains 30 features computed from digitized images of fine needle aspirate (FNA) of breast masses.</p>
+                    <p>The model classifies tumors as malignant or benign by analyzing features like radius, texture, perimeter, area, and smoothness of cell nuclei. Multiple classification algorithms were evaluated including Logistic Regression, Support Vector Machine, K-Nearest Neighbors, and Random Forest.</p>
+                    <p>Extensive exploratory data analysis was performed using Pandas and visualizations to understand feature correlations, handle missing values, and engineer features that maximize model performance.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section class="section section-dark">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="label-tag">Gallery</span>
+                <h2 class="section-title">Project<br><span class="accent">Visuals</span></h2>
+            </div>
+            <div class="project-gallery" style="grid-template-columns: 1fr;">
+                <div class="gallery-item reveal" style="height: 400px;">
+                    <img src="../bcp.png" alt="Breast cancer detection visualization" style="object-fit: contain; background: #1a1a1a; padding: 20px;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- KEY FEATURES -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="label-tag">Features</span>
+                <h2 class="section-title">Key<br><span class="accent">Highlights</span></h2>
+            </div>
+            <div class="feature-list">
+                <div class="feature-item reveal">
+                    <h3>Medical Dataset Analysis</h3>
+                    <p>Worked with the Wisconsin Breast Cancer Dataset — 569 samples with 30 real-valued features extracted from digitized medical images.</p>
+                </div>
+                <div class="feature-item reveal">
+                    <h3>Multi-Algorithm Comparison</h3>
+                    <p>Evaluated and compared multiple classification algorithms to identify the best-performing model for this specific medical use case.</p>
+                </div>
+                <div class="feature-item reveal">
+                    <h3>Real-World Impact</h3>
+                    <p>Demonstrates how machine learning can support early cancer detection, a domain where accurate predictions have life-saving potential.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-inner">
+                <p class="footer-text">&copy; 2026 Prashanth Paul. All rights reserved.</p>
+                <a href="../index.html#projects" class="footer-top">Back to Projects &uarr;</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+</body>
+</html>

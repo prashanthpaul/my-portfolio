@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Science Web App — Prashanth Paul</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+    <nav class="nav" id="nav">
+        <div class="nav-inner">
+            <a href="../index.html" class="nav-logo">PP</a>
+            <div class="nav-links">
+                <a href="../index.html#about">About</a>
+                <a href="../index.html#projects">Projects</a>
+                <a href="../index.html#skills">Skills</a>
+                <a href="../index.html#experience">Experience</a>
+                <a href="../index.html#publications">Research</a>
+                <a href="../index.html#contact">Contact</a>
+            </div>
+            <div class="nav-right">
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                    <span class="theme-toggle-track"><span class="theme-toggle-thumb"></span></span>
+                </button>
+                <a href="https://drive.google.com/file/d/1gLEZK0r1cFzrglL47NCngMbiiAq_NzxX/view?usp=sharing" target="_blank" class="nav-cta">Download CV</a>
+            </div>
+            <button class="nav-toggle" aria-label="Toggle menu"><span></span><span></span></button>
+        </div>
+    </nav>
+
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="../index.html#about">About</a>
+        <a href="../index.html#projects">Projects</a>
+        <a href="../index.html#skills">Skills</a>
+        <a href="../index.html#experience">Experience</a>
+        <a href="../index.html#publications">Research</a>
+        <a href="../index.html#contact">Contact</a>
+        <a href="https://drive.google.com/file/d/1gLEZK0r1cFzrglL47NCngMbiiAq_NzxX/view?usp=sharing" target="_blank" class="nav-cta">Download CV</a>
+    </div>
+
+    <!-- PROJECT HERO -->
+    <div class="project-hero">
+        <div class="container">
+            <a href="../index.html#projects" class="back-link">&#8592; Back to Projects</a>
+            <div class="project-hero-content">
+                <h1 class="project-hero-title">Data Science<br><span class="accent">Web App</span></h1>
+                <p class="project-hero-subtitle">Interactive web application built with Streamlit for data exploration, visualization, and machine learning model deployment — making data science accessible through a browser-based interface.</p>
+                <div class="project-tech" style="margin-bottom: 32px;">
+                    <span>Python</span><span>Streamlit</span><span>Data Visualization</span><span>Pandas</span><span>Scikit-learn</span><span>Plotly</span>
+                </div>
+                <a href="https://github.com/prashanthpaul/Data-Science-Web-App-with-Streamlit-and-Python" target="_blank" class="btn btn-primary">View on GitHub &nearr;</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- OVERVIEW -->
+    <section class="section">
+        <div class="container">
+            <div class="detail-grid reveal">
+                <div class="detail-label">
+                    <span class="label-tag">Overview</span>
+                </div>
+                <div class="detail-content">
+                    <p>This project demonstrates how to build and deploy a fully interactive data science application using Streamlit — making complex data analysis accessible to non-technical users through a clean browser interface.</p>
+                    <p>The app allows users to upload datasets, explore data with automated EDA, generate interactive visualizations, and run machine learning models — all without writing a single line of code. It serves as both a practical tool and a showcase of rapid application development skills.</p>
+                    <p>The project laid the foundation for the larger BI Copilot project, establishing the Streamlit-based architecture pattern and data visualization techniques that were later scaled and connected to Snowflake and Claude AI.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section class="section section-dark">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="label-tag">Gallery</span>
+                <h2 class="section-title">Project<br><span class="accent">Visuals</span></h2>
+            </div>
+            <div class="project-gallery" style="grid-template-columns: 1fr;">
+                <div class="gallery-item reveal" style="height: 420px;">
+                    <img src="../bd.jpg" alt="Data Science Web App visualization" style="object-fit: cover; object-position: center;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- KEY FEATURES -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="label-tag">Features</span>
+                <h2 class="section-title">Key<br><span class="accent">Highlights</span></h2>
+            </div>
+            <div class="feature-list">
+                <div class="feature-item reveal">
+                    <h3>Interactive EDA</h3>
+                    <p>Automated exploratory data analysis with dynamic charts, correlation heatmaps, distribution plots, and summary statistics — all rendered in real time.</p>
+                </div>
+                <div class="feature-item reveal">
+                    <h3>No-Code ML Deployment</h3>
+                    <p>Users can select features, choose an algorithm, train a model, and view performance metrics — all through UI controls with no code required.</p>
+                </div>
+                <div class="feature-item reveal">
+                    <h3>Foundation for BI Copilot</h3>
+                    <p>Established the Streamlit architecture and data pipeline patterns that were later scaled into the full AI-powered BI Copilot project.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-inner">
+                <p class="footer-text">&copy; 2026 Prashanth Paul. All rights reserved.</p>
+                <a href="../index.html#projects" class="footer-top">Back to Projects &uarr;</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+</body>
+</html>

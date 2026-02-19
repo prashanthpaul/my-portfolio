@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fake News Detection — Prashanth Paul</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+    <nav class="nav" id="nav">
+        <div class="nav-inner">
+            <a href="../index.html" class="nav-logo">PP</a>
+            <div class="nav-links">
+                <a href="../index.html#about">About</a>
+                <a href="../index.html#projects">Projects</a>
+                <a href="../index.html#skills">Skills</a>
+                <a href="../index.html#experience">Experience</a>
+                <a href="../index.html#publications">Research</a>
+                <a href="../index.html#contact">Contact</a>
+            </div>
+            <div class="nav-right">
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                    <span class="theme-toggle-track"><span class="theme-toggle-thumb"></span></span>
+                </button>
+                <a href="https://drive.google.com/file/d/1gLEZK0r1cFzrglL47NCngMbiiAq_NzxX/view?usp=sharing" target="_blank" class="nav-cta">Download CV</a>
+            </div>
+            <button class="nav-toggle" aria-label="Toggle menu"><span></span><span></span></button>
+        </div>
+    </nav>
+
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="../index.html#about">About</a>
+        <a href="../index.html#projects">Projects</a>
+        <a href="../index.html#skills">Skills</a>
+        <a href="../index.html#experience">Experience</a>
+        <a href="../index.html#publications">Research</a>
+        <a href="../index.html#contact">Contact</a>
+        <a href="https://drive.google.com/file/d/1gLEZK0r1cFzrglL47NCngMbiiAq_NzxX/view?usp=sharing" target="_blank" class="nav-cta">Download CV</a>
+    </div>
+
+    <!-- PROJECT HERO -->
+    <div class="project-hero">
+        <div class="container">
+            <a href="../index.html#projects" class="back-link">&#8592; Back to Projects</a>
+            <div class="project-hero-content">
+                <h1 class="project-hero-title">Fake News<br><span class="accent">Detection</span></h1>
+                <p class="project-hero-subtitle">Machine learning model to classify news articles as real or fake using NLP techniques and ensemble classification algorithms — published as a peer-reviewed research paper.</p>
+                <div class="project-tech" style="margin-bottom: 32px;">
+                    <span>Python</span><span>Machine Learning</span><span>NLP</span><span>Scikit-learn</span><span>Pandas</span><span>NLTK</span>
+                </div>
+                <a href="https://github.com/prashanthpaul/fake-news-detection" target="_blank" class="btn btn-primary">View on GitHub &nearr;</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- OVERVIEW -->
+    <section class="section">
+        <div class="container">
+            <div class="detail-grid reveal">
+                <div class="detail-label">
+                    <span class="label-tag">Overview</span>
+                </div>
+                <div class="detail-content">
+                    <p>This project tackles the growing problem of misinformation by building a machine learning system that automatically classifies news articles as real or fake. Using a dataset of thousands of labeled news articles, the model applies Natural Language Processing techniques to extract meaningful features from text.</p>
+                    <p>The approach involves text preprocessing (tokenization, stop word removal, stemming), TF-IDF vectorization to convert text into numerical features, and multiple classification algorithms including Logistic Regression, Random Forest, and Passive Aggressive Classifier.</p>
+                    <p>This research was published as a peer-reviewed paper in the International Journal for Research in Applied Science and Engineering Technology (IJRASET) in 2020, and presented at a national conference.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section class="section section-dark">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="label-tag">Gallery</span>
+                <h2 class="section-title">Project<br><span class="accent">Visuals</span></h2>
+            </div>
+            <div class="project-gallery">
+                <div class="gallery-item reveal" style="height: 300px;">
+                    <img src="../1.jpeg" alt="Conference presentation of Fake News research" style="object-position: center 20%;">
+                </div>
+                <div class="gallery-item reveal" style="height: 300px;">
+                    <img src="../fake.png" alt="Confusion matrix showing model accuracy" style="object-fit: contain; background: #fff; padding: 20px;">
+                </div>
+                <div class="gallery-item reveal" style="height: 300px;">
+                    <img src="../aa.png" alt="Fake news concept diagram" style="object-fit: contain; background: #fff; padding: 20px;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- KEY FEATURES -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="label-tag">Features</span>
+                <h2 class="section-title">Key<br><span class="accent">Highlights</span></h2>
+            </div>
+            <div class="feature-list">
+                <div class="feature-item reveal">
+                    <h3>NLP Text Processing</h3>
+                    <p>Full NLP pipeline including tokenization, stop word removal, stemming, and TF-IDF vectorization to transform raw news text into ML-ready features.</p>
+                </div>
+                <div class="feature-item reveal">
+                    <h3>High Accuracy Model</h3>
+                    <p>Achieved strong classification performance with a confusion matrix showing 1113 true negatives and 2159 true positives on the test dataset.</p>
+                </div>
+                <div class="feature-item reveal">
+                    <h3>Published Research</h3>
+                    <p>Results were peer-reviewed and published in IJRASET (2020) and presented at a national conference, validating the approach.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-inner">
+                <p class="footer-text">&copy; 2026 Prashanth Paul. All rights reserved.</p>
+                <a href="../index.html#projects" class="footer-top">Back to Projects &uarr;</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+</body>
+</html>

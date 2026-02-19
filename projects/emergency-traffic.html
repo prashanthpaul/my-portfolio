@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emergency Traffic Clearance — Prashanth Paul</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+    <nav class="nav" id="nav">
+        <div class="nav-inner">
+            <a href="../index.html" class="nav-logo">PP</a>
+            <div class="nav-links">
+                <a href="../index.html#about">About</a>
+                <a href="../index.html#projects">Projects</a>
+                <a href="../index.html#skills">Skills</a>
+                <a href="../index.html#experience">Experience</a>
+                <a href="../index.html#publications">Research</a>
+                <a href="../index.html#contact">Contact</a>
+            </div>
+            <div class="nav-right">
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                    <span class="theme-toggle-track"><span class="theme-toggle-thumb"></span></span>
+                </button>
+                <a href="https://drive.google.com/file/d/1gLEZK0r1cFzrglL47NCngMbiiAq_NzxX/view?usp=sharing" target="_blank" class="nav-cta">Download CV</a>
+            </div>
+            <button class="nav-toggle" aria-label="Toggle menu"><span></span><span></span></button>
+        </div>
+    </nav>
+
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="../index.html#about">About</a>
+        <a href="../index.html#projects">Projects</a>
+        <a href="../index.html#skills">Skills</a>
+        <a href="../index.html#experience">Experience</a>
+        <a href="../index.html#publications">Research</a>
+        <a href="../index.html#contact">Contact</a>
+        <a href="https://drive.google.com/file/d/1gLEZK0r1cFzrglL47NCngMbiiAq_NzxX/view?usp=sharing" target="_blank" class="nav-cta">Download CV</a>
+    </div>
+
+    <!-- PROJECT HERO -->
+    <div class="project-hero">
+        <div class="container">
+            <a href="../index.html#projects" class="back-link">&#8592; Back to Projects</a>
+            <div class="project-hero-content">
+                <h1 class="project-hero-title">Emergency Traffic<br><span class="accent">Clearance</span></h1>
+                <p class="project-hero-subtitle">SQL-based database system for optimizing emergency vehicle routing — automatically prioritizing traffic signals and clearance paths for ambulances and emergency responders to reduce response times.</p>
+                <div class="project-tech" style="margin-bottom: 32px;">
+                    <span>SQL</span><span>Database Design</span><span>Optimization</span><span>MySQL</span><span>ER Modeling</span>
+                </div>
+                <a href="https://github.com/prashanthpaul/Emergency-Traffic-Clearance" target="_blank" class="btn btn-primary">View on GitHub &nearr;</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- OVERVIEW -->
+    <section class="section">
+        <div class="container">
+            <div class="detail-grid reveal">
+                <div class="detail-label">
+                    <span class="label-tag">Overview</span>
+                </div>
+                <div class="detail-content">
+                    <p>Emergency response time is critical — every second counts when an ambulance is en route to a hospital. This project designs and implements a relational database system that manages traffic signal prioritization for emergency vehicles in real time.</p>
+                    <p>The system uses SQL stored procedures, triggers, and views to automatically detect emergency vehicle presence and cascade signal changes across intersections to create a clear corridor. The database schema was designed using Entity-Relationship modeling to capture vehicles, routes, signals, and timestamps.</p>
+                    <p>The project demonstrates advanced SQL skills including complex joins, subqueries, window functions, and procedural SQL to solve a real-world urban management problem.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section class="section section-dark">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="label-tag">Gallery</span>
+                <h2 class="section-title">Project<br><span class="accent">Visuals</span></h2>
+            </div>
+            <div class="project-gallery" style="grid-template-columns: 1fr;">
+                <div class="gallery-item reveal" style="height: 420px;">
+                    <img src="../etc.jpg" alt="Emergency traffic clearance scenario" style="object-fit: cover; object-position: center;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- KEY FEATURES -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="label-tag">Features</span>
+                <h2 class="section-title">Key<br><span class="accent">Highlights</span></h2>
+            </div>
+            <div class="feature-list">
+                <div class="feature-item reveal">
+                    <h3>Signal Prioritization Logic</h3>
+                    <p>Automated SQL triggers that detect emergency vehicles and cascade green lights across consecutive intersections along the optimal route.</p>
+                </div>
+                <div class="feature-item reveal">
+                    <h3>Database-Driven Routing</h3>
+                    <p>Relational schema modeling intersections, vehicles, routes, and signal states — with optimized queries for real-time route calculation.</p>
+                </div>
+                <div class="feature-item reveal">
+                    <h3>Real-World Problem Solving</h3>
+                    <p>Addresses a critical urban infrastructure challenge — reducing emergency response time through intelligent traffic management systems.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-inner">
+                <p class="footer-text">&copy; 2026 Prashanth Paul. All rights reserved.</p>
+                <a href="../index.html#projects" class="footer-top">Back to Projects &uarr;</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+</body>
+</html>

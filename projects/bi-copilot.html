@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real-Time BI Copilot — Prashanth Paul</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+    <nav class="nav" id="nav">
+        <div class="nav-inner">
+            <a href="../index.html" class="nav-logo">PP</a>
+            <div class="nav-links">
+                <a href="../index.html#about">About</a>
+                <a href="../index.html#projects">Projects</a>
+                <a href="../index.html#skills">Skills</a>
+                <a href="../index.html#experience">Experience</a>
+                <a href="../index.html#publications">Research</a>
+                <a href="../index.html#contact">Contact</a>
+            </div>
+            <div class="nav-right">
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                    <span class="theme-toggle-track"><span class="theme-toggle-thumb"></span></span>
+                </button>
+                <a href="https://drive.google.com/file/d/1gLEZK0r1cFzrglL47NCngMbiiAq_NzxX/view?usp=sharing" target="_blank" class="nav-cta">Download CV</a>
+            </div>
+            <button class="nav-toggle" aria-label="Toggle menu"><span></span><span></span></button>
+        </div>
+    </nav>
+
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="../index.html#about">About</a>
+        <a href="../index.html#projects">Projects</a>
+        <a href="../index.html#skills">Skills</a>
+        <a href="../index.html#experience">Experience</a>
+        <a href="../index.html#publications">Research</a>
+        <a href="../index.html#contact">Contact</a>
+        <a href="https://drive.google.com/file/d/1gLEZK0r1cFzrglL47NCngMbiiAq_NzxX/view?usp=sharing" target="_blank" class="nav-cta">Download CV</a>
+    </div>
+
+    <!-- PROJECT HERO -->
+    <div class="project-hero">
+        <div class="container">
+            <a href="../index.html#projects" class="back-link">&#8592; Back to Projects</a>
+            <div class="project-hero-content">
+                <div class="project-featured-badge">Featured Project</div>
+                <h1 class="project-hero-title">Real-Time BI<br><span class="accent">Copilot</span></h1>
+                <p class="project-hero-subtitle">AI-powered Business Intelligence tool using Anthropic's MCP protocol. Ask questions in plain English — the system converts them to SQL, queries a live Snowflake data warehouse, and returns instant answers with AI-generated insights.</p>
+                <div class="project-tech" style="margin-bottom: 32px;">
+                    <span>Python</span><span>MCP</span><span>Claude AI</span><span>Snowflake</span><span>Streamlit</span><span>Docker</span><span>DuckDB</span>
+                </div>
+                <a href="https://github.com/prashanthpaul/real-time-bi-copilot" target="_blank" class="btn btn-primary">View on GitHub &nearr;</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- OVERVIEW -->
+    <section class="section">
+        <div class="container">
+            <div class="detail-grid reveal">
+                <div class="detail-label">
+                    <span class="label-tag">Overview</span>
+                </div>
+                <div class="detail-content">
+                    <p>This project is a full-stack AI Business Intelligence system that connects Claude AI directly to a live Snowflake data warehouse using Anthropic's Model Context Protocol (MCP). Users can type natural language questions like "What are the top 5 products by revenue?" and receive instant, accurate SQL-backed answers.</p>
+                    <p>The system includes a multi-page Streamlit dashboard for data exploration, a natural language query interface, an AI-powered insights dashboard for anomaly detection, and a fully integrated MCP server that works inside VS Code — allowing Claude to query live business data in real time during conversations.</p>
+                    <p>The architecture uses a factory pattern to seamlessly switch between DuckDB (local development) and Snowflake (production), with Docker for containerized deployment and a comprehensive test suite of 31 automated tests.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section class="section section-dark">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="label-tag">Gallery</span>
+                <h2 class="section-title">Project<br><span class="accent">Visuals</span></h2>
+            </div>
+            <div class="project-gallery">
+                <div class="gallery-item reveal" style="height: 280px;">
+                    <img src="../a4.jpg" alt="Data analytics dashboard">
+                </div>
+                <div class="gallery-item reveal" style="height: 280px;">
+                    <img src="../a2.png" alt="AI data interface">
+                </div>
+                <div class="gallery-item reveal" style="height: 280px;">
+                    <img src="../a3.jpg" alt="Code and data pipeline">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- KEY FEATURES -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="label-tag">Features</span>
+                <h2 class="section-title">Key<br><span class="accent">Highlights</span></h2>
+            </div>
+            <div class="feature-list">
+                <div class="feature-item reveal">
+                    <h3>Natural Language to SQL</h3>
+                    <p>Claude AI converts plain English questions into accurate SQL queries against live Snowflake data — no SQL knowledge required.</p>
+                </div>
+                <div class="feature-item reveal">
+                    <h3>MCP Integration</h3>
+                    <p>Full Anthropic Model Context Protocol server that plugs into VS Code, letting Claude query business data directly inside the editor.</p>
+                </div>
+                <div class="feature-item reveal">
+                    <h3>Live Snowflake Connection</h3>
+                    <p>Connected to a real cloud data warehouse with 3 tables and thousands of rows of sales, customer, and product data.</p>
+                </div>
+                <div class="feature-item reveal">
+                    <h3>AI Anomaly Detection</h3>
+                    <p>Automatically surfaces unusual patterns in business metrics and generates plain-English explanations of what's happening and why.</p>
+                </div>
+                <div class="feature-item reveal">
+                    <h3>Multi-Page Dashboard</h3>
+                    <p>Streamlit dashboard with Data Explorer, Query Interface, and Insights Dashboard — all powered by the same data pipeline.</p>
+                </div>
+                <div class="feature-item reveal">
+                    <h3>Docker Deployment</h3>
+                    <p>Fully containerized with Docker Compose for one-command deployment, with 31 automated tests ensuring reliability.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-inner">
+                <p class="footer-text">&copy; 2026 Prashanth Paul. All rights reserved.</p>
+                <a href="../index.html#projects" class="footer-top">Back to Projects &uarr;</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+</body>
+</html>

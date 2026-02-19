@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supply Chain Analytics — Prashanth Paul</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+    <nav class="nav" id="nav">
+        <div class="nav-inner">
+            <a href="../index.html" class="nav-logo">PP</a>
+            <div class="nav-links">
+                <a href="../index.html#about">About</a>
+                <a href="../index.html#projects">Projects</a>
+                <a href="../index.html#skills">Skills</a>
+                <a href="../index.html#experience">Experience</a>
+                <a href="../index.html#publications">Research</a>
+                <a href="../index.html#contact">Contact</a>
+            </div>
+            <div class="nav-right">
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                    <span class="theme-toggle-track"><span class="theme-toggle-thumb"></span></span>
+                </button>
+                <a href="https://drive.google.com/file/d/1gLEZK0r1cFzrglL47NCngMbiiAq_NzxX/view?usp=sharing" target="_blank" class="nav-cta">Download CV</a>
+            </div>
+            <button class="nav-toggle" aria-label="Toggle menu"><span></span><span></span></button>
+        </div>
+    </nav>
+
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="../index.html#about">About</a>
+        <a href="../index.html#projects">Projects</a>
+        <a href="../index.html#skills">Skills</a>
+        <a href="../index.html#experience">Experience</a>
+        <a href="../index.html#publications">Research</a>
+        <a href="../index.html#contact">Contact</a>
+        <a href="https://drive.google.com/file/d/1gLEZK0r1cFzrglL47NCngMbiiAq_NzxX/view?usp=sharing" target="_blank" class="nav-cta">Download CV</a>
+    </div>
+
+    <!-- PROJECT HERO -->
+    <div class="project-hero">
+        <div class="container">
+            <a href="../index.html#projects" class="back-link">&#8592; Back to Projects</a>
+            <div class="project-hero-content">
+                <h1 class="project-hero-title">Supply Chain<br><span class="accent">Analytics</span></h1>
+                <p class="project-hero-subtitle">End-to-end analytics pipeline combining Python ETL, Snowflake, production-grade SQL, Claude AI reporting, and a Tableau executive dashboard to deliver supply chain intelligence.</p>
+                <div class="project-tech" style="margin-bottom: 32px;">
+                    <span>Python</span><span>Snowflake</span><span>SQL</span><span>Tableau</span><span>Streamlit</span><span>Claude AI</span><span>Plotly</span>
+                </div>
+                <a href="https://github.com/prashanthpaul/supply-chain-analytics" target="_blank" class="btn btn-primary">View on GitHub &nearr;</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- OVERVIEW -->
+    <section class="section">
+        <div class="container">
+            <div class="detail-grid reveal">
+                <div class="detail-label">
+                    <span class="label-tag">Overview</span>
+                </div>
+                <div class="detail-content">
+                    <p>This project builds a complete supply chain analytics system — from raw data generation through ETL loading, SQL analysis, AI-powered reporting, and an interactive Tableau BI dashboard — covering the full workflow expected of a senior data analyst.</p>
+                    <p>The dataset simulates 10,000 orders spanning 2022–2024 across 12 global suppliers, 20 product categories, and 30 enterprise customers. The pipeline answers critical business questions: which suppliers are creating delivery risk, which products drive the most margin, and which regions are underperforming.</p>
+                    <p>The AI reporting layer uses Claude to transform live Snowflake KPIs into weekly executive summaries and anomaly alerts — making insights accessible to non-technical stakeholders without manual report writing.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ARCHITECTURE -->
+    <section class="section section-dark">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="label-tag">Architecture</span>
+                <h2 class="section-title">How It<br><span class="accent">Works</span></h2>
+            </div>
+            <div class="feature-list">
+                <div class="feature-item reveal">
+                    <h3>1. Data Generation & ETL</h3>
+                    <p>Python generates 10,000 realistic orders with supplier-dependent delivery delays, discount patterns, and seasonal variation. A dedicated ETL script loads all 5 tables into Snowflake with schema creation and view setup in a single command.</p>
+                </div>
+                <div class="feature-item reveal">
+                    <h3>2. SQL Analytics Layer</h3>
+                    <p>Production-grade SQL including CTEs, window functions (LAG, RANK, running totals), multi-table JOINs, and CASE expressions. Six analytical views power both the Streamlit app and Tableau dashboard without duplicating logic.</p>
+                </div>
+                <div class="feature-item reveal">
+                    <h3>3. Claude AI Reports</h3>
+                    <p>Fetches live KPI snapshots from Snowflake and sends them to Claude API to generate structured weekly intelligence reports and anomaly alerts. Reports are saved as Markdown files and rendered directly in the Streamlit app.</p>
+                </div>
+                <div class="feature-item reveal">
+                    <h3>4. Streamlit Dashboard</h3>
+                    <p>5-page interactive reporting app: Executive Overview, Product Performance, Supplier Scorecard, Logistics & Carriers, and the AI Report generator. Built with Plotly for rich interactive charts.</p>
+                </div>
+                <div class="feature-item reveal">
+                    <h3>5. Tableau BI Dashboard</h3>
+                    <p>Pre-built Tableau workbook (.twb) with 6 sheets and an executive dashboard layout — Revenue Trend, Top Products, Supplier On-Time Rate, Regional Revenue, Carrier Performance, and Revenue vs Margin scatter. Opens directly in Tableau Desktop with Snowflake connection.</p>
+                </div>
+                <div class="feature-item reveal">
+                    <h3>6. Pipeline Orchestration</h3>
+                    <p>Single-command runner executes the full pipeline in sequence: data generation → Snowflake ETL → AI report → Streamlit launch. Individual steps can be run independently for development and debugging.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SQL HIGHLIGHT -->
+    <section class="section">
+        <div class="container">
+            <div class="detail-grid reveal">
+                <div class="detail-label">
+                    <span class="label-tag">SQL Depth</span>
+                </div>
+                <div class="detail-content">
+                    <p>The analytical SQL layer demonstrates patterns expected in production data engineering: month-over-month growth using LAG window functions, supplier risk scoring with conditional aggregation, customer ranking with RANK() PARTITION BY, and 30-day rolling averages using ROWS BETWEEN window frames.</p>
+                    <p>Six Snowflake views encapsulate business logic — VW_MONTHLY_REVENUE, VW_PRODUCT_PERFORMANCE, VW_SUPPLIER_SCORECARD, VW_REGIONAL_SUMMARY, VW_CARRIER_PERFORMANCE, and VW_ORDER_FULFILLMENT — all acting as the single source of truth for both the BI tools and the Python application layer.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- KEY FEATURES -->
+    <section class="section section-dark">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="label-tag">Features</span>
+                <h2 class="section-title">Key<br><span class="accent">Highlights</span></h2>
+            </div>
+            <div class="feature-list">
+                <div class="feature-item reveal">
+                    <h3>Supplier Risk Scoring</h3>
+                    <p>Automated risk classification for all 12 suppliers based on on-time delivery rates — flagging HIGH (below 85%), MEDIUM (85–92%), and LOW risk. Critical for procurement decisions.</p>
+                </div>
+                <div class="feature-item reveal">
+                    <h3>AI Executive Reports</h3>
+                    <p>Claude generates fully structured weekly business reports with executive summary, revenue analysis, supplier risk assessment, carrier evaluation, and strategic recommendations — directly from live data.</p>
+                </div>
+                <div class="feature-item reveal">
+                    <h3>Tableau-Ready Architecture</h3>
+                    <p>SQL views are designed as Tableau data sources. The included .twb workbook connects directly to Snowflake — open it in Tableau Desktop, enter credentials, and the dashboard is ready instantly.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-inner">
+                <p class="footer-text">&copy; 2026 Prashanth Paul. All rights reserved.</p>
+                <a href="../index.html#projects" class="footer-top">Back to Projects &uarr;</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+</body>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rainfall Prediction — Prashanth Paul</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+    <nav class="nav" id="nav">
+        <div class="nav-inner">
+            <a href="../index.html" class="nav-logo">PP</a>
+            <div class="nav-links">
+                <a href="../index.html#about">About</a>
+                <a href="../index.html#projects">Projects</a>
+                <a href="../index.html#skills">Skills</a>
+                <a href="../index.html#experience">Experience</a>
+                <a href="../index.html#publications">Research</a>
+                <a href="../index.html#contact">Contact</a>
+            </div>
+            <div class="nav-right">
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                    <span class="theme-toggle-track"><span class="theme-toggle-thumb"></span></span>
+                </button>
+                <a href="https://drive.google.com/file/d/1gLEZK0r1cFzrglL47NCngMbiiAq_NzxX/view?usp=sharing" target="_blank" class="nav-cta">Download CV</a>
+            </div>
+            <button class="nav-toggle" aria-label="Toggle menu"><span></span><span></span></button>
+        </div>
+    </nav>
+
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="../index.html#about">About</a>
+        <a href="../index.html#projects">Projects</a>
+        <a href="../index.html#skills">Skills</a>
+        <a href="../index.html#experience">Experience</a>
+        <a href="../index.html#publications">Research</a>
+        <a href="../index.html#contact">Contact</a>
+        <a href="https://drive.google.com/file/d/1gLEZK0r1cFzrglL47NCngMbiiAq_NzxX/view?usp=sharing" target="_blank" class="nav-cta">Download CV</a>
+    </div>
+
+    <!-- PROJECT HERO -->
+    <div class="project-hero">
+        <div class="container">
+            <a href="../index.html#projects" class="back-link">&#8592; Back to Projects</a>
+            <div class="project-hero-content">
+                <h1 class="project-hero-title">Rainfall<br><span class="accent">Prediction</span></h1>
+                <p class="project-hero-subtitle">Machine learning model for weather forecasting using historical rainfall data, time series analysis, and predictive analytics to forecast monthly precipitation patterns.</p>
+                <div class="project-tech" style="margin-bottom: 32px;">
+                    <span>Python</span><span>Machine Learning</span><span>Data Analysis</span><span>Time Series</span><span>Matplotlib</span><span>Pandas</span>
+                </div>
+                <a href="https://github.com/prashanthpaul/Rainfal-Prediction" target="_blank" class="btn btn-primary">View on GitHub &nearr;</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- OVERVIEW -->
+    <section class="section">
+        <div class="container">
+            <div class="detail-grid reveal">
+                <div class="detail-label">
+                    <span class="label-tag">Overview</span>
+                </div>
+                <div class="detail-content">
+                    <p>Accurate rainfall prediction is essential for agriculture, water resource management, and disaster preparedness. This project builds a machine learning pipeline that processes historical weather data to forecast future precipitation levels.</p>
+                    <p>The model analyzes multi-year rainfall records, identifies seasonal patterns and trends, and applies regression-based forecasting techniques. Extensive data visualization was used to understand patterns across months and years before model training.</p>
+                    <p>The project covers the full data science workflow — from data collection and cleaning through feature engineering, model selection, hyperparameter tuning, and evaluation using MAE and RMSE metrics.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section class="section section-dark">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="label-tag">Gallery</span>
+                <h2 class="section-title">Project<br><span class="accent">Visuals</span></h2>
+            </div>
+            <div class="project-gallery" style="grid-template-columns: 1fr;">
+                <div class="gallery-item reveal" style="height: 400px;">
+                    <img src="../rainfall.png" alt="Rainfall prediction line graph" style="object-fit: contain; background: #fff; padding: 24px;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- KEY FEATURES -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="label-tag">Features</span>
+                <h2 class="section-title">Key<br><span class="accent">Highlights</span></h2>
+            </div>
+            <div class="feature-list">
+                <div class="feature-item reveal">
+                    <h3>Time Series Analysis</h3>
+                    <p>Decomposed rainfall data into trend, seasonality, and residual components to understand underlying patterns before applying forecasting models.</p>
+                </div>
+                <div class="feature-item reveal">
+                    <h3>Data Visualization</h3>
+                    <p>Produced multi-line charts showing monthly rainfall across years — making seasonal patterns visually clear and aiding feature selection decisions.</p>
+                </div>
+                <div class="feature-item reveal">
+                    <h3>End-to-End ML Pipeline</h3>
+                    <p>Complete workflow from raw CSV ingestion through preprocessing, feature engineering, model training, and evaluation with quantitative metrics.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-inner">
+                <p class="footer-text">&copy; 2026 Prashanth Paul. All rights reserved.</p>
+                <a href="../index.html#projects" class="footer-top">Back to Projects &uarr;</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+</body>
+</html>

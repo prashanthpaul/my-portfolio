@@ -5,6 +5,19 @@
 (function () {
     'use strict';
 
+    // --- Fresh-visit scroll reset ---
+    // If the URL has #portfolio but the visitor is NOT coming back from a
+    // sub-page (i.e. it's a direct/external link), strip the hash and show
+    // the hero section instead of jumping straight to the portfolio grid.
+    if (window.location.hash === '#portfolio') {
+        var referrer = document.referrer;
+        var fromSubPage = referrer && referrer.indexOf('/my-portfolio/portfolio/') !== -1;
+        if (!fromSubPage) {
+            history.replaceState(null, null, window.location.pathname);
+            window.scrollTo(0, 0);
+        }
+    }
+
     // --- Theme Toggle ---
     const themeToggle = document.getElementById('themeToggle');
     const savedTheme = localStorage.getItem('theme');

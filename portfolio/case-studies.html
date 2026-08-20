@@ -1,0 +1,683 @@
+<title>Section 1: Program Case Studies — TPM Portfolio Preview</title>
+<style>
+/* ── Design Tokens ── */
+:root {
+  --bg:             #F2F5F8;
+  --surface:        #FFFFFF;
+  --surface-raised: #F8FAFC;
+  --border:         #C9D8E6;
+  --border-subtle:  #E4EBF2;
+  --accent:         #006B65;
+  --accent-faint:   #E0F2F1;
+  --metric:         #A65F00;
+  --metric-faint:   #FFF4E0;
+  --success:        #1A6B44;
+  --success-faint:  #E6F4EC;
+  --text-1:         #0C1A27;
+  --text-2:         #47627A;
+  --text-3:         #7A98AF;
+  --badge-bg:       #EBF1F6;
+  /* per-card accent (overridden inline) */
+  --card-ac:        #006B65;
+  --radius:         14px;
+  --radius-sm:      6px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg:             #080E16;
+    --surface:        #0E1B2B;
+    --surface-raised: #152335;
+    --border:         #1C3148;
+    --border-subtle:  #152335;
+    --accent:         #00BFB6;
+    --accent-faint:   #00BFB610;
+    --metric:         #F0A020;
+    --metric-faint:   #F0A02010;
+    --success:        #3DB870;
+    --success-faint:  #3DB87010;
+    --text-1:         #E4EEF8;
+    --text-2:         #85A3BC;
+    --text-3:         #45637A;
+    --badge-bg:       #162840;
+    --card-ac:        #00BFB6;
+  }
+}
+
+:root[data-theme="dark"] {
+  --bg:             #080E16;
+  --surface:        #0E1B2B;
+  --surface-raised: #152335;
+  --border:         #1C3148;
+  --border-subtle:  #152335;
+  --accent:         #00BFB6;
+  --accent-faint:   #00BFB610;
+  --metric:         #F0A020;
+  --metric-faint:   #F0A02010;
+  --success:        #3DB870;
+  --success-faint:  #3DB87010;
+  --text-1:         #E4EEF8;
+  --text-2:         #85A3BC;
+  --text-3:         #45637A;
+  --badge-bg:       #162840;
+  --card-ac:        #00BFB6;
+}
+
+:root[data-theme="light"] {
+  --bg:             #F2F5F8;
+  --surface:        #FFFFFF;
+  --surface-raised: #F8FAFC;
+  --border:         #C9D8E6;
+  --border-subtle:  #E4EBF2;
+  --accent:         #006B65;
+  --accent-faint:   #E0F2F1;
+  --metric:         #A65F00;
+  --metric-faint:   #FFF4E0;
+  --success:        #1A6B44;
+  --success-faint:  #E6F4EC;
+  --text-1:         #0C1A27;
+  --text-2:         #47627A;
+  --text-3:         #7A98AF;
+  --badge-bg:       #EBF1F6;
+  --card-ac:        #006B65;
+}
+
+/* ── Reset ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--bg);
+  color: var(--text-1);
+  font-family: system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+/* ── Page Layout ── */
+.page {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 52px 24px 96px;
+}
+
+/* ── Preview Banner ── */
+.preview-banner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--radius-sm);
+  padding: 11px 16px;
+  margin-bottom: 48px;
+  font-size: 0.8rem;
+  color: var(--text-2);
+}
+
+.preview-banner strong { color: var(--text-1); }
+
+.preview-dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+  flex-shrink: 0;
+}
+
+/* ── Section Header ── */
+.section-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.eyebrow-tag {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+  white-space: nowrap;
+}
+
+.eyebrow-rule {
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+.section-heading {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  line-height: 1.08;
+  text-wrap: balance;
+  color: var(--text-1);
+  margin-bottom: 14px;
+}
+
+.section-sub {
+  color: var(--text-2);
+  font-size: 1rem;
+  line-height: 1.75;
+  max-width: 580px;
+  margin-bottom: 56px;
+}
+
+/* ── Card List ── */
+.card-list {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+/* ── Case Card ── */
+.case-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  /* top colored stripe via box-shadow to keep border-radius clean */
+  box-shadow: inset 0 3px 0 var(--card-ac, var(--accent));
+}
+
+/* ── Card Header ── */
+.card-header {
+  padding: 28px 32px 22px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.card-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 18px;
+}
+
+.company-name {
+  font-size: 1.2rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--text-1);
+  margin-bottom: 3px;
+}
+
+.role-name {
+  font-size: 0.83rem;
+  color: var(--text-2);
+  font-weight: 500;
+}
+
+.card-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.date-range {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--text-3);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.01em;
+}
+
+.sample-tag {
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  border: 1px solid var(--border);
+  padding: 2px 8px;
+  border-radius: 20px;
+}
+
+/* Complexity badges */
+.badge-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.cbadge {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background: var(--badge-bg);
+  border: 1px solid var(--border-subtle);
+  border-radius: 20px;
+  padding: 4px 11px;
+  font-size: 0.73rem;
+  font-weight: 600;
+  color: var(--text-2);
+}
+
+.cbadge-dot {
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--card-ac, var(--accent));
+  flex-shrink: 0;
+}
+
+/* ── STAR Tabs ── */
+.star-nav {
+  display: flex;
+  padding: 0 32px;
+  border-bottom: 1px solid var(--border-subtle);
+  background: var(--surface);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.star-nav::-webkit-scrollbar { display: none; }
+
+.star-btn {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 13px 15px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.star-btn:hover { color: var(--text-2); }
+
+.star-btn.is-active {
+  color: var(--card-ac, var(--accent));
+  border-bottom-color: var(--card-ac, var(--accent));
+}
+
+.star-letter {
+  font-size: 0.95rem;
+  font-weight: 900;
+  opacity: 0.9;
+}
+
+/* ── Tab Content ── */
+.tab-body {
+  padding: 28px 32px;
+  min-height: 130px;
+}
+
+.tab-pane { display: none; }
+.tab-pane.is-active { display: block; }
+
+.pane-label {
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  margin-bottom: 11px;
+}
+
+.pane-text {
+  color: var(--text-2);
+  font-size: 0.95rem;
+  line-height: 1.78;
+}
+
+.action-items {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+}
+
+.action-items li {
+  display: flex;
+  gap: 11px;
+  color: var(--text-2);
+  font-size: 0.95rem;
+  line-height: 1.65;
+}
+
+.a-bullet {
+  flex-shrink: 0;
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--card-ac, var(--accent));
+  margin-top: 9px;
+}
+
+/* ── Metrics Strip ── */
+.metrics-strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  border-top: 1px solid var(--border-subtle);
+  background: var(--surface-raised);
+}
+
+.metric-cell {
+  padding: 20px 24px;
+  border-right: 1px solid var(--border-subtle);
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.metric-cell:last-child { border-right: none; }
+
+.m-value {
+  font-size: 1.6rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+  color: var(--metric);
+  line-height: 1;
+}
+
+.m-value.is-good { color: var(--success); }
+
+.m-label {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  line-height: 1.35;
+}
+
+/* ── Tech Tags ── */
+.tech-footer {
+  padding: 14px 32px;
+  border-top: 1px solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.tech-eyebrow {
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  margin-right: 3px;
+}
+
+.tech-chip {
+  background: var(--badge-bg);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-2);
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 3px 9px;
+  border-radius: 4px;
+}
+
+/* ── Responsive ── */
+@media (max-width: 600px) {
+  .card-header { padding: 20px 20px 18px; }
+  .star-nav { padding: 0 20px; }
+  .tab-body { padding: 22px 20px; }
+  .metric-cell { padding: 16px 18px; }
+  .tech-footer { padding: 12px 20px; }
+  .star-btn { padding: 11px 10px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+}
+</style>
+
+<div class="page">
+
+  <!-- Preview banner -->
+  <div class="preview-banner">
+    <div class="preview-dot"></div>
+    <span><strong>Portfolio Preview — Section 1 of 5:</strong> Program Case Studies &nbsp;·&nbsp; Awaiting approval before any GitHub update</span>
+  </div>
+
+  <!-- Section header -->
+  <div class="section-eyebrow">
+    <span class="eyebrow-tag">Section 01 of 05</span>
+    <div class="eyebrow-rule"></div>
+  </div>
+  <h1 class="section-heading">Program Case Studies</h1>
+  <p class="section-sub">Three programs spanning infrastructure, cloud migration, and AI-driven data platforms. Each follows the STAR method — Situation, Task, Action, Result — with verified metrics anchored to real program outcomes.</p>
+
+  <!-- Cards -->
+  <div class="card-list">
+
+    <!-- ── CARD 1: Baptist World Alliance ── -->
+    <article class="case-card" style="--card-ac:#00BFB6">
+      <div class="card-header">
+        <div class="card-header-row">
+          <div>
+            <div class="company-name">Baptist World Alliance</div>
+            <div class="role-name">Technical Program Manager — Enterprise Infrastructure &amp; Systems Integration</div>
+          </div>
+          <div class="card-meta">
+            <div class="date-range">Apr 2026 – Present</div>
+            <div class="sample-tag">Anonymized Sample</div>
+          </div>
+        </div>
+        <div class="badge-row">
+          <span class="cbadge"><span class="cbadge-dot"></span>6-Engineer Cross-Functional Team</span>
+          <span class="cbadge"><span class="cbadge-dot"></span>4 Corporate Divisions</span>
+          <span class="cbadge"><span class="cbadge-dot"></span>AWS Enterprise Platform</span>
+          <span class="cbadge"><span class="cbadge-dot"></span>AI / ML Pipeline</span>
+        </div>
+      </div>
+
+      <div class="star-nav" id="bwa-nav">
+        <button class="star-btn is-active" onclick="switchTab('bwa','situation',this)"><span class="star-letter">S</span> Situation</button>
+        <button class="star-btn" onclick="switchTab('bwa','task',this)"><span class="star-letter">T</span> Task</button>
+        <button class="star-btn" onclick="switchTab('bwa','action',this)"><span class="star-letter">A</span> Action</button>
+        <button class="star-btn" onclick="switchTab('bwa','result',this)"><span class="star-letter">R</span> Result</button>
+      </div>
+
+      <div class="tab-body">
+        <div class="tab-pane is-active" id="bwa-situation">
+          <div class="pane-label">The Problem</div>
+          <p class="pane-text">The organization needed an AWS-hosted enterprise data and systems integration platform capable of powering AI-driven predictive modeling pipelines — but four corporate divisions were operating with fragmented infrastructure ownership and no unified visibility into delivery health. Without systematic change governance, every release cycle carried real risk of unauthorized scope changes degrading platform integrity.</p>
+        </div>
+        <div class="tab-pane" id="bwa-task">
+          <div class="pane-label">My Role</div>
+          <p class="pane-text">I owned end-to-end program delivery — not coordination, but the governance infrastructure itself: designing the automated risk-tracking system, running the Change Control Board, building real-time dashboards, and acting as the translation layer between systems architecture complexity and executive decision-making across all four divisions.</p>
+        </div>
+        <div class="tab-pane" id="bwa-action">
+          <div class="pane-label">What I Did</div>
+          <ul class="action-items">
+            <li><span class="a-bullet"></span><span>Designed and operated an automated risk-tracking system across the 6-engineer team, creating systematic early-warning on delivery blockers — reducing them by 14%</span></li>
+            <li><span class="a-bullet"></span><span>Engineered automated regression testing protocols, increasing AWS infrastructure deployment velocity by 16%</span></li>
+            <li><span class="a-bullet"></span><span>Built real-time dashboards giving executive leadership live visibility into pipeline health and delivery metrics across all phases</span></li>
+            <li><span class="a-bullet"></span><span>Owned the Change Control Board (CCB) for all infrastructure-impacting requests — fully preventing unauthorized scope creep across every release cycle</span></li>
+            <li><span class="a-bullet"></span><span>Translated complex systems architecture and integration dependencies into milestone-level reporting, unifying 4 divisions around a single infrastructure roadmap</span></li>
+          </ul>
+        </div>
+        <div class="tab-pane" id="bwa-result">
+          <div class="pane-label">Outcome</div>
+          <p class="pane-text">Measurable improvements across every dimension of program health. Delivery blockers reduced 14% system-wide. Deployment velocity up 16%. Full architectural integrity maintained with zero unauthorized scope escalations. Four divisions held to a single roadmap throughout the program lifecycle — with live executive visibility at every stage.</p>
+        </div>
+      </div>
+
+      <div class="metrics-strip">
+        <div class="metric-cell"><div class="m-value">↓14%</div><div class="m-label">Delivery Blockers Reduced</div></div>
+        <div class="metric-cell"><div class="m-value">↑16%</div><div class="m-label">Deployment Velocity</div></div>
+        <div class="metric-cell"><div class="m-value is-good">Zero</div><div class="m-label">Scope Escalations</div></div>
+        <div class="metric-cell"><div class="m-value is-good">4/4</div><div class="m-label">Divisions Aligned</div></div>
+      </div>
+
+      <div class="tech-footer">
+        <span class="tech-eyebrow">Stack</span>
+        <span class="tech-chip">AWS</span>
+        <span class="tech-chip">Jira</span>
+        <span class="tech-chip">Confluence</span>
+        <span class="tech-chip">Tableau</span>
+        <span class="tech-chip">ServiceNow</span>
+        <span class="tech-chip">Smartsheet</span>
+      </div>
+    </article>
+
+    <!-- ── CARD 2: COM4 Global ── -->
+    <article class="case-card" style="--card-ac:#E08000">
+      <div class="card-header">
+        <div class="card-header-row">
+          <div>
+            <div class="company-name">COM4 Global</div>
+            <div class="role-name">Technical Project Manager — Systems Integration</div>
+          </div>
+          <div class="card-meta">
+            <div class="date-range">Apr 2023 – Oct 2025</div>
+            <div class="sample-tag">Anonymized Sample</div>
+          </div>
+        </div>
+        <div class="badge-row">
+          <span class="cbadge" style="--card-ac:#E08000"><span class="cbadge-dot"></span>8 Business Divisions</span>
+          <span class="cbadge" style="--card-ac:#E08000"><span class="cbadge-dot"></span>Legacy-to-Cloud Migration</span>
+          <span class="cbadge" style="--card-ac:#E08000"><span class="cbadge-dot"></span>API Systems Integration</span>
+          <span class="cbadge" style="--card-ac:#E08000"><span class="cbadge-dot"></span>Vendor SLA Governance</span>
+        </div>
+      </div>
+
+      <div class="star-nav" id="com4-nav">
+        <button class="star-btn is-active" onclick="switchTab('com4','situation',this)"><span class="star-letter">S</span> Situation</button>
+        <button class="star-btn" onclick="switchTab('com4','task',this)"><span class="star-letter">T</span> Task</button>
+        <button class="star-btn" onclick="switchTab('com4','action',this)"><span class="star-letter">A</span> Action</button>
+        <button class="star-btn" onclick="switchTab('com4','result',this)"><span class="star-letter">R</span> Result</button>
+      </div>
+
+      <div class="tab-body">
+        <div class="tab-pane is-active" id="com4-situation">
+          <div class="pane-label">The Problem</div>
+          <p class="pane-text">Eight business divisions were running fragmented legacy technical systems with no unified cloud infrastructure. Migration carried concentrated risk: API and system-integration conflicts that, if caught only at go-live, would trigger expensive post-deployment remediation. A critical 3-week delay mid-program further threatened both delivery timelines and baseline budget.</p>
+        </div>
+        <div class="tab-pane" id="com4-task">
+          <div class="pane-label">My Role</div>
+          <p class="pane-text">Program-manage the full AWS cloud migration across all 8 divisions — owning the technical risk matrix, vendor delivery lifecycles, sprint governance, and executive reporting. My mandate: hit every cutover deadline, prevent post-go-live remediation, and recover any delay without budget overrun.</p>
+        </div>
+        <div class="tab-pane" id="com4-action">
+          <div class="pane-label">What I Did</div>
+          <ul class="action-items">
+            <li><span class="a-bullet" style="background:#E08000"></span><span>Maintained a technical risk matrix that caught critical API and system-integration conflicts before go-live — preventing $40K+ in post-deployment remediation costs</span></li>
+            <li><span class="a-bullet" style="background:#E08000"></span><span>Governed all external vendor relationships end-to-end, holding every vendor to contracted SLA delivery timelines through milestone tracking</span></li>
+            <li><span class="a-bullet" style="background:#E08000"></span><span>Maintained uninterrupted infrastructure deployment pipelines through high-volume system cutovers by partnering directly with engineers on sprint planning and release governance</span></li>
+            <li><span class="a-bullet" style="background:#E08000"></span><span>Recovered a critical 3-week program delay by restructuring resource allocation matrices and re-sequencing infrastructure verification sprints — with zero increase to baseline budget</span></li>
+          </ul>
+        </div>
+        <div class="tab-pane" id="com4-result">
+          <div class="pane-label">Outcome</div>
+          <p class="pane-text">Every cutover deadline across all 8 divisions hit ahead of schedule. Pre-go-live risk management prevented over $40K in remediation costs. The 3-week mid-program delay fully recovered with zero budget overrun. All external vendors held to contractual SLAs throughout the 2.5-year program engagement.</p>
+        </div>
+      </div>
+
+      <div class="metrics-strip">
+        <div class="metric-cell"><div class="m-value">$40K+</div><div class="m-label">Remediation Costs Prevented</div></div>
+        <div class="metric-cell"><div class="m-value is-good">8/8</div><div class="m-label">Divisions on Unified Platform</div></div>
+        <div class="metric-cell"><div class="m-value is-good">$0</div><div class="m-label">Budget Overrun on Delay Recovery</div></div>
+        <div class="metric-cell"><div class="m-value is-good">0</div><div class="m-label">Missed Cutover Deadlines</div></div>
+      </div>
+
+      <div class="tech-footer">
+        <span class="tech-eyebrow">Stack</span>
+        <span class="tech-chip">AWS</span>
+        <span class="tech-chip">Jira</span>
+        <span class="tech-chip">MS Project</span>
+        <span class="tech-chip">ServiceNow</span>
+        <span class="tech-chip">Smartsheet</span>
+        <span class="tech-chip">Confluence</span>
+      </div>
+    </article>
+
+    <!-- ── CARD 3: MITRE ── -->
+    <article class="case-card" style="--card-ac:#4A80C4">
+      <div class="card-header">
+        <div class="card-header-row">
+          <div>
+            <div class="company-name">MITRE Corporation</div>
+            <div class="role-name">Program Manager — Infrastructure (Sponsored Capstone)</div>
+          </div>
+          <div class="card-meta">
+            <div class="date-range">Nov 2022 – Mar 2023</div>
+            <div class="sample-tag">Anonymized Sample</div>
+          </div>
+        </div>
+        <div class="badge-row">
+          <span class="cbadge" style="--card-ac:#4A80C4"><span class="cbadge-dot"></span>4-Person Engineering Team</span>
+          <span class="cbadge" style="--card-ac:#4A80C4"><span class="cbadge-dot"></span>AWS Data Pipeline</span>
+          <span class="cbadge" style="--card-ac:#4A80C4"><span class="cbadge-dot"></span>Government Sponsor</span>
+          <span class="cbadge" style="--card-ac:#4A80C4"><span class="cbadge-dot"></span>Fixed-Timeline Delivery</span>
+        </div>
+      </div>
+
+      <div class="star-nav" id="mitre-nav">
+        <button class="star-btn is-active" onclick="switchTab('mitre','situation',this)"><span class="star-letter">S</span> Situation</button>
+        <button class="star-btn" onclick="switchTab('mitre','task',this)"><span class="star-letter">T</span> Task</button>
+        <button class="star-btn" onclick="switchTab('mitre','action',this)"><span class="star-letter">A</span> Action</button>
+        <button class="star-btn" onclick="switchTab('mitre','result',this)"><span class="star-letter">R</span> Result</button>
+      </div>
+
+      <div class="tab-body">
+        <div class="tab-pane is-active" id="mitre-situation">
+          <div class="pane-label">The Problem</div>
+          <p class="pane-text">Government sponsor MITRE required a custom AWS-based infrastructure and data systems pipeline delivered to production on a fixed, non-negotiable timeline. A 4-person engineering team left zero slack — every scope decision, milestone commitment, and sprint sequence had to be precise. Any drift would directly compress delivery time with no recovery buffer.</p>
+        </div>
+        <div class="tab-pane" id="mitre-task">
+          <div class="pane-label">My Role</div>
+          <p class="pane-text">Full-lifecycle program management for a government-sponsored infrastructure delivery: scope governance, milestone planning, sprint cadence, and delivery reporting — with dual accountability to MITRE's technical requirements and GMU's program standards simultaneously.</p>
+        </div>
+        <div class="tab-pane" id="mitre-action">
+          <div class="pane-label">What I Did</div>
+          <ul class="action-items">
+            <li><span class="a-bullet" style="background:#4A80C4"></span><span>Directed full-lifecycle execution across the 4-person engineering team — from requirements scoping through production deployment</span></li>
+            <li><span class="a-bullet" style="background:#4A80C4"></span><span>Governed scope boundaries rigorously throughout the program, protecting the fixed delivery date from any drift or creep</span></li>
+            <li><span class="a-bullet" style="background:#4A80C4"></span><span>Built and maintained milestone reporting dashboards that provided the government sponsor real-time delivery progress visibility</span></li>
+            <li><span class="a-bullet" style="background:#4A80C4"></span><span>Maintained sprint velocity by proactively removing blockers and managing team cadence under strict timeline constraints</span></li>
+          </ul>
+        </div>
+        <div class="tab-pane" id="mitre-result">
+          <div class="pane-label">Outcome</div>
+          <p class="pane-text">Custom AWS data systems pipeline delivered to production ahead of MITRE's fixed schedule. 100% of all committed milestones hit. Zero scope creep throughout the program. This engagement established the governance discipline — precise scope control, dashboard-driven accountability — that defines every program I have led since.</p>
+        </div>
+      </div>
+
+      <div class="metrics-strip">
+        <div class="metric-cell"><div class="m-value is-good">100%</div><div class="m-label">Milestone Hit Rate</div></div>
+        <div class="metric-cell"><div class="m-value is-good">Ahead</div><div class="m-label">Of Schedule at Delivery</div></div>
+        <div class="metric-cell"><div class="m-value is-good">Zero</div><div class="m-label">Scope Creep</div></div>
+        <div class="metric-cell"><div class="m-value">4</div><div class="m-label">Engineers Directed</div></div>
+      </div>
+
+      <div class="tech-footer">
+        <span class="tech-eyebrow">Stack</span>
+        <span class="tech-chip">AWS</span>
+        <span class="tech-chip">Jira</span>
+        <span class="tech-chip">Confluence</span>
+        <span class="tech-chip">MS Project</span>
+        <span class="tech-chip">Miro</span>
+      </div>
+    </article>
+
+  </div><!-- /card-list -->
+</div><!-- /page -->
+
+<script>
+function switchTab(cardId, paneId, btn) {
+  const nav = document.getElementById(cardId + '-nav');
+  nav.querySelectorAll('.star-btn').forEach(b => b.classList.remove('is-active'));
+  btn.classList.add('is-active');
+
+  const card = nav.closest('.case-card');
+  card.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('is-active'));
+  document.getElementById(cardId + '-' + paneId).classList.add('is-active');
+}
+</script>

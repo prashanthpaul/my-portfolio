@@ -36,7 +36,8 @@ body{background:var(--bg);color:var(--text-1);font-family:var(--font);font-size:
 .dhead{padding:20px 28px 16px;border-bottom:1px solid var(--border-sub);display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px;}
 .dtitle{font-size:1.05rem;font-weight:800;letter-spacing:-.02em;color:var(--text-1);margin-bottom:3px;}
 .dco{font-size:.8rem;color:var(--text-2);}
-.dhint{font-size:.7rem;font-weight:600;color:var(--text-3);letter-spacing:.04em;white-space:nowrap;align-self:center;}
+.dhint{font-size:.7rem;font-weight:700;color:#DC2626;letter-spacing:.04em;white-space:nowrap;align-self:center;animation:hint-bounce 1s ease-in-out infinite;}
+@keyframes hint-bounce{0%,100%{opacity:1;transform:translateX(0)}50%{opacity:.5;transform:translateX(3px)}}
 
 /* Pipeline scroll area */
 .pscroll{overflow-x:auto;padding:28px;background:var(--surface-diag);border-bottom:1px solid var(--border-sub);scrollbar-width:thin;scrollbar-color:var(--border) transparent;}
@@ -117,14 +118,50 @@ body{background:var(--bg);color:var(--text-1);font-family:var(--font);font-size:
   .pscroll,.mscroll{padding:18px;}
 }
 @media(prefers-reduced-motion:reduce){*{transition:none!important;}}
+
+/* ── Back Button ── */
+.back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  color: var(--text-2);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  margin-bottom: 32px;
+  padding: 8px 16px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--surface);
+  transition: color 0.15s, border-color 0.15s, background 0.15s;
+}
+.back-btn:hover { color: var(--accent); border-color: var(--accent); }
+.back-btn svg { width: 14px; height: 14px; flex-shrink: 0; }
+
+/* ── Tab Hint Arrow ── */
+.tab-hint {
+  display: inline-block;
+  color: #DC2626;
+  font-size: 0.65rem;
+  margin-left: 3px;
+  vertical-align: middle;
+  line-height: 1;
+  animation: hint-bounce 1s ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes hint-bounce {
+  0%, 100% { opacity: 1; transform: translateY(0px); }
+  50%       { opacity: 0.5; transform: translateY(3px); }
+}
+
 </style>
 
 <div class="page">
-
-<div class="banner">
-  <div class="bdot"></div>
-  <span><strong>Portfolio Preview — Section 2 of 5:</strong> Technical Architecture &nbsp;·&nbsp; Awaiting approval before any GitHub update</span>
-</div>
+  <a href="../index.html#portfolio" class="back-btn">
+    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3L6 8l4 5"/></svg>
+    Back to Portfolio
+  </a>
 
 <div class="eyebrow"><span class="etag">Section 02 of 05</span><div class="erule"></div></div>
 <h1 class="sh">Technical Architecture</h1>

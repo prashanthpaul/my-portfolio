@@ -1,0 +1,367 @@
+<title>Section 5: Scope &amp; Scale — TPM Portfolio Preview</title>
+<style>
+:root {
+  --bg:#F2F5F8;--surface:#FFFFFF;--surface-raised:#F4F7FA;--surface-diag:#EDF2F7;
+  --border:#C9D8E6;--bsub:#DDE8F2;
+  --accent:#006B65;--acc2:#E08000;
+  --text-1:#0C1A27;--text-2:#47627A;--text-3:#7A98AF;--badge:#E8EFF6;
+  --c-green:#1A6B44;--c-green-bg:#E6F4EC;
+  --c-blue:#1A5FA0;--c-blue-bg:#E8F0FC;
+  --radius:14px;--rsm:7px;
+  --font:system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;
+}
+@media(prefers-color-scheme:dark){:root{
+  --bg:#080E16;--surface:#0E1B2B;--surface-raised:#132030;--surface-diag:#0A1520;
+  --border:#1C3148;--bsub:#16293E;
+  --accent:#00BFB6;--acc2:#F0A020;
+  --text-1:#E4EEF8;--text-2:#85A3BC;--text-3:#45637A;--badge:#162840;
+  --c-green:#3DB870;--c-green-bg:#0A2A18;
+  --c-blue:#5B9DD4;--c-blue-bg:#0A1A30;
+}}
+:root[data-theme="dark"]{--bg:#080E16;--surface:#0E1B2B;--surface-raised:#132030;--surface-diag:#0A1520;--border:#1C3148;--bsub:#16293E;--accent:#00BFB6;--acc2:#F0A020;--text-1:#E4EEF8;--text-2:#85A3BC;--text-3:#45637A;--badge:#162840;--c-green:#3DB870;--c-green-bg:#0A2A18;--c-blue:#5B9DD4;--c-blue-bg:#0A1A30;}
+:root[data-theme="light"]{--bg:#F2F5F8;--surface:#FFFFFF;--surface-raised:#F4F7FA;--surface-diag:#EDF2F7;--border:#C9D8E6;--bsub:#DDE8F2;--accent:#006B65;--acc2:#E08000;--text-1:#0C1A27;--text-2:#47627A;--text-3:#7A98AF;--badge:#E8EFF6;--c-green:#1A6B44;--c-green-bg:#E6F4EC;--c-blue:#1A5FA0;--c-blue-bg:#E8F0FC;}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--bg);color:var(--text-1);font-family:var(--font);font-size:15px;line-height:1.6;}
+.page{max-width:960px;margin:0 auto;padding:52px 24px 96px;}
+
+.banner{display:flex;align-items:center;gap:10px;background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:var(--rsm);padding:11px 16px;margin-bottom:48px;font-size:.8rem;color:var(--text-2);}
+.banner strong{color:var(--text-1);}
+.bdot{width:7px;height:7px;border-radius:50%;background:var(--accent);flex-shrink:0;}
+.eyebrow{display:flex;align-items:center;gap:12px;margin-bottom:10px;}
+.etag{font-size:.68rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);white-space:nowrap;}
+.erule{flex:1;height:1px;background:var(--border);}
+.sh{font-size:clamp(2rem,5vw,3rem);font-weight:800;letter-spacing:-.035em;line-height:1.08;color:var(--text-1);margin-bottom:14px;text-wrap:balance;}
+.ss{color:var(--text-2);font-size:1rem;line-height:1.75;max-width:620px;margin-bottom:52px;}
+.sec-label{font-size:.68rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:18px;}
+
+/* ── Animated counters ── */
+.counter-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:64px;}
+.ctr-tile{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:26px 18px 22px;text-align:center;position:relative;overflow:hidden;transition:transform .18s,box-shadow .18s;}
+.ctr-tile::before{content:'';position:absolute;inset:0 0 auto 0;height:3px;background:var(--tile-ac,var(--accent));border-radius:var(--radius) var(--radius) 0 0;}
+.ctr-tile:hover{transform:translateY(-2px);box-shadow:0 6px 24px color-mix(in srgb,var(--accent) 12%,transparent);}
+.ctr-num{font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:900;letter-spacing:-.04em;line-height:1;font-variant-numeric:tabular-nums;margin-bottom:10px;color:var(--tile-ac,var(--accent));}
+.ctr-lbl{font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text-3);}
+.ctr-sub{font-size:.72rem;color:var(--text-3);margin-top:5px;line-height:1.45;}
+
+/* ── Complexity snapshot ── */
+.snap-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-bottom:64px;}
+.snap-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:22px 22px 20px;display:flex;gap:16px;align-items:flex-start;}
+.snap-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;margin-top:2px;}
+.snap-body{}
+.snap-title{font-size:.88rem;font-weight:800;color:var(--text-1);letter-spacing:-.01em;margin-bottom:6px;}
+.snap-items{display:flex;flex-direction:column;gap:4px;}
+.snap-item{display:flex;align-items:baseline;gap:7px;font-size:.8rem;color:var(--text-2);}
+.snap-val{font-weight:800;color:var(--text-1);font-size:.88rem;}
+
+/* ── Career timeline ── */
+.career-wrap{margin-bottom:64px;overflow-x:auto;padding-bottom:4px;}
+.career-track{display:flex;align-items:flex-start;position:relative;min-width:640px;padding-top:8px;}
+.career-track::before{content:'';position:absolute;left:calc(12.5% - 2px);right:calc(12.5% - 2px);top:29px;height:2px;background:var(--border);z-index:0;}
+.career-stage{flex:1;display:flex;flex-direction:column;align-items:center;position:relative;z-index:1;}
+.cs-dot-wrap{width:60px;height:60px;display:flex;align-items:center;justify-content:center;position:relative;margin-bottom:14px;}
+.cs-dot{width:20px;height:20px;border-radius:50%;background:var(--accent);border:3px solid var(--bg);box-shadow:0 0 0 2px var(--accent);}
+.cs-dot.target{background:var(--bg);border-color:var(--acc2);box-shadow:0 0 0 2px var(--acc2);}
+.cs-dot.past{background:var(--accent);opacity:.55;}
+.cs-year{font-size:.62rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--text-3);margin-bottom:6px;text-align:center;}
+.cs-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--rsm);padding:13px 14px;width:90%;max-width:190px;text-align:center;}
+.cs-card.target-card{border-style:dashed;border-color:var(--acc2);}
+.cs-org{font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:4px;}
+.cs-org.t-org{color:var(--acc2);}
+.cs-role{font-size:.82rem;font-weight:700;color:var(--text-1);line-height:1.35;margin-bottom:5px;}
+.cs-ach{font-size:.72rem;color:var(--text-3);line-height:1.45;}
+.cs-badge{display:inline-block;font-size:.6rem;font-weight:700;padding:2px 7px;border-radius:10px;margin-top:6px;}
+.cb-teal{background:color-mix(in srgb,var(--accent) 12%,transparent);color:var(--accent);}
+.cb-blue{background:var(--c-blue-bg);color:var(--c-blue);}
+.cb-amber{background:color-mix(in srgb,var(--acc2) 12%,transparent);color:var(--acc2);}
+.cb-dash{background:var(--badge);color:var(--text-3);border:1px dashed var(--border);}
+
+/* ── Domain coverage ── */
+.domain-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-bottom:64px;}
+.domain-card{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--domain-ac,var(--accent));border-radius:var(--rsm);padding:16px 18px;}
+.domain-title{font-size:.65rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--domain-ac,var(--accent));margin-bottom:10px;}
+.tag-cloud{display:flex;flex-wrap:wrap;gap:6px;}
+.dtag{font-size:.72rem;font-weight:600;padding:3px 10px;border-radius:10px;background:var(--surface-raised);border:1px solid var(--bsub);color:var(--text-2);}
+
+/* ── Closing banner ── */
+.close-banner{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:28px 32px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;}
+.cb-left{}
+.cb-hed{font-size:1.1rem;font-weight:800;color:var(--text-1);letter-spacing:-.02em;margin-bottom:4px;}
+.cb-sub{font-size:.85rem;color:var(--text-2);}
+.cb-pills{display:flex;gap:8px;flex-wrap:wrap;}
+.cb-pill{font-size:.68rem;font-weight:700;padding:5px 12px;border-radius:20px;background:var(--surface-raised);border:1px solid var(--border);color:var(--text-2);}
+
+@media(max-width:680px){
+  .counter-grid{grid-template-columns:repeat(2,1fr);}
+  .snap-grid,.domain-grid{grid-template-columns:1fr;}
+  .close-banner{padding:22px 20px;}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;}}
+</style>
+
+<div class="page">
+
+<div class="banner">
+  <div class="bdot"></div>
+  <span><strong>Portfolio Preview — Section 5 of 5:</strong> Scope &amp; Scale Summary &nbsp;·&nbsp; Awaiting approval before GitHub update</span>
+</div>
+
+<div class="eyebrow"><span class="etag">Section 05 of 05</span><div class="erule"></div></div>
+<h1 class="sh">Scope &amp; Scale</h1>
+<p class="ss">The full picture — program numbers, career progression, and the technical depth behind the delivery. Every metric anchored to real program outcomes across COM4 Global, Baptist World Alliance, and the MITRE Capstone.</p>
+
+<!-- ══ ANIMATED COUNTERS ══ -->
+<div class="sec-label">Program Metrics — Verified Outcomes</div>
+<div class="counter-grid">
+  <div class="ctr-tile" style="--tile-ac:var(--accent)">
+    <div class="ctr-num" id="c0">0</div>
+    <div class="ctr-lbl">Divisions Migrated</div>
+    <div class="ctr-sub">COM4 Global 8-division unified platform</div>
+  </div>
+  <div class="ctr-tile" style="--tile-ac:var(--acc2)">
+    <div class="ctr-num" id="c1">$0</div>
+    <div class="ctr-lbl">Infrastructure Risk Prevented</div>
+    <div class="ctr-sub">Caught via pre-go-live technical risk matrix</div>
+  </div>
+  <div class="ctr-tile" style="--tile-ac:var(--c-blue)">
+    <div class="ctr-num" id="c2">0</div>
+    <div class="ctr-lbl">Concurrent Enterprise Programs</div>
+    <div class="ctr-sub">COM4 Global &amp; Baptist World Alliance</div>
+  </div>
+  <div class="ctr-tile" style="--tile-ac:var(--text-2)">
+    <div class="ctr-num" id="c3">0</div>
+    <div class="ctr-lbl">Month Program Lifecycle</div>
+    <div class="ctr-sub">End-to-end ownership, all phases</div>
+  </div>
+  <div class="ctr-tile" style="--tile-ac:var(--accent)">
+    <div class="ctr-num" id="c4">0</div>
+    <div class="ctr-lbl">Sprint Velocity Improvement</div>
+    <div class="ctr-sub">Sustained across COM4 program span</div>
+  </div>
+  <div class="ctr-tile" style="--tile-ac:var(--acc2)">
+    <div class="ctr-num" id="c5">0</div>
+    <div class="ctr-lbl">Delivery Blocker Reduction</div>
+    <div class="ctr-sub">Blockers eliminated over program lifecycle</div>
+  </div>
+  <div class="ctr-tile" style="--tile-ac:var(--c-green)">
+    <div class="ctr-num" id="c6">0</div>
+    <div class="ctr-lbl">Milestone Hit Rate</div>
+    <div class="ctr-sub">Zero missed delivery commitments</div>
+  </div>
+  <div class="ctr-tile" style="--tile-ac:var(--c-green)">
+    <div class="ctr-num" id="c7">$0</div>
+    <div class="ctr-lbl">Budget Overrun</div>
+    <div class="ctr-sub">Across all phases, vendors, and recovery</div>
+  </div>
+</div>
+
+<!-- ══ COMPLEXITY SNAPSHOT ══ -->
+<div class="sec-label">Maximum Complexity Handled — At a Glance</div>
+<div class="snap-grid">
+  <div class="snap-card">
+    <div class="snap-icon" style="background:color-mix(in srgb,var(--accent) 12%,transparent)">🏗</div>
+    <div class="snap-body">
+      <div class="snap-title">Program Scale</div>
+      <div class="snap-items">
+        <div class="snap-item"><span class="snap-val">8</span> enterprise business divisions, single unified platform</div>
+        <div class="snap-item"><span class="snap-val">2</span> concurrent programs managed simultaneously</div>
+        <div class="snap-item"><span class="snap-val">30+</span> months, end-to-end program lifecycle ownership</div>
+        <div class="snap-item"><span class="snap-val">3</span> distinct program phases with executive phase gates</div>
+      </div>
+    </div>
+  </div>
+  <div class="snap-card">
+    <div class="snap-icon" style="background:color-mix(in srgb,var(--acc2) 12%,transparent)">💰</div>
+    <div class="snap-body">
+      <div class="snap-title">Budget &amp; Risk Ownership</div>
+      <div class="snap-items">
+        <div class="snap-item"><span class="snap-val">$40K+</span> infrastructure risk caught before deployment</div>
+        <div class="snap-item"><span class="snap-val">$0</span> budget overrun across all program phases</div>
+        <div class="snap-item"><span class="snap-val">20</span> critical RAID items, 3 Severity-1 risks resolved</div>
+        <div class="snap-item"><span class="snap-val">100%</span> CCB change control adherence, zero bypasses</div>
+      </div>
+    </div>
+  </div>
+  <div class="snap-card">
+    <div class="snap-icon" style="background:var(--c-blue-bg)">👥</div>
+    <div class="snap-body">
+      <div class="snap-title">Team &amp; Stakeholder Footprint</div>
+      <div class="snap-items">
+        <div class="snap-item"><span class="snap-val">5</span> external vendors tracked with SLA agreements</div>
+        <div class="snap-item"><span class="snap-val">8</span> division heads as UAT sign-off stakeholders</div>
+        <div class="snap-item">Cross-functional teams: Engineering, Data, Security, Finance</div>
+        <div class="snap-item">Executive sponsor reporting cadence maintained throughout</div>
+      </div>
+    </div>
+  </div>
+  <div class="snap-card">
+    <div class="snap-icon" style="background:var(--c-green-bg)">⚙️</div>
+    <div class="snap-body">
+      <div class="snap-title">Technical Depth</div>
+      <div class="snap-items">
+        <div class="snap-item"><span class="snap-val">6</span> AWS services architected and governed</div>
+        <div class="snap-item"><span class="snap-val">8</span> legacy system integrations owned (APIs + ETL)</div>
+        <div class="snap-item">Full data pipeline: S3 → Glue → Redshift → SageMaker</div>
+        <div class="snap-item">KPI framework designed, RAID log maintained end-to-end</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ CAREER TIMELINE ══ -->
+<div class="sec-label">Career Progression</div>
+<div class="career-wrap">
+  <div class="career-track">
+
+    <div class="career-stage">
+      <div class="cs-year">Jun – Oct 2022</div>
+      <div class="cs-dot-wrap"><div class="cs-dot past"></div></div>
+      <div class="cs-card">
+        <div class="cs-org">Avalara</div>
+        <div class="cs-role">Technical Program Analyst — Infrastructure &amp; Systems Integration</div>
+        <div class="cs-ach">Directed Agile Scrum delivery tracks, re-engineered AWS ETL &amp; systems integration workflows</div>
+        <span class="cs-badge cb-blue">Agile / Scrum</span>
+      </div>
+    </div>
+
+    <div class="career-stage">
+      <div class="cs-year">Nov 2022 – Mar 2023</div>
+      <div class="cs-dot-wrap"><div class="cs-dot past"></div></div>
+      <div class="cs-card">
+        <div class="cs-org">MITRE (Sponsored Capstone)</div>
+        <div class="cs-role">Program Manager — Infrastructure</div>
+        <div class="cs-ach">Delivered AWS infrastructure &amp; data pipeline ahead of schedule, 100% milestone hit rate</div>
+        <span class="cs-badge cb-blue">Capstone PM</span>
+      </div>
+    </div>
+
+    <div class="career-stage">
+      <div class="cs-year">Apr 2023 – Oct 2025</div>
+      <div class="cs-dot-wrap"><div class="cs-dot past"></div></div>
+      <div class="cs-card">
+        <div class="cs-org">COM4 Global</div>
+        <div class="cs-role">Technical Project Manager — Systems Integration</div>
+        <div class="cs-ach">8-division cloud migration, $40K+ risk caught, 3-week delay recovered, $0 overrun</div>
+        <span class="cs-badge cb-amber">Enterprise Scale</span>
+      </div>
+    </div>
+
+    <div class="career-stage">
+      <div class="cs-year">Apr 2026 – Present</div>
+      <div class="cs-dot-wrap"><div class="cs-dot"></div></div>
+      <div class="cs-card">
+        <div class="cs-org">Baptist World Alliance</div>
+        <div class="cs-role">Technical Program Manager — Enterprise Infrastructure &amp; Systems Integration</div>
+        <div class="cs-ach">+16% velocity, −14% blockers, CCB owner, 4 divisions unified on single roadmap</div>
+        <span class="cs-badge cb-teal">Current Role</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══ DOMAIN COVERAGE ══ -->
+<div class="sec-label">Technical Domain Coverage</div>
+<div class="domain-grid">
+  <div class="domain-card" style="--domain-ac:var(--accent)">
+    <div class="domain-title">Cloud &amp; Infrastructure</div>
+    <div class="tag-cloud">
+      <span class="dtag">AWS S3</span>
+      <span class="dtag">AWS Glue ETL</span>
+      <span class="dtag">Amazon Redshift</span>
+      <span class="dtag">Amazon SageMaker</span>
+      <span class="dtag">AWS CloudWatch</span>
+      <span class="dtag">API Gateway</span>
+      <span class="dtag">AWS SQS / SNS</span>
+      <span class="dtag">AWS IAM</span>
+    </div>
+  </div>
+  <div class="domain-card" style="--domain-ac:var(--acc2)">
+    <div class="domain-title">Program Governance</div>
+    <div class="tag-cloud">
+      <span class="dtag">RACI Matrix</span>
+      <span class="dtag">RAID Log</span>
+      <span class="dtag">Change Control Board</span>
+      <span class="dtag">Vendor SLA Tracking</span>
+      <span class="dtag">Risk Heatmap P×I</span>
+      <span class="dtag">CCB Chair</span>
+      <span class="dtag">Phase Gate Reviews</span>
+      <span class="dtag">PMO Standards</span>
+    </div>
+  </div>
+  <div class="domain-card" style="--domain-ac:var(--c-green)">
+    <div class="domain-title">Delivery &amp; Analytics</div>
+    <div class="tag-cloud">
+      <span class="dtag">Sprint Planning</span>
+      <span class="dtag">Agile / Scrum</span>
+      <span class="dtag">Hybrid Delivery</span>
+      <span class="dtag">KPI Framework Design</span>
+      <span class="dtag">Dashboard Development</span>
+      <span class="dtag">Root Cause Analysis</span>
+      <span class="dtag">Milestone Tracking</span>
+      <span class="dtag">A/B Testing</span>
+    </div>
+  </div>
+  <div class="domain-card" style="--domain-ac:var(--c-blue)">
+    <div class="domain-title">Tooling &amp; Stakeholder Mgmt</div>
+    <div class="tag-cloud">
+      <span class="dtag">Jira</span>
+      <span class="dtag">Confluence</span>
+      <span class="dtag">ServiceNow</span>
+      <span class="dtag">Asana</span>
+      <span class="dtag">Executive Reporting</span>
+      <span class="dtag">Stakeholder Alignment</span>
+      <span class="dtag">Microsoft 365</span>
+      <span class="dtag">Slack / Teams</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══ CLOSING ══ -->
+<div class="close-banner">
+  <div class="cb-left">
+    <div class="cb-hed">All 5 Portfolio Sections Complete</div>
+    <div class="cb-sub">Case Studies · Architecture · Dashboards · Execution Artifacts · Scope &amp; Scale — awaiting final approval for GitHub integration</div>
+  </div>
+  <div class="cb-pills">
+    <div class="cb-pill">Section 1 ✓ Case Studies</div>
+    <div class="cb-pill">Section 2 ✓ Architecture</div>
+    <div class="cb-pill">Section 3 ✓ Dashboards</div>
+    <div class="cb-pill">Section 4 ✓ Artifacts</div>
+    <div class="cb-pill" style="background:color-mix(in srgb,var(--accent) 10%,transparent);border-color:var(--accent);color:var(--accent)">Section 5 — Pending Approval</div>
+  </div>
+</div>
+
+</div><!-- /page -->
+
+<script>
+(function(){
+  var tiles=[
+    {id:'c0',target:8,pre:'',suf:''},
+    {id:'c1',target:40,pre:'$',suf:'K+'},
+    {id:'c2',target:2,pre:'',suf:''},
+    {id:'c3',target:30,pre:'',suf:'+'},
+    {id:'c4',target:16,pre:'',suf:'%'},
+    {id:'c5',target:14,pre:'',suf:'%'},
+    {id:'c6',target:100,pre:'',suf:'%'},
+    {id:'c7',target:0,pre:'$',suf:''}
+  ];
+
+  tiles.forEach(function(t,i){
+    var el=document.getElementById(t.id);
+    if(!el)return;
+    setTimeout(function(){
+      if(t.target===0){el.textContent=t.pre+'0'+t.suf;return;}
+      var dur=1000,start=performance.now();
+      function tick(now){
+        var p=Math.min((now-start)/dur,1);
+        var eased=1-Math.pow(1-p,3);
+        var v=Math.round(eased*t.target);
+        el.textContent=t.pre+v+t.suf;
+        if(p<1)requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+    },i*80);
+  });
+})();
+</script>

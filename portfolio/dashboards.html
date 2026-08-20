@@ -1,0 +1,666 @@
+<title>Section 3: Dashboards & Metrics — TPM Portfolio Preview</title>
+<style>
+:root {
+  --bg:#F2F5F8; --surface:#FFFFFF; --surface-raised:#F4F7FA; --surface-diag:#EDF2F7;
+  --border:#C9D8E6; --bsub:#DDE8F2;
+  --accent:#006B65; --acc2:#E08000;
+  --text-1:#0C1A27; --text-2:#47627A; --text-3:#7A98AF;
+  --badge:#E8EFF6;
+  --c-green:#1A6B44; --c-green-bg:#E6F4EC;
+  --c-amber:#8B6000; --c-amber-bg:#FEF3C7;
+  --c-orange:#B85000; --c-orange-bg:#FFEDD5;
+  --c-red:#9B1C1C; --c-red-bg:#FEE2E2;
+  --radius:14px; --rsm:7px;
+  --font:system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;
+}
+@media(prefers-color-scheme:dark){:root{
+  --bg:#080E16; --surface:#0E1B2B; --surface-raised:#132030; --surface-diag:#0A1520;
+  --border:#1C3148; --bsub:#16293E;
+  --accent:#00BFB6; --acc2:#F0A020;
+  --text-1:#E4EEF8; --text-2:#85A3BC; --text-3:#45637A;
+  --badge:#162840;
+  --c-green:#3DB870; --c-green-bg:#0A2A18;
+  --c-amber:#D4A500; --c-amber-bg:#261A00;
+  --c-orange:#E07020; --c-orange-bg:#2A1200;
+  --c-red:#E05050; --c-red-bg:#2D0A0A;
+}}
+:root[data-theme="dark"]{
+  --bg:#080E16; --surface:#0E1B2B; --surface-raised:#132030; --surface-diag:#0A1520;
+  --border:#1C3148; --bsub:#16293E;
+  --accent:#00BFB6; --acc2:#F0A020;
+  --text-1:#E4EEF8; --text-2:#85A3BC; --text-3:#45637A;
+  --badge:#162840;
+  --c-green:#3DB870; --c-green-bg:#0A2A18;
+  --c-amber:#D4A500; --c-amber-bg:#261A00;
+  --c-orange:#E07020; --c-orange-bg:#2A1200;
+  --c-red:#E05050; --c-red-bg:#2D0A0A;
+}
+:root[data-theme="light"]{
+  --bg:#F2F5F8; --surface:#FFFFFF; --surface-raised:#F4F7FA; --surface-diag:#EDF2F7;
+  --border:#C9D8E6; --bsub:#DDE8F2;
+  --accent:#006B65; --acc2:#E08000;
+  --text-1:#0C1A27; --text-2:#47627A; --text-3:#7A98AF;
+  --badge:#E8EFF6;
+  --c-green:#1A6B44; --c-green-bg:#E6F4EC;
+  --c-amber:#8B6000; --c-amber-bg:#FEF3C7;
+  --c-orange:#B85000; --c-orange-bg:#FFEDD5;
+  --c-red:#9B1C1C; --c-red-bg:#FEE2E2;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--bg);color:var(--text-1);font-family:var(--font);font-size:15px;line-height:1.6;}
+
+.page{max-width:960px;margin:0 auto;padding:52px 24px 96px;}
+
+.banner{display:flex;align-items:center;gap:10px;background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:var(--rsm);padding:11px 16px;margin-bottom:48px;font-size:.8rem;color:var(--text-2);}
+.banner strong{color:var(--text-1);}
+.bdot{width:7px;height:7px;border-radius:50%;background:var(--accent);flex-shrink:0;}
+
+.eyebrow{display:flex;align-items:center;gap:12px;margin-bottom:10px;}
+.etag{font-size:.68rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);white-space:nowrap;}
+.erule{flex:1;height:1px;background:var(--border);}
+.sh{font-size:clamp(2rem,5vw,3rem);font-weight:800;letter-spacing:-.035em;line-height:1.08;color:var(--text-1);margin-bottom:14px;text-wrap:balance;}
+.ss{color:var(--text-2);font-size:1rem;line-height:1.75;max-width:620px;margin-bottom:52px;}
+
+/* ── KPI Tiles ── */
+.kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-bottom:36px;}
+.kpi-tile{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:20px 20px 18px;position:relative;overflow:hidden;}
+.kpi-tile::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--kt-color,var(--accent));}
+.kpi-val{font-size:2rem;font-weight:800;letter-spacing:-.04em;font-variant-numeric:tabular-nums;color:var(--kt-color,var(--accent));line-height:1;margin-bottom:8px;}
+.kpi-lbl{font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text-3);line-height:1.35;}
+.kpi-prog{font-size:.7rem;color:var(--text-2);margin-top:6px;}
+
+/* ── Dashboard Block ── */
+.dblock{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:32px;}
+.dhead{padding:20px 28px 16px;border-bottom:1px solid var(--bsub);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;}
+.dtitle{font-size:1.05rem;font-weight:800;letter-spacing:-.02em;color:var(--text-1);}
+.dsub{font-size:.8rem;color:var(--text-2);}
+.dsample{font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text-3);border:1px solid var(--border);padding:2px 8px;border-radius:20px;}
+
+/* Tabs */
+.dtabs{display:flex;border-bottom:1px solid var(--bsub);padding:0 28px;background:var(--surface);overflow-x:auto;scrollbar-width:none;}
+.dtabs::-webkit-scrollbar{display:none;}
+.dtab{padding:12px 16px;font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text-3);background:none;border:none;border-bottom:2px solid transparent;margin-bottom:-1px;cursor:pointer;white-space:nowrap;transition:color .15s,border-color .15s;}
+.dtab:hover{color:var(--text-2);}
+.dtab.on{color:var(--accent);border-bottom-color:var(--accent);}
+.dpane{display:none;padding:28px;}
+.dpane.on{display:block;}
+
+/* Chart area */
+.chart-box{background:var(--surface-diag);border:1px solid var(--bsub);border-radius:10px;padding:8px;overflow-x:auto;}
+.chart-box svg{display:block;width:100%;max-width:620px;min-width:320px;}
+.chart-cap{font-size:.75rem;color:var(--text-2);margin-top:12px;line-height:1.5;}
+
+/* SLA bars */
+.sla-list{display:flex;flex-direction:column;gap:14px;}
+.sla-row{display:grid;grid-template-columns:180px 1fr 64px;align-items:center;gap:12px;}
+.sla-name{font-size:.82rem;font-weight:600;color:var(--text-2);}
+.sla-track{height:10px;background:var(--bsub);border-radius:5px;overflow:hidden;}
+.sla-fill{height:100%;border-radius:5px;transition:width .8s ease;}
+.sla-pct{font-size:.82rem;font-weight:700;font-variant-numeric:tabular-nums;text-align:right;}
+
+/* ── Risk Section ── */
+.risk-grid{display:grid;grid-template-columns:1fr 280px;gap:20px;align-items:start;}
+@media(max-width:720px){.risk-grid{grid-template-columns:1fr;}}
+
+.risk-block{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;}
+.risk-head{padding:16px 20px;border-bottom:1px solid var(--bsub);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;}
+.risk-title{font-size:.9rem;font-weight:800;color:var(--text-1);}
+.risk-sub{font-size:.75rem;color:var(--text-2);}
+
+/* RAID table */
+.raid-scroll{overflow-x:auto;}
+.raid-table{width:100%;border-collapse:collapse;font-size:.78rem;}
+.raid-table th{padding:9px 12px;text-align:left;font-size:.62rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--text-3);border-bottom:2px solid var(--border);white-space:nowrap;background:var(--surface-raised);}
+.raid-table td{padding:10px 12px;border-bottom:1px solid var(--bsub);vertical-align:top;color:var(--text-2);line-height:1.45;}
+.raid-table tr:last-child td{border-bottom:none;}
+.raid-table tr:hover td{background:var(--surface-raised);}
+
+.rid{font-weight:700;color:var(--text-1);font-variant-numeric:tabular-nums;white-space:nowrap;}
+.prog-tag{display:inline-block;font-size:.6rem;font-weight:700;padding:1px 6px;border-radius:3px;text-transform:uppercase;letter-spacing:.06em;white-space:nowrap;}
+.pt-bwa{background:color-mix(in srgb,var(--accent) 12%,transparent);color:var(--accent);}
+.pt-com4{background:color-mix(in srgb,var(--acc2) 15%,transparent);color:var(--acc2);}
+
+.score-pill{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;font-size:.72rem;font-weight:800;}
+.sp-red{background:var(--c-red-bg);color:var(--c-red);}
+.sp-orange{background:var(--c-orange-bg);color:var(--c-orange);}
+.sp-amber{background:var(--c-amber-bg);color:var(--c-amber);}
+
+.status-pill{display:inline-flex;align-items:center;gap:4px;font-size:.62rem;font-weight:700;padding:2px 8px;border-radius:10px;text-transform:uppercase;letter-spacing:.06em;white-space:nowrap;}
+.st-green{background:var(--c-green-bg);color:var(--c-green);}
+.st-amber{background:var(--c-amber-bg);color:var(--c-amber);}
+.st-gray{background:var(--badge);color:var(--text-3);}
+
+/* ── Risk Heatmap ── */
+.hm-wrap{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:18px;}
+.hm-title{font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text-3);margin-bottom:12px;}
+.hm-layout{display:flex;gap:8px;align-items:flex-end;}
+.hm-ylabel{display:flex;flex-direction:column-reverse;gap:3px;align-items:center;}
+.hm-ylab-text{font-size:.58rem;font-weight:700;color:var(--text-3);writing-mode:vertical-rl;transform:rotate(180deg);white-space:nowrap;letter-spacing:.06em;}
+.hm-pvals{display:flex;flex-direction:column-reverse;gap:3px;justify-content:space-between;height:200px;}
+.hm-pval{font-size:.6rem;font-weight:700;color:var(--text-3);height:36px;display:flex;align-items:center;justify-content:flex-end;}
+.hm-right{flex:1;}
+.hm-grid{display:grid;grid-template-columns:repeat(5,1fr);grid-template-rows:repeat(5,1fr);gap:3px;height:200px;}
+.hm-cell{border-radius:4px;display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:2px;font-size:.6rem;font-weight:800;cursor:default;}
+.hm-xvals{display:flex;justify-content:space-around;margin-top:4px;}
+.hm-xval{font-size:.6rem;font-weight:700;color:var(--text-3);flex:1;text-align:center;}
+.hm-xlabel{text-align:center;font-size:.62rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--text-3);margin-top:4px;}
+
+.hm-green{background:var(--c-green-bg);}
+.hm-amber{background:var(--c-amber-bg);}
+.hm-orange{background:var(--c-orange-bg);}
+.hm-red{background:var(--c-red-bg);}
+
+.rmarker{display:inline-flex;align-items:center;justify-content:center;width:16px;height:16px;border-radius:50%;font-size:.55rem;font-weight:800;line-height:1;}
+.rm-solid{background:var(--c-red);color:#fff;}
+.rm-out{border:1.5px solid var(--c-green);color:var(--c-green);background:transparent;}
+.rm-amber{background:var(--c-amber);color:#fff;}
+.rm-orange{background:var(--c-orange);color:#fff;}
+
+/* Legend */
+.hm-legend{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;}
+.hml{display:flex;align-items:center;gap:5px;font-size:.62rem;color:var(--text-2);}
+.hml-dot{width:10px;height:10px;border-radius:2px;}
+
+@media(max-width:600px){
+  .sla-row{grid-template-columns:1fr 1fr;}.sla-track{display:none;}
+  .dtabs,.dpane{padding-left:18px;padding-right:18px;}
+  .dhead{padding:16px 18px;}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;}}
+</style>
+
+<div class="page">
+
+<div class="banner">
+  <div class="bdot"></div>
+  <span><strong>Portfolio Preview — Section 3 of 5:</strong> Dashboards &amp; Metrics &nbsp;·&nbsp; Awaiting approval before any GitHub update</span>
+</div>
+
+<div class="eyebrow"><span class="etag">Section 03 of 05</span><div class="erule"></div></div>
+<h1 class="sh">Dashboards &amp; Metrics</h1>
+<p class="ss">Program health frameworks, KPI definitions, and risk intelligence tools used to govern two enterprise infrastructure programs. All data is illustrative and anchored to verified program outcomes.</p>
+
+<!-- ── KPI Tiles ── -->
+<div class="eyebrow" style="margin-bottom:12px"><span class="etag">Program KPIs</span><div class="erule"></div></div>
+<div class="kpi-grid">
+  <div class="kpi-tile" style="--kt-color:var(--accent)">
+    <div class="kpi-val">↑16%</div>
+    <div class="kpi-lbl">Deployment Velocity</div>
+    <div class="kpi-prog">BWA · Automated regression testing</div>
+  </div>
+  <div class="kpi-tile" style="--kt-color:var(--accent)">
+    <div class="kpi-val">↓14%</div>
+    <div class="kpi-lbl">Delivery Blockers</div>
+    <div class="kpi-prog">BWA · Automated risk tracking</div>
+  </div>
+  <div class="kpi-tile" style="--kt-color:var(--c-green)">
+    <div class="kpi-val">100%</div>
+    <div class="kpi-lbl">Milestone Hit Rate</div>
+    <div class="kpi-prog">MITRE · All commitments met</div>
+  </div>
+  <div class="kpi-tile" style="--kt-color:var(--acc2)">
+    <div class="kpi-val">$40K+</div>
+    <div class="kpi-lbl">Risk Costs Prevented</div>
+    <div class="kpi-prog">COM4 · Pre-go-live risk matrix</div>
+  </div>
+  <div class="kpi-tile" style="--kt-color:var(--c-green)">
+    <div class="kpi-val">$0</div>
+    <div class="kpi-lbl">Budget Overrun</div>
+    <div class="kpi-prog">Across all programs</div>
+  </div>
+  <div class="kpi-tile" style="--kt-color:var(--text-2)">
+    <div class="kpi-val">99.9%</div>
+    <div class="kpi-lbl">Uptime SLA Target</div>
+    <div class="kpi-prog">BWA · Infrastructure platform</div>
+  </div>
+</div>
+
+<!-- ── Dashboard Charts ── -->
+<div class="dblock">
+  <div class="dhead">
+    <div>
+      <div class="dtitle">Program Delivery Health Dashboard</div>
+      <div class="dsub">Sprint velocity · Blocker reduction · Vendor SLA compliance</div>
+    </div>
+    <div class="dsample">Illustrative — Anchored to Program Data</div>
+  </div>
+
+  <div class="dtabs">
+    <button class="dtab on" onclick="switchDash('velocity',this)">Sprint Velocity</button>
+    <button class="dtab" onclick="switchDash('blockers',this)">Delivery Blockers</button>
+    <button class="dtab" onclick="switchDash('sla',this)">Vendor SLA</button>
+  </div>
+
+  <!-- Velocity Tab -->
+  <div class="dpane on" id="dp-velocity">
+    <div class="chart-box">
+      <svg id="chart-vel" viewBox="0 0 620 240" xmlns="http://www.w3.org/2000/svg" aria-label="Sprint velocity chart showing 16% improvement after automated regression testing"></svg>
+    </div>
+    <p class="chart-cap">12-sprint velocity chart (Baptist World Alliance). Sprints 1–6 show baseline delivery cadence (avg 52 units/sprint). Sprint 7 marks introduction of automated regression testing. Sprints 7–12 show sustained velocity improvement to avg 60 units/sprint — a 16% gain. Illustrative data consistent with verified program outcome.</p>
+  </div>
+
+  <!-- Blockers Tab -->
+  <div class="dpane" id="dp-blockers">
+    <div class="chart-box">
+      <svg id="chart-blk" viewBox="0 0 620 240" xmlns="http://www.w3.org/2000/svg" aria-label="Delivery blocker reduction chart showing 14% improvement"></svg>
+    </div>
+    <p class="chart-cap">8-week delivery blocker trend (Baptist World Alliance). Weeks 1–4 show baseline blocker volume (avg 25/week). Risk-tracking system activated at week 5 — blockers decline and stabilize at avg 21.5/week. Net reduction: 14%. Illustrative data consistent with verified program outcome.</p>
+  </div>
+
+  <!-- SLA Tab -->
+  <div class="dpane" id="dp-sla">
+    <div style="max-width:560px">
+      <div style="font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--text-3);margin-bottom:16px">Vendor SLA Compliance — COM4 Global Migration Program</div>
+      <div class="sla-list" id="sla-list"></div>
+      <p class="chart-cap" style="margin-top:16px">External vendor SLA compliance tracked across the 2.5-year COM4 migration program. All vendors held to contracted delivery timelines through milestone tracking and weekly SLA review. Illustrative — consistent with verified program governance outcomes.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ── Risk Section ── -->
+<div class="eyebrow" style="margin-top:40px;margin-bottom:16px"><span class="etag">Risk Intelligence</span><div class="erule"></div></div>
+
+<div class="risk-grid">
+
+  <!-- RAID Log -->
+  <div class="risk-block">
+    <div class="risk-head">
+      <div>
+        <div class="risk-title">RAID Log — Program Risk Register</div>
+        <div class="risk-sub">Composite from COM4 Global &amp; Baptist World Alliance</div>
+      </div>
+      <div class="dsample">Illustrative Sample</div>
+    </div>
+    <div class="raid-scroll">
+      <table class="raid-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Program</th>
+            <th>Category</th>
+            <th style="min-width:200px">Risk Description</th>
+            <th>P</th>
+            <th>I</th>
+            <th>Score</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="rid">R-01</td>
+            <td><span class="prog-tag pt-com4">COM4</span></td>
+            <td>Integration</td>
+            <td>API conflicts between legacy and target systems undetected before go-live causing production failure</td>
+            <td style="font-weight:700;color:var(--text-1)">4</td>
+            <td style="font-weight:700;color:var(--text-1)">5</td>
+            <td><span class="score-pill sp-red">20</span></td>
+            <td><span class="status-pill st-green">Mitigated</span></td>
+          </tr>
+          <tr>
+            <td class="rid">R-02</td>
+            <td><span class="prog-tag pt-com4">COM4</span></td>
+            <td>Schedule</td>
+            <td>Vendor delivery timeline slippage on Phase 2 infrastructure cutover milestones</td>
+            <td style="font-weight:700;color:var(--text-1)">3</td>
+            <td style="font-weight:700;color:var(--text-1)">4</td>
+            <td><span class="score-pill sp-orange">12</span></td>
+            <td><span class="status-pill st-amber">Monitored</span></td>
+          </tr>
+          <tr>
+            <td class="rid">R-03</td>
+            <td><span class="prog-tag pt-com4">COM4</span></td>
+            <td>Schedule</td>
+            <td>3-week program delay from resource constraint at data warehouse workstream</td>
+            <td style="font-weight:700;color:var(--text-1)">5</td>
+            <td style="font-weight:700;color:var(--text-1)">4</td>
+            <td><span class="score-pill sp-red">20</span></td>
+            <td><span class="status-pill st-green">Resolved</span></td>
+          </tr>
+          <tr>
+            <td class="rid">R-04</td>
+            <td><span class="prog-tag pt-bwa">BWA</span></td>
+            <td>Scope</td>
+            <td>Unauthorized infrastructure changes bypassing CCB process degrading platform integrity</td>
+            <td style="font-weight:700;color:var(--text-1)">4</td>
+            <td style="font-weight:700;color:var(--text-1)">4</td>
+            <td><span class="score-pill sp-red">16</span></td>
+            <td><span class="status-pill st-green">Mitigated</span></td>
+          </tr>
+          <tr>
+            <td class="rid">R-05</td>
+            <td><span class="prog-tag pt-bwa">BWA</span></td>
+            <td>Quality</td>
+            <td>Pipeline regression on ETL layer degrading delivery velocity below baseline</td>
+            <td style="font-weight:700;color:var(--text-1)">3</td>
+            <td style="font-weight:700;color:var(--text-1)">3</td>
+            <td><span class="score-pill sp-amber">9</span></td>
+            <td><span class="status-pill st-green">Mitigated</span></td>
+          </tr>
+          <tr>
+            <td class="rid">R-06</td>
+            <td><span class="prog-tag pt-bwa">BWA</span></td>
+            <td>Data</td>
+            <td>Cross-division schema drift causing downstream analytics inconsistency</td>
+            <td style="font-weight:700;color:var(--text-1)">3</td>
+            <td style="font-weight:700;color:var(--text-1)">4</td>
+            <td><span class="score-pill sp-orange">12</span></td>
+            <td><span class="status-pill st-amber">Monitored</span></td>
+          </tr>
+          <tr>
+            <td class="rid">R-07</td>
+            <td><span class="prog-tag pt-com4">COM4</span></td>
+            <td>Resource</td>
+            <td>Engineering capacity gap during peak cutover period compressing verification sprints</td>
+            <td style="font-weight:700;color:var(--text-1)">2</td>
+            <td style="font-weight:700;color:var(--text-1)">3</td>
+            <td><span class="score-pill sp-amber">6</span></td>
+            <td><span class="status-pill st-gray">Closed</span></td>
+          </tr>
+          <tr>
+            <td class="rid">R-08</td>
+            <td><span class="prog-tag pt-bwa">BWA</span></td>
+            <td>Governance</td>
+            <td>Executive misalignment on infrastructure roadmap priorities causing scope conflict</td>
+            <td style="font-weight:700;color:var(--text-1)">2</td>
+            <td style="font-weight:700;color:var(--text-1)">4</td>
+            <td><span class="score-pill sp-amber">8</span></td>
+            <td><span class="status-pill st-green">Mitigated</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Heatmap -->
+  <div class="hm-wrap">
+    <div class="hm-title">Probability × Impact Matrix</div>
+    <div class="hm-layout">
+      <div style="display:flex;flex-direction:column;align-items:center;gap:4px;margin-right:2px">
+        <div style="font-size:.58rem;font-weight:700;color:var(--text-3);writing-mode:vertical-rl;transform:rotate(180deg);letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px">Probability</div>
+        <div style="display:flex;flex-direction:column-reverse;gap:3px;height:193px;justify-content:space-between">
+          <div style="font-size:.6rem;font-weight:700;color:var(--text-3);height:36px;display:flex;align-items:center">1</div>
+          <div style="font-size:.6rem;font-weight:700;color:var(--text-3);height:36px;display:flex;align-items:center">2</div>
+          <div style="font-size:.6rem;font-weight:700;color:var(--text-3);height:36px;display:flex;align-items:center">3</div>
+          <div style="font-size:.6rem;font-weight:700;color:var(--text-3);height:36px;display:flex;align-items:center">4</div>
+          <div style="font-size:.6rem;font-weight:700;color:var(--text-3);height:36px;display:flex;align-items:center">5</div>
+        </div>
+      </div>
+      <div style="flex:1">
+        <div class="hm-grid" id="heatmap-grid"></div>
+        <div class="hm-xvals">
+          <div class="hm-xval">1</div><div class="hm-xval">2</div><div class="hm-xval">3</div><div class="hm-xval">4</div><div class="hm-xval">5</div>
+        </div>
+        <div class="hm-xlabel">Impact →</div>
+      </div>
+    </div>
+    <div class="hm-legend">
+      <div class="hml"><div class="hml-dot" style="background:var(--c-green-bg);border:1px solid var(--c-green)"></div><span>Low (1–4)</span></div>
+      <div class="hml"><div class="hml-dot" style="background:var(--c-amber-bg);border:1px solid var(--c-amber)"></div><span>Medium (5–9)</span></div>
+      <div class="hml"><div class="hml-dot" style="background:var(--c-orange-bg);border:1px solid var(--c-orange)"></div><span>High (10–15)</span></div>
+      <div class="hml"><div class="hml-dot" style="background:var(--c-red-bg);border:1px solid var(--c-red)"></div><span>Critical (16+)</span></div>
+    </div>
+  </div>
+
+</div><!-- /risk-grid -->
+
+<!-- ── KPI Framework ── -->
+<div class="eyebrow" style="margin-top:44px;margin-bottom:16px"><span class="etag">KPI Framework</span><div class="erule"></div></div>
+<p style="color:var(--text-2);font-size:.95rem;line-height:1.75;max-width:620px;margin-bottom:20px">The specific KPIs and SLAs I established to hold engineering teams and vendors accountable — each with a defined target, measurement method, and ownership assignment. A KPI without a measurement method and an owner is a wish, not a metric.</p>
+
+<div class="risk-block" style="overflow:hidden">
+  <div class="risk-head">
+    <div>
+      <div class="risk-title">Program KPI &amp; SLA Framework</div>
+      <div class="risk-sub">Defined and governed across Baptist World Alliance &amp; COM4 Global</div>
+    </div>
+    <div class="dsample">Illustrative Sample</div>
+  </div>
+  <div class="raid-scroll">
+    <table class="raid-table">
+      <thead>
+        <tr>
+          <th style="min-width:140px">KPI / SLA</th>
+          <th style="min-width:200px">Definition</th>
+          <th>Target</th>
+          <th style="min-width:180px">Measured By</th>
+          <th>Owner</th>
+          <th>Program</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="font-weight:700;color:var(--text-1)">Deployment Velocity</td>
+          <td>Infrastructure units delivered and deployed per sprint cycle</td>
+          <td style="font-weight:700;color:var(--accent);white-space:nowrap">Baseline +16%</td>
+          <td>Jira sprint velocity tracking + Smartsheet burn-up</td>
+          <td><span class="prog-tag pt-bwa">TPM</span></td>
+          <td><span class="prog-tag pt-bwa">BWA</span></td>
+        </tr>
+        <tr>
+          <td style="font-weight:700;color:var(--text-1)">Delivery Blocker Rate</td>
+          <td>Active delivery blockers logged per week against sprint commitments</td>
+          <td style="font-weight:700;color:var(--accent);white-space:nowrap">↓14% from baseline</td>
+          <td>Automated risk-tracking system — weekly delta report</td>
+          <td><span class="prog-tag pt-bwa">TPM</span></td>
+          <td><span class="prog-tag pt-bwa">BWA</span></td>
+        </tr>
+        <tr>
+          <td style="font-weight:700;color:var(--text-1)">Milestone Hit Rate</td>
+          <td>% of sprint-committed milestones delivered on or before the committed date</td>
+          <td style="font-weight:700;color:var(--c-green);white-space:nowrap">100%</td>
+          <td>Jira sprint close vs. milestone commitment log</td>
+          <td><span class="prog-tag pt-bwa">TPM</span></td>
+          <td style="white-space:nowrap"><span class="prog-tag pt-bwa">BWA</span> <span class="prog-tag pt-com4">COM4</span></td>
+        </tr>
+        <tr>
+          <td style="font-weight:700;color:var(--text-1)">Infrastructure Uptime SLA</td>
+          <td>% availability of the AWS-hosted enterprise platform across all business hours</td>
+          <td style="font-weight:700;color:var(--c-green);white-space:nowrap">≥ 99.9%</td>
+          <td>Amazon CloudWatch real-time monitoring + alerting</td>
+          <td><span class="prog-tag pt-bwa" style="white-space:nowrap">Eng Lead / TPM escalation</span></td>
+          <td><span class="prog-tag pt-bwa">BWA</span></td>
+        </tr>
+        <tr>
+          <td style="font-weight:700;color:var(--text-1)">Vendor SLA Compliance</td>
+          <td>% of external vendor deliverables completed on or before contractual milestone dates</td>
+          <td style="font-weight:700;color:var(--c-green);white-space:nowrap">100%</td>
+          <td>Weekly SLA review vs. contracted milestone calendar in Smartsheet</td>
+          <td><span class="prog-tag pt-com4">TPM</span></td>
+          <td><span class="prog-tag pt-com4">COM4</span></td>
+        </tr>
+        <tr>
+          <td style="font-weight:700;color:var(--text-1)">Change Control Adherence</td>
+          <td>% of infrastructure-impacting changes reviewed and approved through the CCB process before deployment</td>
+          <td style="font-weight:700;color:var(--c-green);white-space:nowrap">100%</td>
+          <td>CCB decision log audit vs. deployment records in ServiceNow</td>
+          <td><span class="prog-tag pt-bwa" style="white-space:nowrap">TPM — CCB Chair</span></td>
+          <td><span class="prog-tag pt-bwa">BWA</span></td>
+        </tr>
+        <tr>
+          <td style="font-weight:700;color:var(--text-1)">Budget Variance</td>
+          <td>Actual program spend vs. approved baseline budget across all workstreams</td>
+          <td style="font-weight:700;color:var(--c-green);white-space:nowrap">≤ $0 over</td>
+          <td>Monthly actuals vs. baseline in MS Project + executive financial review</td>
+          <td><span class="prog-tag pt-bwa">TPM</span></td>
+          <td style="white-space:nowrap"><span class="prog-tag pt-bwa">BWA</span> <span class="prog-tag pt-com4">COM4</span></td>
+        </tr>
+        <tr>
+          <td style="font-weight:700;color:var(--text-1)">RAID Exposure Score</td>
+          <td>Average Probability × Impact score across all open items in the active risk register</td>
+          <td style="font-weight:700;color:var(--c-amber);white-space:nowrap">&lt; 12 (High threshold)</td>
+          <td>Weekly RAID log review — P×I scoring updated at each sprint review</td>
+          <td><span class="prog-tag pt-bwa">TPM</span></td>
+          <td style="white-space:nowrap"><span class="prog-tag pt-bwa">BWA</span> <span class="prog-tag pt-com4">COM4</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+</div><!-- /page -->
+
+<script>
+/* ── Tab switcher ── */
+function switchDash(id, btn) {
+  document.querySelectorAll('.dtab').forEach(t => t.classList.remove('on'));
+  document.querySelectorAll('.dpane').forEach(p => p.classList.remove('on'));
+  btn.classList.add('on');
+  document.getElementById('dp-' + id).classList.add('on');
+}
+
+/* ── Sprint Velocity Chart ── */
+(function() {
+  const data = [50, 53, 51, 54, 52, 52, 54, 57, 60, 62, 63, 64];
+  const INF = 6;
+  const svg = document.getElementById('chart-vel');
+  const vbW = 620, vbH = 240;
+  const pL = 44, pT = 20, pR = 16, pB = 36;
+  const cW = vbW - pL - pR, cH = vbH - pT - pB;
+  const maxV = 70;
+  const bW = 34, gap = 11, gW = bW + gap;
+  const toY = v => pT + cH - (v / maxV) * cH;
+  let h = '';
+  // Grid
+  [0,18,36,54,72].forEach(v => {
+    const y = toY(v);
+    h += `<line x1="${pL}" y1="${y}" x2="${vbW-pR}" y2="${y}" stroke="var(--bsub)" stroke-width="1"/>`;
+    h += `<text x="${pL-5}" y="${y+4}" text-anchor="end" font-size="10" fill="var(--text-3)" font-family="system-ui">${v}</text>`;
+  });
+  // Bars
+  data.forEach((val, i) => {
+    const x = pL + i * gW + 4;
+    const bH = (val / maxV) * cH;
+    const y = toY(val);
+    const col = i >= INF ? 'var(--accent)' : 'var(--text-3)';
+    const op = i >= INF ? '0.9' : '0.35';
+    h += `<rect x="${x}" y="${y}" width="${bW}" height="${bH}" fill="${col}" fill-opacity="${op}" rx="3"/>`;
+    h += `<text x="${x + bW/2}" y="${pT+cH+14}" text-anchor="middle" font-size="9" fill="var(--text-3)" font-family="system-ui">S${i+1}</text>`;
+  });
+  // Inflection
+  const ix = pL + INF * gW + 1;
+  h += `<line x1="${ix}" y1="${pT}" x2="${ix}" y2="${pT+cH}" stroke="var(--accent)" stroke-width="1.5" stroke-dasharray="4,3" opacity="0.7"/>`;
+  h += `<rect x="${ix+4}" y="${pT+4}" width="118" height="28" rx="4" fill="var(--surface)" opacity="0.85"/>`;
+  h += `<text x="${ix+8}" y="${pT+16}" font-size="9" fill="var(--accent)" font-weight="700" font-family="system-ui">Automated Regression</text>`;
+  h += `<text x="${ix+8}" y="${pT+27}" font-size="9" fill="var(--accent)" font-weight="700" font-family="system-ui">Testing Introduced →</text>`;
+  // Avg lines
+  const bAvg = 52, pAvg = 60;
+  h += `<line x1="${pL}" y1="${toY(bAvg)}" x2="${ix}" y2="${toY(bAvg)}" stroke="var(--text-3)" stroke-width="1" stroke-dasharray="3,2" opacity="0.7"/>`;
+  h += `<line x1="${ix}" y1="${toY(pAvg)}" x2="${vbW-pR}" y2="${toY(pAvg)}" stroke="var(--accent)" stroke-width="1" stroke-dasharray="3,2" opacity="0.7"/>`;
+  h += `<text x="${pL+3}" y="${toY(bAvg)-4}" font-size="9" fill="var(--text-3)" font-family="system-ui">Avg 52</text>`;
+  h += `<text x="${ix+4}" y="${toY(pAvg)-4}" font-size="9" fill="var(--accent)" font-weight="700" font-family="system-ui">Avg 60 (+16%)</text>`;
+  svg.innerHTML = h;
+})();
+
+/* ── Blocker Reduction Chart ── */
+(function() {
+  const data = [25, 26, 24, 25, 22, 22, 21, 21];
+  const INF = 4;
+  const svg = document.getElementById('chart-blk');
+  const vbW = 620, vbH = 240;
+  const pL = 44, pT = 20, pR = 16, pB = 36;
+  const cW = vbW - pL - pR, cH = vbH - pT - pB;
+  const maxV = 30;
+  const n = data.length;
+  const xStep = cW / (n - 1);
+  const toX = i => pL + i * xStep;
+  const toY = v => pT + cH - (v / maxV) * cH;
+  let h = '';
+  // Grid
+  [0,10,20,30].forEach(v => {
+    const y = toY(v);
+    h += `<line x1="${pL}" y1="${y}" x2="${vbW-pR}" y2="${y}" stroke="var(--bsub)" stroke-width="1"/>`;
+    h += `<text x="${pL-5}" y="${y+4}" text-anchor="end" font-size="10" fill="var(--text-3)" font-family="system-ui">${v}</text>`;
+  });
+  // Area fill
+  const pts = data.map((v,i) => `${toX(i)},${toY(v)}`).join(' ');
+  const areaPath = `M${toX(0)},${toY(data[0])} ` + data.map((v,i) => `L${toX(i)},${toY(v)}`).join(' ') + ` L${toX(n-1)},${pT+cH} L${toX(0)},${pT+cH} Z`;
+  h += `<defs><linearGradient id="blkGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="var(--accent)" stop-opacity="0.25"/><stop offset="100%" stop-color="var(--accent)" stop-opacity="0.03"/></linearGradient></defs>`;
+  h += `<path d="${areaPath}" fill="url(#blkGrad)"/>`;
+  // Line
+  h += `<polyline points="${pts}" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linejoin="round"/>`;
+  // Points
+  data.forEach((v, i) => {
+    h += `<circle cx="${toX(i)}" cy="${toY(v)}" r="4" fill="var(--surface)" stroke="var(--accent)" stroke-width="2"/>`;
+    h += `<text x="${toX(i)}" y="${pT+cH+14}" text-anchor="middle" font-size="9" fill="var(--text-3)" font-family="system-ui">W${i+1}</text>`;
+  });
+  // Inflection
+  const ix = toX(INF);
+  h += `<line x1="${ix}" y1="${pT}" x2="${ix}" y2="${pT+cH}" stroke="var(--acc2)" stroke-width="1.5" stroke-dasharray="4,3" opacity="0.7"/>`;
+  h += `<rect x="${ix+4}" y="${pT+4}" width="116" height="28" rx="4" fill="var(--surface)" opacity="0.88"/>`;
+  h += `<text x="${ix+8}" y="${pT+16}" font-size="9" fill="var(--acc2)" font-weight="700" font-family="system-ui">Risk-Tracking System</text>`;
+  h += `<text x="${ix+8}" y="${pT+27}" font-size="9" fill="var(--acc2)" font-weight="700" font-family="system-ui">Activated →</text>`;
+  // Avg reference lines
+  h += `<line x1="${pL}" y1="${toY(25)}" x2="${ix}" y2="${toY(25)}" stroke="var(--text-3)" stroke-width="1" stroke-dasharray="3,2" opacity="0.7"/>`;
+  h += `<line x1="${ix}" y1="${toY(21.5)}" x2="${vbW-pR}" y2="${toY(21.5)}" stroke="var(--accent)" stroke-width="1" stroke-dasharray="3,2" opacity="0.7"/>`;
+  h += `<text x="${pL+3}" y="${toY(25)-4}" font-size="9" fill="var(--text-3)" font-family="system-ui">Avg 25</text>`;
+  h += `<text x="${ix+4}" y="${toY(21.5)-4}" font-size="9" fill="var(--accent)" font-weight="700" font-family="system-ui">Avg 21.5 (↓14%)</text>`;
+  svg.innerHTML = h;
+})();
+
+/* ── Vendor SLA Bars ── */
+(function() {
+  const vendors = [
+    { name: 'Cloud Infrastructure (AWS)', pct: 100, col: 'var(--c-green)' },
+    { name: 'QA &amp; Testing Services', pct: 99.1, col: 'var(--c-green)' },
+    { name: 'API Integration Partner', pct: 98.2, col: 'var(--accent)' },
+    { name: 'Project Delivery Vendor', pct: 97.8, col: 'var(--accent)' },
+    { name: 'Data Migration Services', pct: 96.4, col: 'var(--acc2)' },
+  ];
+  const container = document.getElementById('sla-list');
+  container.innerHTML = vendors.map(v => `
+    <div class="sla-row">
+      <div class="sla-name">${v.name}</div>
+      <div class="sla-track"><div class="sla-fill" style="width:${v.pct}%;background:${v.col}"></div></div>
+      <div class="sla-pct" style="color:${v.col}">${v.pct}%</div>
+    </div>
+  `).join('');
+})();
+
+/* ── Risk Heatmap ── */
+(function() {
+  // Risks: {id, P, I, status} — status: 'critical','mitigated','monitored','closed'
+  const risks = [
+    {id:'R01', P:4, I:5, st:'m'},  // mitigated
+    {id:'R02', P:3, I:4, st:'w'},  // monitored
+    {id:'R03', P:5, I:4, st:'m'},  // resolved→green
+    {id:'R04', P:4, I:4, st:'m'},
+    {id:'R05', P:3, I:3, st:'m'},
+    {id:'R06', P:3, I:4, st:'w'},
+    {id:'R07', P:2, I:3, st:'c'},  // closed
+    {id:'R08', P:2, I:4, st:'m'},
+  ];
+  function cellColor(score) {
+    if (score <= 4) return 'hm-green';
+    if (score <= 9) return 'hm-amber';
+    if (score <= 15) return 'hm-orange';
+    return 'hm-red';
+  }
+  function markerClass(st) {
+    if (st === 'm') return 'rm-out';    // mitigated/resolved = outline
+    if (st === 'w') return 'rm-orange'; // monitored = orange
+    if (st === 'c') return 'rm-amber';  // closed = amber
+    return 'rm-solid';
+  }
+  // Build marker map: key = "P,I" → array of risk ids
+  const markers = {};
+  risks.forEach(r => {
+    const k = `${r.P},${r.I}`;
+    if (!markers[k]) markers[k] = [];
+    markers[k].push({id: r.id.replace('R0','R'), st: r.st});
+  });
+  const grid = document.getElementById('heatmap-grid');
+  let html = '';
+  // Grid is row 1 = P=5 (top), row 5 = P=1 (bottom); col 1 = I=1, col 5 = I=5
+  for (let p = 5; p >= 1; p--) {
+    for (let i = 1; i <= 5; i++) {
+      const score = p * i;
+      const cc = cellColor(score);
+      const k = `${p},${i}`;
+      const ms = markers[k] || [];
+      const mHTML = ms.map(m => `<span class="rmarker ${markerClass(m.st)}" title="${m.id}">${m.id.replace('R','')}</span>`).join('');
+      html += `<div class="hm-cell ${cc}" title="P=${p} × I=${i} = ${score}">${mHTML || `<span style="font-size:.55rem;color:var(--text-3);font-weight:600">${score}</span>`}</div>`;
+    }
+  }
+  grid.innerHTML = html;
+})();
+</script>

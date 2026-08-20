@@ -90,14 +90,50 @@ body{background:var(--bg);color:var(--text-1);font-family:var(--font);font-size:
   .close-banner{padding:22px 20px;}
 }
 @media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;}}
+
+/* ── Back Button ── */
+.back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  color: var(--text-2);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  margin-bottom: 32px;
+  padding: 8px 16px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--surface);
+  transition: color 0.15s, border-color 0.15s, background 0.15s;
+}
+.back-btn:hover { color: var(--accent); border-color: var(--accent); }
+.back-btn svg { width: 14px; height: 14px; flex-shrink: 0; }
+
+/* ── Tab Hint Arrow ── */
+.tab-hint {
+  display: inline-block;
+  color: #DC2626;
+  font-size: 0.65rem;
+  margin-left: 3px;
+  vertical-align: middle;
+  line-height: 1;
+  animation: hint-bounce 1s ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes hint-bounce {
+  0%, 100% { opacity: 1; transform: translateY(0px); }
+  50%       { opacity: 0.5; transform: translateY(3px); }
+}
+
 </style>
 
 <div class="page">
-
-<div class="banner">
-  <div class="bdot"></div>
-  <span><strong>Portfolio Preview — Section 5 of 5:</strong> Scope &amp; Scale Summary &nbsp;·&nbsp; Awaiting approval before GitHub update</span>
-</div>
+  <a href="../index.html#portfolio" class="back-btn">
+    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3L6 8l4 5"/></svg>
+    Back to Portfolio
+  </a>
 
 <div class="eyebrow"><span class="etag">Section 05 of 05</span><div class="erule"></div></div>
 <h1 class="sh">Scope &amp; Scale</h1>

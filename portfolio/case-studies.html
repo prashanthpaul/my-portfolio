@@ -400,15 +400,50 @@ body {
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; }
 }
+
+/* ── Back Button ── */
+.back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  color: var(--text-2);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  margin-bottom: 32px;
+  padding: 8px 16px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--surface);
+  transition: color 0.15s, border-color 0.15s, background 0.15s;
+}
+.back-btn:hover { color: var(--accent); border-color: var(--accent); }
+.back-btn svg { width: 14px; height: 14px; flex-shrink: 0; }
+
+/* ── Tab Hint Arrow ── */
+.tab-hint {
+  display: inline-block;
+  color: #DC2626;
+  font-size: 0.65rem;
+  margin-left: 3px;
+  vertical-align: middle;
+  line-height: 1;
+  animation: hint-bounce 1s ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes hint-bounce {
+  0%, 100% { opacity: 1; transform: translateY(0px); }
+  50%       { opacity: 0.5; transform: translateY(3px); }
+}
+
 </style>
 
 <div class="page">
-
-  <!-- Preview banner -->
-  <div class="preview-banner">
-    <div class="preview-dot"></div>
-    <span><strong>Portfolio Preview — Section 1 of 5:</strong> Program Case Studies &nbsp;·&nbsp; Awaiting approval before any GitHub update</span>
-  </div>
+  <a href="../index.html#portfolio" class="back-btn">
+    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3L6 8l4 5"/></svg>
+    Back to Portfolio
+  </a>
 
   <!-- Section header -->
   <div class="section-eyebrow">
@@ -444,9 +479,9 @@ body {
 
       <div class="star-nav" id="bwa-nav">
         <button class="star-btn is-active" onclick="switchTab('bwa','situation',this)"><span class="star-letter">S</span> Situation</button>
-        <button class="star-btn" onclick="switchTab('bwa','task',this)"><span class="star-letter">T</span> Task</button>
-        <button class="star-btn" onclick="switchTab('bwa','action',this)"><span class="star-letter">A</span> Action</button>
-        <button class="star-btn" onclick="switchTab('bwa','result',this)"><span class="star-letter">R</span> Result</button>
+        <button class="star-btn" onclick="switchTab('bwa','task',this)"><span class="star-letter">T</span> Task <span class="tab-hint">▼</span></button>
+        <button class="star-btn" onclick="switchTab('bwa','action',this)"><span class="star-letter">A</span> Action <span class="tab-hint">▼</span></button>
+        <button class="star-btn" onclick="switchTab('bwa','result',this)"><span class="star-letter">R</span> Result <span class="tab-hint">▼</span></button>
       </div>
 
       <div class="tab-body">
@@ -515,9 +550,9 @@ body {
 
       <div class="star-nav" id="com4-nav">
         <button class="star-btn is-active" onclick="switchTab('com4','situation',this)"><span class="star-letter">S</span> Situation</button>
-        <button class="star-btn" onclick="switchTab('com4','task',this)"><span class="star-letter">T</span> Task</button>
-        <button class="star-btn" onclick="switchTab('com4','action',this)"><span class="star-letter">A</span> Action</button>
-        <button class="star-btn" onclick="switchTab('com4','result',this)"><span class="star-letter">R</span> Result</button>
+        <button class="star-btn" onclick="switchTab('com4','task',this)"><span class="star-letter">T</span> Task <span class="tab-hint">▼</span></button>
+        <button class="star-btn" onclick="switchTab('com4','action',this)"><span class="star-letter">A</span> Action <span class="tab-hint">▼</span></button>
+        <button class="star-btn" onclick="switchTab('com4','result',this)"><span class="star-letter">R</span> Result <span class="tab-hint">▼</span></button>
       </div>
 
       <div class="tab-body">
@@ -585,9 +620,9 @@ body {
 
       <div class="star-nav" id="mitre-nav">
         <button class="star-btn is-active" onclick="switchTab('mitre','situation',this)"><span class="star-letter">S</span> Situation</button>
-        <button class="star-btn" onclick="switchTab('mitre','task',this)"><span class="star-letter">T</span> Task</button>
-        <button class="star-btn" onclick="switchTab('mitre','action',this)"><span class="star-letter">A</span> Action</button>
-        <button class="star-btn" onclick="switchTab('mitre','result',this)"><span class="star-letter">R</span> Result</button>
+        <button class="star-btn" onclick="switchTab('mitre','task',this)"><span class="star-letter">T</span> Task <span class="tab-hint">▼</span></button>
+        <button class="star-btn" onclick="switchTab('mitre','action',this)"><span class="star-letter">A</span> Action <span class="tab-hint">▼</span></button>
+        <button class="star-btn" onclick="switchTab('mitre','result',this)"><span class="star-letter">R</span> Result <span class="tab-hint">▼</span></button>
       </div>
 
       <div class="tab-body">

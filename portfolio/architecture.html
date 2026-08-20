@@ -1,0 +1,427 @@
+<title>Section 2: Technical Architecture — TPM Portfolio Preview</title>
+<style>
+:root {
+  --bg:#F2F5F8; --surface:#FFFFFF; --surface-raised:#F4F7FA; --surface-diag:#EDF2F7;
+  --border:#C9D8E6; --border-sub:#DDE8F2;
+  --accent:#006B65; --text-1:#0C1A27; --text-2:#47627A; --text-3:#7A98AF;
+  --badge:#E8EFF6; --radius:14px; --rsm:7px;
+  --font:system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;
+}
+@media(prefers-color-scheme:dark){:root{
+  --bg:#080E16; --surface:#0E1B2B; --surface-raised:#132030; --surface-diag:#0A1520;
+  --border:#1C3148; --border-sub:#16293E;
+  --accent:#00BFB6; --text-1:#E4EEF8; --text-2:#85A3BC; --text-3:#45637A; --badge:#162840;
+}}
+:root[data-theme="dark"]{
+  --bg:#080E16; --surface:#0E1B2B; --surface-raised:#132030; --surface-diag:#0A1520;
+  --border:#1C3148; --border-sub:#16293E;
+  --accent:#00BFB6; --text-1:#E4EEF8; --text-2:#85A3BC; --text-3:#45637A; --badge:#162840;
+}
+:root[data-theme="light"]{
+  --bg:#F2F5F8; --surface:#FFFFFF; --surface-raised:#F4F7FA; --surface-diag:#EDF2F7;
+  --border:#C9D8E6; --border-sub:#DDE8F2;
+  --accent:#006B65; --text-1:#0C1A27; --text-2:#47627A; --text-3:#7A98AF; --badge:#E8EFF6;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--bg);color:var(--text-1);font-family:var(--font);font-size:15px;line-height:1.6;}
+
+.page{max-width:960px;margin:0 auto;padding:52px 24px 96px;}
+
+/* Banner */
+.banner{display:flex;align-items:center;gap:10px;background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:var(--rsm);padding:11px 16px;margin-bottom:48px;font-size:.8rem;color:var(--text-2);}
+.banner strong{color:var(--text-1);}
+.bdot{width:7px;height:7px;border-radius:50%;background:var(--accent);flex-shrink:0;}
+
+/* Section header */
+.eyebrow{display:flex;align-items:center;gap:12px;margin-bottom:10px;}
+.etag{font-size:.68rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);white-space:nowrap;}
+.erule{flex:1;height:1px;background:var(--border);}
+.sh{font-size:clamp(2rem,5vw,3rem);font-weight:800;letter-spacing:-.035em;line-height:1.08;color:var(--text-1);margin-bottom:14px;text-wrap:balance;}
+.ss{color:var(--text-2);font-size:1rem;line-height:1.75;max-width:620px;margin-bottom:52px;}
+
+/* Diagram block */
+.dblock{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:32px;}
+.dhead{padding:20px 28px 16px;border-bottom:1px solid var(--border-sub);display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px;}
+.dtitle{font-size:1.05rem;font-weight:800;letter-spacing:-.02em;color:var(--text-1);margin-bottom:3px;}
+.dco{font-size:.8rem;color:var(--text-2);}
+.dhint{font-size:.7rem;font-weight:600;color:var(--text-3);letter-spacing:.04em;white-space:nowrap;align-self:center;}
+
+/* Pipeline scroll area */
+.pscroll{overflow-x:auto;padding:28px;background:var(--surface-diag);border-bottom:1px solid var(--border-sub);scrollbar-width:thin;scrollbar-color:var(--border) transparent;}
+.pflow{display:flex;align-items:stretch;min-width:max-content;gap:0;}
+
+/* Pipe node */
+.pnode{flex-shrink:0;width:145px;background:var(--surface);border:1.5px solid var(--border);border-radius:10px;overflow:hidden;cursor:pointer;transition:border-color .15s,box-shadow .15s,transform .15s;}
+.pnode:hover,.pnode.sel{border-color:var(--nc,var(--accent));transform:translateY(-3px);box-shadow:0 6px 18px rgba(0,0,0,.13);}
+.pnode.sel{box-shadow:0 0 0 3px color-mix(in srgb,var(--nc,var(--accent)) 18%,transparent),0 6px 18px rgba(0,0,0,.13);}
+.ntop{height:4px;background:var(--nc,var(--border));}
+.nbody{padding:11px 12px 13px;}
+.ncat{font-size:.59rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--nc,var(--text-3));margin-bottom:4px;}
+.nname{font-size:.84rem;font-weight:700;color:var(--text-1);margin-bottom:4px;line-height:1.25;}
+.ndesc{font-size:.7rem;color:var(--text-2);line-height:1.4;}
+.ntpm{margin-top:9px;display:inline-flex;align-items:center;gap:4px;background:color-mix(in srgb,var(--accent) 10%,transparent);border-radius:4px;padding:2px 7px;font-size:.58rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);}
+
+/* Connector arrow */
+.conn{flex-shrink:0;width:32px;display:flex;align-items:center;justify-content:center;position:relative;}
+.conn::before{content:'';position:absolute;left:2px;right:10px;height:1.5px;background:var(--border);}
+.conn::after{content:'';position:absolute;right:4px;top:50%;transform:translateY(-50%);border-left:7px solid var(--border);border-top:4px solid transparent;border-bottom:4px solid transparent;}
+
+/* CCB bar */
+.ccbbar{margin-top:18px;background:color-mix(in srgb,var(--accent) 7%,transparent);border:1px dashed color-mix(in srgb,var(--accent) 35%,transparent);border-radius:8px;padding:8px 14px;display:flex;align-items:center;gap:10px;min-width:max-content;}
+.ccblabel{font-size:.6rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);white-space:nowrap;}
+.ccbline{flex:1;height:1px;background:color-mix(in srgb,var(--accent) 25%,transparent);}
+.ccbtext{font-size:.7rem;color:var(--text-2);white-space:nowrap;}
+
+/* Detail panel */
+.dpanel{padding:22px 28px;min-height:110px;display:flex;flex-direction:column;justify-content:center;}
+.dph{text-align:center;color:var(--text-3);font-size:.82rem;padding:12px 0;}
+.dcontent{display:none;}
+.dcontent.on{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+@media(max-width:600px){.dcontent.on{grid-template-columns:1fr;}}
+.dlabel{font-size:.64rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--text-3);margin-bottom:8px;}
+.dtext{font-size:.88rem;color:var(--text-2);line-height:1.72;}
+.dtpm{background:var(--surface-raised);border:1px solid var(--border-sub);border-left:3px solid var(--accent);border-radius:var(--rsm);padding:14px 16px;}
+.dmet{display:inline-flex;margin-top:10px;font-size:.72rem;font-weight:700;color:var(--accent);background:color-mix(in srgb,var(--accent) 10%,transparent);padding:3px 10px;border-radius:20px;}
+
+/* Migration scroll */
+.mscroll{overflow-x:auto;padding:28px;background:var(--surface-diag);border-bottom:1px solid var(--border-sub);}
+.mlayout{display:flex;flex-direction:column;align-items:center;gap:0;min-width:680px;}
+
+/* 8 division boxes */
+.divrow{display:flex;gap:7px;width:100%;justify-content:center;}
+.divbox{flex:1;min-width:66px;max-width:96px;background:var(--surface);border:1.5px solid var(--border);border-radius:8px;padding:9px 7px;text-align:center;cursor:pointer;transition:border-color .15s,transform .15s,box-shadow .15s;}
+.divbox:hover,.divbox.sel{border-color:#7A98AF;transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,0,0,.1);}
+.divlbl{font-size:.58rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--text-3);margin-bottom:3px;}
+.divname{font-size:.68rem;font-weight:600;color:var(--text-2);line-height:1.3;}
+
+/* Wide box */
+.wbox{width:100%;max-width:640px;background:var(--surface);border:1.5px solid var(--border);border-radius:10px;padding:15px 20px;cursor:pointer;text-align:center;transition:border-color .15s,box-shadow .15s;position:relative;}
+.wbox:hover,.wbox.sel{border-color:var(--wc,var(--accent));box-shadow:0 0 0 3px color-mix(in srgb,var(--wc,var(--accent)) 14%,transparent);}
+.wtop{position:absolute;top:0;left:0;right:0;height:3px;background:var(--wc,var(--accent));border-radius:10px 10px 0 0;}
+.wlbl{font-size:.59rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--wc,var(--text-3));margin-bottom:5px;}
+.wname{font-size:.98rem;font-weight:800;letter-spacing:-.01em;color:var(--text-1);margin-bottom:4px;}
+.wsub{font-size:.77rem;color:var(--text-2);}
+.wanno{display:inline-flex;margin-top:10px;font-size:.67rem;font-weight:700;color:var(--wc,var(--accent));background:color-mix(in srgb,var(--wc,var(--accent)) 11%,transparent);padding:3px 10px;border-radius:12px;}
+
+/* Phase row */
+.phrow{display:flex;gap:16px;width:100%;max-width:640px;}
+.phbox{flex:1;background:var(--surface);border:1.5px solid var(--border);border-radius:10px;padding:14px 16px;cursor:pointer;text-align:center;transition:border-color .15s,box-shadow .15s;position:relative;}
+.phbox:hover,.phbox.sel{border-color:var(--pc,var(--accent));box-shadow:0 0 0 3px color-mix(in srgb,var(--pc,var(--accent)) 14%,transparent);}
+.phtop{position:absolute;top:0;left:0;right:0;height:3px;background:var(--pc,var(--border));border-radius:10px 10px 0 0;}
+.phlbl{font-size:.6rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--pc,var(--text-3));margin-bottom:4px;}
+.phname{font-size:.9rem;font-weight:700;color:var(--text-1);margin-bottom:3px;}
+.phsub{font-size:.72rem;color:var(--text-2);}
+.phbadge{display:inline-flex;margin-top:8px;font-size:.62rem;font-weight:700;color:var(--pc,var(--text-3));background:color-mix(in srgb,var(--pc,var(--text-3)) 10%,transparent);padding:2px 9px;border-radius:10px;}
+
+/* Tech stack */
+.tsgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-top:16px;}
+.tscat{background:var(--surface);border:1px solid var(--border);border-radius:var(--rsm);padding:17px 19px;}
+.tscatlbl{font-size:.64rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:11px;}
+.tschips{display:flex;flex-wrap:wrap;gap:7px;}
+.tsc{background:var(--badge);border:1px solid var(--border-sub);color:var(--text-2);font-size:.72rem;font-weight:600;padding:3px 10px;border-radius:5px;}
+
+@media(max-width:600px){
+  .dhead,.dpanel{padding:16px 18px;}
+  .pscroll,.mscroll{padding:18px;}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;}}
+</style>
+
+<div class="page">
+
+<div class="banner">
+  <div class="bdot"></div>
+  <span><strong>Portfolio Preview — Section 2 of 5:</strong> Technical Architecture &nbsp;·&nbsp; Awaiting approval before any GitHub update</span>
+</div>
+
+<div class="eyebrow"><span class="etag">Section 02 of 05</span><div class="erule"></div></div>
+<h1 class="sh">Technical Architecture</h1>
+<p class="ss">System diagrams demonstrating infrastructure depth — each showing the topology I governed and where TPM decisions directly shaped technical outcomes. Click any component to see its technical detail and my specific role. All diagrams are anonymized representations of real programs.</p>
+
+<!-- ══ DIAGRAM A: Pipeline ══ -->
+<div class="dblock">
+  <div class="dhead">
+    <div>
+      <div class="dtitle">AWS Enterprise Data &amp; AI Platform</div>
+      <div class="dco">Baptist World Alliance &nbsp;·&nbsp; Apr 2026 – Present</div>
+    </div>
+    <div class="dhint">Click any component →</div>
+  </div>
+
+  <div class="pscroll">
+    <div class="pflow">
+
+      <div class="pnode" style="--nc:#7A98AF" onclick="selPipe('sources',this)">
+        <div class="ntop"></div><div class="nbody">
+          <div class="ncat">Input</div>
+          <div class="nname">Corporate Division Data</div>
+          <div class="ndesc">4 divisions feeding structured &amp; event-driven streams</div>
+          <div class="ntpm">TPM Touchpoint</div>
+        </div>
+      </div><div class="conn"></div>
+
+      <div class="pnode" style="--nc:#E8762C" onclick="selPipe('s3',this)">
+        <div class="ntop"></div><div class="nbody">
+          <div class="ncat">Storage</div>
+          <div class="nname">Amazon S3</div>
+          <div class="ndesc">Raw data lake for ingestion &amp; event storage</div>
+          <div class="ntpm">TPM Touchpoint</div>
+        </div>
+      </div><div class="conn"></div>
+
+      <div class="pnode" style="--nc:#4A7FD4" onclick="selPipe('glue',this)">
+        <div class="ntop"></div><div class="nbody">
+          <div class="ncat">Processing</div>
+          <div class="nname">AWS Glue ETL</div>
+          <div class="ndesc">Data transformation, quality checks, loading</div>
+          <div class="ntpm">TPM Touchpoint</div>
+        </div>
+      </div><div class="conn"></div>
+
+      <div class="pnode" style="--nc:#7B5EA7" onclick="selPipe('redshift',this)">
+        <div class="ntop"></div><div class="nbody">
+          <div class="ncat">Analytics</div>
+          <div class="nname">Amazon Redshift</div>
+          <div class="ndesc">Structured data warehouse for analytical queries</div>
+          <div class="ntpm">TPM Touchpoint</div>
+        </div>
+      </div><div class="conn"></div>
+
+      <div class="pnode" style="--nc:#9333EA" onclick="selPipe('sagemaker',this)">
+        <div class="ntop"></div><div class="nbody">
+          <div class="ncat">ML Inference</div>
+          <div class="nname">Amazon SageMaker</div>
+          <div class="ndesc">Predictive model training &amp; inference engine</div>
+          <div class="ntpm">TPM Touchpoint</div>
+        </div>
+      </div><div class="conn"></div>
+
+      <div class="pnode" style="--nc:#16A37F" onclick="selPipe('cloudwatch',this)">
+        <div class="ntop"></div><div class="nbody">
+          <div class="ncat">Monitoring</div>
+          <div class="nname">Amazon CloudWatch</div>
+          <div class="ndesc">Real-time pipeline health, alerts &amp; metrics</div>
+          <div class="ntpm">TPM Touchpoint</div>
+        </div>
+      </div><div class="conn"></div>
+
+      <div class="pnode" style="--nc:#00BFB6" onclick="selPipe('dashboard',this)">
+        <div class="ntop"></div><div class="nbody">
+          <div class="ncat">Delivery</div>
+          <div class="nname">Executive Dashboard</div>
+          <div class="ndesc">Live program &amp; pipeline visibility for leadership</div>
+          <div class="ntpm">TPM Touchpoint</div>
+        </div>
+      </div>
+
+    </div><!-- /pflow -->
+    <div class="ccbbar">
+      <span class="ccblabel">CCB Governance Layer</span>
+      <div class="ccbline"></div>
+      <span class="ccbtext">Change Control Board review required on all infrastructure-impacting requests across every pipeline stage</span>
+    </div>
+  </div><!-- /pscroll -->
+
+  <div class="dpanel" id="ppanel">
+    <div class="dph">Click any component above to see technical detail and TPM role</div>
+
+    <div class="dcontent" id="pd-sources">
+      <div><div class="dlabel">Technical Context</div><div class="dtext">Four corporate divisions generating structured operational data and event-driven streams, each with independent data formats and delivery cadences requiring normalization at the ingestion boundary before downstream processing.</div></div>
+      <div class="dtpm"><div class="dlabel">TPM Role</div><div class="dtext">Unified all 4 divisions around a single infrastructure roadmap with zero unplanned scope escalations. Translated complex data dependency requirements into milestone-level commitments that leadership could track and hold to.</div><div class="dmet">4 Divisions Aligned · Zero Scope Escalations</div></div>
+    </div>
+
+    <div class="dcontent" id="pd-s3">
+      <div><div class="dlabel">Technical Context</div><div class="dtext">Amazon S3 serves as the raw data lake and event storage layer — the primary ingestion point for all division data streams. S3 event triggers initiate downstream Glue ETL jobs on new data arrival, making it the pipeline's entry gate.</div></div>
+      <div class="dtpm"><div class="dlabel">TPM Role</div><div class="dtext">Governed ingestion scope boundaries and monitored pipeline entry points through the automated risk-tracking system. Ensured data volume anomalies and schema drift were flagged as delivery blockers before propagating downstream.</div><div class="dmet">↓14% Delivery Blockers via Automated Risk Tracking</div></div>
+    </div>
+
+    <div class="dcontent" id="pd-glue">
+      <div><div class="dlabel">Technical Context</div><div class="dtext">AWS Glue manages ETL — extraction from S3, transformation with data quality validation, and loading into Redshift. This stage is the primary bottleneck for deployment velocity: failures here block all downstream analytics and ML inference.</div></div>
+      <div class="dtpm"><div class="dlabel">TPM Role</div><div class="dtext">Engineered automated regression testing at the ETL layer — the single intervention most directly responsible for the 16% deployment velocity improvement. Owned quality gates as sprint deliverables tracked against weekly velocity targets.</div><div class="dmet">↑16% Deployment Velocity via Automated Regression Testing</div></div>
+    </div>
+
+    <div class="dcontent" id="pd-redshift">
+      <div><div class="dlabel">Technical Context</div><div class="dtext">Amazon Redshift stores transformed, structured data for high-performance analytical queries. Schema governance at this layer is critical — an unreviewed schema change can silently break downstream SageMaker feature pipelines.</div></div>
+      <div class="dtpm"><div class="dlabel">TPM Role</div><div class="dtext">Coordinated schema governance across the engineering team, ensuring all schema-impacting changes passed through the CCB process before deployment. Tracked Redshift milestones in sprint planning alongside engineering leads.</div><div class="dmet">CCB Process · Zero Unauthorized Schema Changes</div></div>
+    </div>
+
+    <div class="dcontent" id="pd-sagemaker">
+      <div><div class="dlabel">Technical Context</div><div class="dtext">Amazon SageMaker hosts predictive ML models consuming Redshift feature data for inference. Model retraining cycles, endpoint updates, and inference latency SLAs create ongoing delivery milestones requiring active program governance.</div></div>
+      <div class="dtpm"><div class="dlabel">TPM Role</div><div class="dtext">Managed ML pipeline deliverables as program milestones in sprint planning. Tracked model accuracy and inference latency SLAs as program health metrics. Escalated model drift signals as delivery blockers requiring engineering intervention.</div><div class="dmet">ML Pipeline SLAs Tracked as Sprint Milestones</div></div>
+    </div>
+
+    <div class="dcontent" id="pd-cloudwatch">
+      <div><div class="dlabel">Technical Context</div><div class="dtext">Amazon CloudWatch provides real-time metrics and alerting across all pipeline stages — ETL job status, Redshift query performance, SageMaker endpoint health, and API response times. The central observability layer for the entire platform.</div></div>
+      <div class="dtpm"><div class="dlabel">TPM Role</div><div class="dtext">Built real-time delivery and pipeline health dashboards on top of CloudWatch metrics — giving executive leadership live program visibility without engineering-level noise. Defined which metrics mapped to delivery milestones vs. operational alerts.</div><div class="dmet">Real-Time Executive Dashboards Built on CloudWatch</div></div>
+    </div>
+
+    <div class="dcontent" id="pd-dashboard">
+      <div><div class="dlabel">Technical Context</div><div class="dtext">Executive-facing program dashboard surfacing pipeline health status, sprint delivery metrics, milestone completion rates, deployment velocity trends, and risk register status — derived from CloudWatch metrics and Jira sprint data.</div></div>
+      <div class="dtpm"><div class="dlabel">TPM Role</div><div class="dtext">Designed, built, and owned this delivery dashboard end-to-end. Replaced weekly static status decks with live data. This artifact directly enabled real-time executive decision-making and served as the evidence layer during executive program reviews.</div><div class="dmet">Live Visibility · Replaced Static Weekly Reporting</div></div>
+    </div>
+  </div><!-- /ppanel -->
+</div><!-- /dblock A -->
+
+
+<!-- ══ DIAGRAM B: Migration ══ -->
+<div class="dblock">
+  <div class="dhead">
+    <div>
+      <div class="dtitle">8-Division Cloud Migration Topology</div>
+      <div class="dco">COM4 Global &nbsp;·&nbsp; Apr 2023 – Oct 2025</div>
+    </div>
+    <div class="dhint">Click any component →</div>
+  </div>
+
+  <div class="mscroll">
+    <div class="mlayout">
+
+      <!-- Legacy division boxes -->
+      <div class="divrow">
+        <div class="divbox" onclick="selMig('lgcy1',this)"><div class="divlbl">Div 1</div><div class="divname">Legacy CRM</div></div>
+        <div class="divbox" onclick="selMig('lgcy1',this)"><div class="divlbl">Div 2</div><div class="divname">Legacy ERP</div></div>
+        <div class="divbox" onclick="selMig('lgcy1',this)"><div class="divlbl">Div 3</div><div class="divname">Finance Platform</div></div>
+        <div class="divbox" onclick="selMig('lgcy1',this)"><div class="divlbl">Div 4</div><div class="divname">HR System</div></div>
+        <div class="divbox" onclick="selMig('lgcy2',this)"><div class="divlbl">Div 5</div><div class="divname">Ops Platform</div></div>
+        <div class="divbox" onclick="selMig('lgcy2',this)"><div class="divlbl">Div 6</div><div class="divname">Reporting Suite</div></div>
+        <div class="divbox" onclick="selMig('lgcy2',this)"><div class="divlbl">Div 7</div><div class="divname">Data Warehouse</div></div>
+        <div class="divbox" onclick="selMig('lgcy2',this)"><div class="divlbl">Div 8</div><div class="divname">Integration Bus</div></div>
+      </div>
+
+      <!-- Convergent SVG: 8 → 1 -->
+      <svg viewBox="0 0 640 40" style="width:100%;max-width:640px;height:40px" xmlns="http://www.w3.org/2000/svg">
+        <defs><marker id="arw" markerWidth="7" markerHeight="5" refX="7" refY="2.5" orient="auto"><polygon points="0 0,7 2.5,0 5" fill="var(--text-3)"/></marker></defs>
+        <line x1="40"  y1="0" x2="320" y2="40" stroke="var(--text-3)" stroke-width="1" opacity=".45"/>
+        <line x1="120" y1="0" x2="320" y2="40" stroke="var(--text-3)" stroke-width="1" opacity=".45"/>
+        <line x1="200" y1="0" x2="320" y2="40" stroke="var(--text-3)" stroke-width="1" opacity=".45"/>
+        <line x1="280" y1="0" x2="320" y2="40" stroke="var(--text-3)" stroke-width="1" opacity=".45"/>
+        <line x1="360" y1="0" x2="320" y2="40" stroke="var(--text-3)" stroke-width="1" opacity=".45"/>
+        <line x1="440" y1="0" x2="320" y2="40" stroke="var(--text-3)" stroke-width="1" opacity=".45"/>
+        <line x1="520" y1="0" x2="320" y2="40" stroke="var(--text-3)" stroke-width="1" opacity=".45"/>
+        <line x1="600" y1="0" x2="320" y2="38" stroke="var(--text-3)" stroke-width="1" opacity=".5" marker-end="url(#arw)"/>
+      </svg>
+
+      <!-- API Layer -->
+      <div class="wbox" style="--wc:#E08000" onclick="selMig('api',this)">
+        <div class="wtop"></div>
+        <div class="wlbl">Risk-Critical Integration Layer</div>
+        <div class="wname">API &amp; Systems Integration Layer</div>
+        <div class="wsub">Unified API gateway · protocol translation · data mapping · integration validation</div>
+        <div class="wanno">$40K+ remediation risk identified and resolved at this layer</div>
+      </div>
+
+      <!-- Split SVG: 1 → 2 -->
+      <svg viewBox="0 0 640 40" style="width:100%;max-width:640px;height:40px" xmlns="http://www.w3.org/2000/svg">
+        <line x1="320" y1="0"  x2="320" y2="20" stroke="var(--text-3)" stroke-width="1.5"/>
+        <line x1="320" y1="20" x2="160" y2="20" stroke="var(--text-3)" stroke-width="1.5"/>
+        <line x1="320" y1="20" x2="480" y2="20" stroke="var(--text-3)" stroke-width="1.5"/>
+        <line x1="160" y1="20" x2="160" y2="38" stroke="var(--text-3)" stroke-width="1.5" marker-end="url(#arw)"/>
+        <line x1="480" y1="20" x2="480" y2="38" stroke="var(--text-3)" stroke-width="1.5" marker-end="url(#arw)"/>
+      </svg>
+
+      <!-- Phase row -->
+      <div class="phrow">
+        <div class="phbox" style="--pc:#4A7FD4" onclick="selMig('ph1',this)">
+          <div class="phtop"></div>
+          <div class="phlbl">Migration Phase 1</div>
+          <div class="phname">Divisions 1–4</div>
+          <div class="phsub">CRM · ERP · Finance · HR</div>
+          <div class="phbadge">All deadlines hit ahead of schedule</div>
+        </div>
+        <div class="phbox" style="--pc:#E08000" onclick="selMig('ph2',this)">
+          <div class="phtop"></div>
+          <div class="phlbl">Migration Phase 2</div>
+          <div class="phname">Divisions 5–8</div>
+          <div class="phsub">Ops · Reporting · Data WH · Integration Bus</div>
+          <div class="phbadge">3-week delay recovered · $0 budget impact</div>
+        </div>
+      </div>
+
+      <!-- Merge SVG: 2 → 1 -->
+      <svg viewBox="0 0 640 40" style="width:100%;max-width:640px;height:40px" xmlns="http://www.w3.org/2000/svg">
+        <line x1="160" y1="0"  x2="160" y2="20" stroke="var(--text-3)" stroke-width="1.5"/>
+        <line x1="480" y1="0"  x2="480" y2="20" stroke="var(--text-3)" stroke-width="1.5"/>
+        <line x1="160" y1="20" x2="320" y2="20" stroke="var(--text-3)" stroke-width="1.5"/>
+        <line x1="480" y1="20" x2="320" y2="20" stroke="var(--text-3)" stroke-width="1.5"/>
+        <line x1="320" y1="20" x2="320" y2="38" stroke="var(--text-3)" stroke-width="1.5" marker-end="url(#arw)"/>
+      </svg>
+
+      <!-- Unified Platform -->
+      <div class="wbox" style="--wc:#00BFB6" onclick="selMig('platform',this)">
+        <div class="wtop"></div>
+        <div class="wlbl">Delivery Outcome</div>
+        <div class="wname">Unified AWS Cloud Integration Platform</div>
+        <div class="wsub">All 8 divisions migrated · Every cutover deadline hit ahead of schedule · $40K+ in costs prevented</div>
+        <div class="wanno">8/8 Divisions · 0 Missed Deadlines · $0 Over Budget</div>
+      </div>
+
+    </div><!-- /mlayout -->
+  </div><!-- /mscroll -->
+
+  <div class="dpanel" id="mpanel">
+    <div class="dph">Click any component above to see technical detail and TPM role</div>
+
+    <div class="dcontent" id="md-lgcy1">
+      <div><div class="dlabel">Technical Context</div><div class="dtext">Legacy CRM, ERP, Finance, and HR systems operating on-premises with proprietary data schemas, custom integrations, and largely undocumented API dependencies. Each division system presented unique cutover risks requiring individual technical assessment before any migration could proceed.</div></div>
+      <div class="dtpm"><div class="dlabel">TPM Role</div><div class="dtext">Maintained a division-level risk matrix for each system, identifying API and integration conflicts before cutover. Added dependency discovery as a formal sprint milestone for each division — ensuring no system entered the cutover phase with uncharted dependencies.</div><div class="dmet">Risk Matrix · Pre-Cutover Conflict Resolution</div></div>
+    </div>
+
+    <div class="dcontent" id="md-lgcy2">
+      <div><div class="dlabel">Technical Context</div><div class="dtext">Ops, Reporting, Data Warehouse, and Integration Bus — the most technically complex systems due to real-time data coupling with Phase 1 systems and their role as shared infrastructure. Their cutover required simultaneous coordination across all 8 divisions.</div></div>
+      <div class="dtpm"><div class="dlabel">TPM Role</div><div class="dtext">Maintained cross-phase dependency tracking in the program risk matrix. When a 3-week delay emerged in Phase 2, restructured the resource allocation matrix and re-sequenced infrastructure verification sprints to fully recover — with zero budget overrun.</div><div class="dmet">3-Week Delay Recovered · $0 Over Budget</div></div>
+    </div>
+
+    <div class="dcontent" id="md-api">
+      <div><div class="dlabel">Technical Context</div><div class="dtext">The API and systems integration layer was the highest-risk convergence point — where all 8 legacy data formats, protocols, and schemas had to be reconciled into a unified integration contract. Conflicts undetected here would only surface as production failures at go-live.</div></div>
+      <div class="dtpm"><div class="dlabel">TPM Role</div><div class="dtext">The technical risk matrix was specifically designed to surface API and integration conflicts at this layer before go-live. Identified and resolved critical conflicts during pre-production validation — preventing $40K+ in post-deployment remediation costs that would have been triggered by production failures.</div><div class="dmet">$40K+ Remediation Costs Prevented via Pre-Go-Live Risk Matrix</div></div>
+    </div>
+
+    <div class="dcontent" id="md-ph1">
+      <div><div class="dlabel">Technical Context</div><div class="dtext">Phase 1 migrated Divisions 1–4 to the unified AWS platform first, as these systems had lower real-time coupling to Phase 2 systems. This phase established the migration patterns and validation checklists that governed all subsequent cutover sequences.</div></div>
+      <div class="dtpm"><div class="dlabel">TPM Role</div><div class="dtext">Governed sprint cadence and cutover sequencing for all Phase 1 systems. Partnered directly with engineers on release governance and built dashboard-driven progress tracking for stakeholder reporting. Every Phase 1 cutover deadline hit ahead of schedule.</div><div class="dmet">4/4 Cutover Deadlines Hit Ahead of Schedule</div></div>
+    </div>
+
+    <div class="dcontent" id="md-ph2">
+      <div><div class="dlabel">Technical Context</div><div class="dtext">Phase 2 migrated Divisions 5–8, including the data warehouse and integration bus — the highest technical complexity items in the program. A critical 3-week delay emerged mid-phase due to resource constraints at the data warehouse workstream.</div></div>
+      <div class="dtpm"><div class="dlabel">TPM Role</div><div class="dtext">Diagnosed the delay root cause and restructured the resource allocation matrix — reallocating engineering capacity from lower-priority verification tasks to the critical path. Re-sequenced infrastructure verification sprints to fully recover the 3-week slip with zero increase to baseline budget.</div><div class="dmet">3-Week Delay Fully Recovered · $0 Over Budget</div></div>
+    </div>
+
+    <div class="dcontent" id="md-platform">
+      <div><div class="dlabel">Technical Context</div><div class="dtext">The unified AWS cloud integration platform replaced 8 fragmented legacy systems with a governed, scalable, cloud-native architecture — eliminating operational silos and creating a single infrastructure backbone for all 8 business divisions.</div></div>
+      <div class="dtpm"><div class="dlabel">TPM Role</div><div class="dtext">Owned end-to-end program delivery across all 8 divisions over 2.5 years. Prevented $40K+ in remediation costs, hit every deadline ahead of schedule, recovered a 3-week delay at zero budget overrun, and held all external vendors to contracted SLAs throughout.</div><div class="dmet">8/8 Divisions · $40K+ Saved · $0 Over Budget · 0 Missed Deadlines</div></div>
+    </div>
+  </div><!-- /mpanel -->
+</div><!-- /dblock B -->
+
+
+<!-- ══ Tooling Stack ══ -->
+<div class="eyebrow" style="margin-top:52px;margin-bottom:14px"><span class="etag">Tooling Stack</span><div class="erule"></div></div>
+<p class="ss" style="margin-bottom:20px">Infrastructure, delivery, and governance tools deployed across both programs — selected and configured as part of each program's governance framework, not inherited defaults.</p>
+<div class="tsgrid">
+  <div class="tscat"><div class="tscatlbl">Cloud Infrastructure</div><div class="tschips"><span class="tsc">Amazon S3</span><span class="tsc">AWS Glue</span><span class="tsc">Redshift</span><span class="tsc">SageMaker</span><span class="tsc">API Gateway</span><span class="tsc">CloudWatch</span></div></div>
+  <div class="tscat"><div class="tscatlbl">Delivery &amp; Governance</div><div class="tschips"><span class="tsc">Jira</span><span class="tsc">Confluence</span><span class="tsc">Smartsheet</span><span class="tsc">MS Project</span><span class="tsc">ServiceNow</span><span class="tsc">Miro</span></div></div>
+  <div class="tscat"><div class="tscatlbl">Analytics &amp; Monitoring</div><div class="tschips"><span class="tsc">Tableau</span><span class="tsc">Power BI</span><span class="tsc">CloudWatch Dashboards</span><span class="tsc">SQL</span></div></div>
+  <div class="tscat"><div class="tscatlbl">Methodologies</div><div class="tschips"><span class="tsc">Agile / Scrum</span><span class="tsc">Waterfall</span><span class="tsc">Change Control Board</span><span class="tsc">RAID Log</span><span class="tsc">Critical Path Method</span><span class="tsc">UAT</span></div></div>
+</div>
+
+</div><!-- /page -->
+
+<script>
+function selPipe(id, el) {
+  document.querySelectorAll('.pnode').forEach(n => n.classList.remove('sel'));
+  el.classList.add('sel');
+  document.querySelector('#ppanel .dph').style.display = 'none';
+  document.querySelectorAll('#ppanel .dcontent').forEach(d => d.classList.remove('on'));
+  const t = document.getElementById('pd-' + id);
+  if (t) t.classList.add('on');
+}
+
+function selMig(id, el) {
+  document.querySelectorAll('.divbox,.wbox,.phbox').forEach(n => n.classList.remove('sel'));
+  el.classList.add('sel');
+  document.querySelector('#mpanel .dph').style.display = 'none';
+  document.querySelectorAll('#mpanel .dcontent').forEach(d => d.classList.remove('on'));
+  const t = document.getElementById('md-' + id);
+  if (t) t.classList.add('on');
+}
+</script>

@@ -1,0 +1,652 @@
+<title>Section 4: Execution Artifacts — TPM Portfolio Preview</title>
+<style>
+:root {
+  --bg:#F2F5F8;--surface:#FFFFFF;--surface-raised:#F4F7FA;--surface-diag:#EDF2F7;
+  --border:#C9D8E6;--bsub:#DDE8F2;
+  --accent:#006B65;--acc2:#E08000;
+  --text-1:#0C1A27;--text-2:#47627A;--text-3:#7A98AF;--badge:#E8EFF6;
+  --c-green:#1A6B44;--c-green-bg:#E6F4EC;
+  --c-amber:#8B6000;--c-amber-bg:#FEF3C7;
+  --c-red:#9B1C1C;--c-red-bg:#FEE2E2;
+  --radius:14px;--rsm:7px;
+  --font:system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;
+}
+@media(prefers-color-scheme:dark){:root{
+  --bg:#080E16;--surface:#0E1B2B;--surface-raised:#132030;--surface-diag:#0A1520;
+  --border:#1C3148;--bsub:#16293E;
+  --accent:#00BFB6;--acc2:#F0A020;
+  --text-1:#E4EEF8;--text-2:#85A3BC;--text-3:#45637A;--badge:#162840;
+  --c-green:#3DB870;--c-green-bg:#0A2A18;
+  --c-amber:#D4A500;--c-amber-bg:#261A00;
+  --c-red:#E05050;--c-red-bg:#2D0A0A;
+}}
+:root[data-theme="dark"]{--bg:#080E16;--surface:#0E1B2B;--surface-raised:#132030;--surface-diag:#0A1520;--border:#1C3148;--bsub:#16293E;--accent:#00BFB6;--acc2:#F0A020;--text-1:#E4EEF8;--text-2:#85A3BC;--text-3:#45637A;--badge:#162840;--c-green:#3DB870;--c-green-bg:#0A2A18;--c-amber:#D4A500;--c-amber-bg:#261A00;--c-red:#E05050;--c-red-bg:#2D0A0A;}
+:root[data-theme="light"]{--bg:#F2F5F8;--surface:#FFFFFF;--surface-raised:#F4F7FA;--surface-diag:#EDF2F7;--border:#C9D8E6;--bsub:#DDE8F2;--accent:#006B65;--acc2:#E08000;--text-1:#0C1A27;--text-2:#47627A;--text-3:#7A98AF;--badge:#E8EFF6;--c-green:#1A6B44;--c-green-bg:#E6F4EC;--c-amber:#8B6000;--c-amber-bg:#FEF3C7;--c-red:#9B1C1C;--c-red-bg:#FEE2E2;}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--bg);color:var(--text-1);font-family:var(--font);font-size:15px;line-height:1.6;}
+.page{max-width:960px;margin:0 auto;padding:52px 24px 96px;}
+
+.banner{display:flex;align-items:center;gap:10px;background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:var(--rsm);padding:11px 16px;margin-bottom:48px;font-size:.8rem;color:var(--text-2);}
+.banner strong{color:var(--text-1);}
+.bdot{width:7px;height:7px;border-radius:50%;background:var(--accent);flex-shrink:0;}
+.eyebrow{display:flex;align-items:center;gap:12px;margin-bottom:10px;}
+.etag{font-size:.68rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);white-space:nowrap;}
+.erule{flex:1;height:1px;background:var(--border);}
+.sh{font-size:clamp(2rem,5vw,3rem);font-weight:800;letter-spacing:-.035em;line-height:1.08;color:var(--text-1);margin-bottom:14px;text-wrap:balance;}
+.ss{color:var(--text-2);font-size:1rem;line-height:1.75;max-width:620px;margin-bottom:52px;}
+.dsample{font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text-3);border:1px solid var(--border);padding:2px 8px;border-radius:20px;white-space:nowrap;}
+
+/* ── Artifact block ── */
+.ablock{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:32px;}
+.ahead{padding:18px 28px;border-bottom:1px solid var(--bsub);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;}
+.atitle{font-size:1.05rem;font-weight:800;letter-spacing:-.02em;color:var(--text-1);}
+.asub{font-size:.8rem;color:var(--text-2);}
+.atabs{display:flex;border-bottom:1px solid var(--bsub);padding:0 28px;background:var(--surface);overflow-x:auto;scrollbar-width:none;}
+.atabs::-webkit-scrollbar{display:none;}
+.atab{padding:11px 16px;font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text-3);background:none;border:none;border-bottom:2px solid transparent;margin-bottom:-1px;cursor:pointer;white-space:nowrap;transition:color .15s,border-color .15s;}
+.atab:hover{color:var(--text-2);}
+.atab.on{color:var(--accent);border-bottom-color:var(--accent);}
+.apane{display:none;padding:28px;}
+.apane.on{display:block;}
+
+/* ── RACI ── */
+.raci-scroll{overflow-x:auto;}
+.raci-tbl{width:100%;border-collapse:collapse;font-size:.8rem;}
+.raci-tbl th{padding:10px 12px;font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text-3);border-bottom:2px solid var(--border);background:var(--surface-raised);text-align:center;white-space:nowrap;}
+.raci-tbl th:first-child{text-align:left;min-width:200px;}
+.raci-tbl td{padding:10px 12px;border-bottom:1px solid var(--bsub);text-align:center;vertical-align:middle;}
+.raci-tbl td:first-child{text-align:left;font-weight:600;color:var(--text-1);font-size:.83rem;}
+.raci-tbl tr:last-child td{border-bottom:none;}
+.raci-tbl tr:hover td{background:var(--surface-raised);}
+.rc{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:6px;font-size:.78rem;font-weight:800;letter-spacing:.02em;}
+.rc-r{background:color-mix(in srgb,var(--accent) 15%,transparent);color:var(--accent);}
+.rc-a{background:color-mix(in srgb,var(--acc2) 15%,transparent);color:var(--acc2);}
+.rc-ra{background:color-mix(in srgb,var(--accent) 12%,transparent);color:var(--accent);font-size:.68rem;}
+.rc-c{background:var(--badge);color:var(--text-2);}
+.rc-i{background:transparent;color:var(--text-3);border:1px dashed var(--bsub);}
+.rc-n{color:var(--text-3);font-size:1rem;}
+.raci-legend{display:flex;flex-wrap:wrap;gap:14px;padding:16px 28px;border-top:1px solid var(--bsub);background:var(--surface-raised);}
+.rl-item{display:flex;align-items:center;gap:7px;font-size:.75rem;color:var(--text-2);}
+
+/* ── PRD/TRD ── */
+.doc-section{border:1px solid var(--bsub);border-radius:var(--rsm);margin-bottom:10px;overflow:hidden;}
+.doc-sec-hd{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;cursor:pointer;user-select:none;background:var(--surface-raised);transition:background .15s;}
+.doc-sec-hd:hover{background:var(--badge);}
+.doc-sec-hd.open{background:var(--surface-raised);}
+.doc-sec-num{font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-right:10px;}
+.doc-sec-title{font-size:.88rem;font-weight:700;color:var(--text-1);}
+.doc-sec-arrow{font-size:.75rem;color:var(--text-3);transition:transform .2s;}
+.doc-sec-hd.open .doc-sec-arrow{transform:rotate(180deg);}
+.doc-sec-body{display:none;padding:16px;border-top:1px solid var(--bsub);}
+.doc-sec-body.open{display:block;}
+.doc-p{font-size:.85rem;color:var(--text-2);line-height:1.75;margin-bottom:10px;}
+.doc-p:last-child{margin-bottom:0;}
+.doc-label{font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text-3);margin-bottom:6px;margin-top:14px;}
+.doc-label:first-child{margin-top:0;}
+.doc-list{list-style:none;display:flex;flex-direction:column;gap:6px;}
+.doc-list li{display:flex;gap:8px;font-size:.85rem;color:var(--text-2);line-height:1.55;}
+.doc-li-dot{width:5px;height:5px;border-radius:50%;background:var(--accent);flex-shrink:0;margin-top:8px;}
+.doc-check{display:inline-block;width:14px;height:14px;border-radius:3px;border:1.5px solid var(--c-green);background:var(--c-green-bg);flex-shrink:0;margin-top:4px;position:relative;}
+.doc-check::after{content:'✓';position:absolute;top:-1px;left:1px;font-size:9px;color:var(--c-green);font-weight:800;}
+.dep-tbl{width:100%;border-collapse:collapse;font-size:.78rem;margin-top:8px;}
+.dep-tbl th{padding:7px 10px;text-align:left;font-size:.6rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text-3);border-bottom:1px solid var(--border);background:var(--surface-diag);}
+.dep-tbl td{padding:7px 10px;border-bottom:1px solid var(--bsub);color:var(--text-2);}
+.dep-tbl tr:last-child td{border-bottom:none;}
+.risk-chip{display:inline-block;font-size:.6rem;font-weight:700;padding:1px 7px;border-radius:10px;text-transform:uppercase;}
+.rc-hi{background:var(--c-amber-bg);color:var(--c-amber);}
+.rc-cr{background:var(--c-red-bg);color:var(--c-red);}
+.rc-me{background:var(--badge);color:var(--text-2);}
+.status-ok{color:var(--c-green);font-weight:700;}
+
+/* ── Gantt ── */
+.gantt-scroll{overflow-x:auto;}
+.gantt-tbl{border-collapse:collapse;min-width:700px;width:100%;}
+.gantt-tbl th{padding:8px 6px;font-size:.62rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--text-3);border-bottom:2px solid var(--border);text-align:center;background:var(--surface-raised);white-space:nowrap;}
+.gantt-tbl th:first-child{text-align:left;width:180px;padding-left:12px;}
+.gantt-tbl td{padding:4px 0;border-bottom:1px solid var(--bsub);}
+.gantt-tbl tr:last-child td{border-bottom:none;}
+.gantt-tbl td:first-child{padding:4px 12px;font-size:.78rem;font-weight:600;color:var(--text-2);vertical-align:middle;white-space:nowrap;}
+.goff{background:var(--surface-diag);border-right:1px solid var(--bsub);}
+.gbar{border-radius:0;vertical-align:middle;padding:0 6px;position:relative;}
+.gbar-inner{height:26px;border-radius:5px;display:flex;align-items:center;padding:0 8px;font-size:.65rem;font-weight:700;color:#fff;white-space:nowrap;position:relative;overflow:visible;}
+.gbar-teal .gbar-inner{background:var(--accent);}
+.gbar-green .gbar-inner{background:var(--c-green);}
+.gbar-amber .gbar-inner{background:var(--acc2);}
+.gbar-slate .gbar-inner{background:var(--text-3);}
+.gm-marker{position:absolute;right:-1px;top:50%;transform:translateY(-50%);width:12px;height:12px;background:var(--surface);border:2px solid;border-radius:50%;z-index:2;}
+.gm-green{border-color:var(--c-green);background:var(--c-green);}
+.gm-warn{border-color:var(--acc2);background:var(--acc2);}
+.goff-first{border-right:1px solid var(--bsub);background:var(--surface-diag);}
+.gantt-legend{display:flex;flex-wrap:wrap;gap:14px;padding:14px 12px;border-top:1px solid var(--bsub);background:var(--surface-raised);}
+.gl-item{display:flex;align-items:center;gap:6px;font-size:.72rem;color:var(--text-2);}
+.gl-bar{width:24px;height:10px;border-radius:3px;}
+
+/* ── RCA ── */
+.rca-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:24px;}
+.rca-stat{background:var(--surface-raised);border:1px solid var(--bsub);border-radius:var(--rsm);padding:14px 16px;}
+.rca-stat-val{font-size:1.1rem;font-weight:800;color:var(--text-1);margin-bottom:3px;}
+.rca-stat-lbl{font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text-3);}
+.rca-section{margin-bottom:24px;}
+.rca-sec-title{font-size:.68rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:10px;}
+.rca-text{font-size:.88rem;color:var(--text-2);line-height:1.75;}
+.timeline{display:flex;flex-direction:column;gap:0;position:relative;}
+.timeline::before{content:'';position:absolute;left:14px;top:10px;bottom:10px;width:2px;background:var(--border);}
+.tl-item{display:flex;gap:16px;padding-bottom:18px;position:relative;z-index:1;}
+.tl-item:last-child{padding-bottom:0;}
+.tl-dot{flex-shrink:0;width:28px;height:28px;border-radius:50%;border:2px solid var(--border);background:var(--surface);display:flex;align-items:center;justify-content:center;font-size:.65rem;font-weight:800;color:var(--text-3);}
+.tl-dot.warn{border-color:var(--acc2);color:var(--acc2);background:var(--surface);}
+.tl-dot.ok{border-color:var(--c-green);color:var(--c-green);background:var(--surface);}
+.tl-content{flex:1;padding-top:4px;}
+.tl-week{font-size:.65rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--text-3);margin-bottom:3px;}
+.tl-desc{font-size:.85rem;color:var(--text-2);line-height:1.55;}
+.impact-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:8px;}
+.impact-cell{background:var(--surface-raised);border:1px solid var(--bsub);border-radius:var(--rsm);padding:12px 14px;}
+.impact-label{font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text-3);margin-bottom:4px;}
+.impact-val{font-size:.88rem;font-weight:700;}
+.action-list{display:flex;flex-direction:column;gap:10px;}
+.action-item{display:flex;gap:10px;background:var(--surface-raised);border:1px solid var(--bsub);border-left:3px solid var(--accent);border-radius:var(--rsm);padding:12px 14px;font-size:.85rem;color:var(--text-2);line-height:1.55;}
+.action-num{flex-shrink:0;font-size:.7rem;font-weight:800;color:var(--accent);min-width:18px;}
+.outcome-box{background:var(--c-green-bg);border:1px solid var(--c-green);border-radius:var(--rsm);padding:16px 18px;margin-top:8px;}
+.outcome-box p{font-size:.88rem;color:var(--c-green);line-height:1.7;font-weight:600;}
+
+@media(max-width:600px){
+  .ahead,.apane{padding:16px 18px;}
+  .atabs{padding:0 18px;}
+  .raci-legend{padding:14px 18px;}
+  .rca-stats,.impact-grid{grid-template-columns:1fr 1fr;}
+  .gantt-legend{padding:12px 18px;}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;}}
+</style>
+
+<div class="page">
+
+<div class="banner">
+  <div class="bdot"></div>
+  <span><strong>Portfolio Preview — Section 4 of 5:</strong> Execution Artifacts &nbsp;·&nbsp; Awaiting approval before any GitHub update</span>
+</div>
+
+<div class="eyebrow"><span class="etag">Section 04 of 05</span><div class="erule"></div></div>
+<h1 class="sh">Execution Artifacts</h1>
+<p class="ss">Four program governance documents — RACI ownership matrix, technical requirements template, multi-phase release plan Gantt, and a root cause analysis report. Each is anonymized and illustrative, reflecting the actual governance frameworks used across my programs.</p>
+
+<div class="ablock">
+  <div class="ahead">
+    <div>
+      <div class="atitle">Program Governance Document Suite</div>
+      <div class="asub">COM4 Global &amp; Baptist World Alliance</div>
+    </div>
+    <div class="dsample">Illustrative — Anonymized Sample</div>
+  </div>
+
+  <div class="atabs">
+    <button class="atab on" onclick="switchArt('raci',this)">RACI Matrix</button>
+    <button class="atab" onclick="switchArt('prd',this)">PRD / TRD Template</button>
+    <button class="atab" onclick="switchArt('gantt',this)">Release Plan Gantt</button>
+    <button class="atab" onclick="switchArt('rca',this)">Post-Mortem / RCA</button>
+  </div>
+
+  <!-- ══ TAB 1: RACI ══ -->
+  <div class="apane on" id="ap-raci">
+    <p style="font-size:.82rem;color:var(--text-2);margin-bottom:20px;line-height:1.65">Responsibility assignment matrix for the COM4 Global 8-Division Cloud Migration Program. Defines who is Responsible, Accountable, Consulted, or Informed for each major program workstream.</p>
+    <div class="raci-scroll">
+      <table class="raci-tbl">
+        <thead>
+          <tr>
+            <th>Program Activity</th>
+            <th>TPM<br><span style="font-weight:500;font-size:.58rem;text-transform:none;letter-spacing:0">(Prashanth)</span></th>
+            <th>Engineering<br>Lead</th>
+            <th>Division<br>Heads</th>
+            <th>External<br>Vendors</th>
+            <th>Executive<br>Sponsor</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Sprint Planning &amp; Velocity Tracking</td>
+            <td><span class="rc rc-a">A</span></td>
+            <td><span class="rc rc-r">R</span></td>
+            <td><span class="rc rc-i">I</span></td>
+            <td><span class="rc rc-c">C</span></td>
+            <td><span class="rc rc-i">I</span></td>
+          </tr>
+          <tr>
+            <td>Technical Risk Matrix Management</td>
+            <td><span class="rc rc-ra">R/A</span></td>
+            <td><span class="rc rc-c">C</span></td>
+            <td><span class="rc rc-i">I</span></td>
+            <td><span class="rc rc-c">C</span></td>
+            <td><span class="rc rc-i">I</span></td>
+          </tr>
+          <tr>
+            <td>API Integration Validation &amp; Testing</td>
+            <td><span class="rc rc-a">A</span></td>
+            <td><span class="rc rc-r">R</span></td>
+            <td><span class="rc rc-n">—</span></td>
+            <td><span class="rc rc-r">R</span></td>
+            <td><span class="rc rc-i">I</span></td>
+          </tr>
+          <tr>
+            <td>Change Control Board (CCB) — Chair</td>
+            <td><span class="rc rc-ra">R/A</span></td>
+            <td><span class="rc rc-c">C</span></td>
+            <td><span class="rc rc-c">C</span></td>
+            <td><span class="rc rc-i">I</span></td>
+            <td><span class="rc rc-i">I</span></td>
+          </tr>
+          <tr>
+            <td>Vendor SLA Milestone Tracking</td>
+            <td><span class="rc rc-ra">R/A</span></td>
+            <td><span class="rc rc-i">I</span></td>
+            <td><span class="rc rc-i">I</span></td>
+            <td><span class="rc rc-c">C</span></td>
+            <td><span class="rc rc-i">I</span></td>
+          </tr>
+          <tr>
+            <td>Executive &amp; Stakeholder Reporting</td>
+            <td><span class="rc rc-ra">R/A</span></td>
+            <td><span class="rc rc-c">C</span></td>
+            <td><span class="rc rc-i">I</span></td>
+            <td><span class="rc rc-n">—</span></td>
+            <td><span class="rc rc-i">I</span></td>
+          </tr>
+          <tr>
+            <td>Infrastructure Cutover Execution</td>
+            <td><span class="rc rc-a">A</span></td>
+            <td><span class="rc rc-r">R</span></td>
+            <td><span class="rc rc-c">C</span></td>
+            <td><span class="rc rc-r">R</span></td>
+            <td><span class="rc rc-i">I</span></td>
+          </tr>
+          <tr>
+            <td>Post-Cutover Validation &amp; UAT Sign-off</td>
+            <td><span class="rc rc-a">A</span></td>
+            <td><span class="rc rc-r">R</span></td>
+            <td><span class="rc rc-c">C</span></td>
+            <td><span class="rc rc-c">C</span></td>
+            <td><span class="rc rc-i">I</span></td>
+          </tr>
+          <tr>
+            <td>Budget Tracking &amp; Variance Reporting</td>
+            <td><span class="rc rc-ra">R/A</span></td>
+            <td><span class="rc rc-i">I</span></td>
+            <td><span class="rc rc-n">—</span></td>
+            <td><span class="rc rc-i">I</span></td>
+            <td><span class="rc rc-c">C</span></td>
+          </tr>
+          <tr>
+            <td>Division Roadmap Alignment</td>
+            <td><span class="rc rc-ra">R/A</span></td>
+            <td><span class="rc rc-c">C</span></td>
+            <td><span class="rc rc-c">C</span></td>
+            <td><span class="rc rc-n">—</span></td>
+            <td><span class="rc rc-c">C</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="raci-legend">
+      <div class="rl-item"><span class="rc rc-r" style="width:24px;height:24px;font-size:.7rem">R</span> Responsible — does the work</div>
+      <div class="rl-item"><span class="rc rc-a" style="width:24px;height:24px;font-size:.7rem">A</span> Accountable — owns the outcome</div>
+      <div class="rl-item"><span class="rc rc-ra" style="width:32px;height:24px;font-size:.6rem">R/A</span> Responsible &amp; Accountable</div>
+      <div class="rl-item"><span class="rc rc-c" style="width:24px;height:24px;font-size:.7rem">C</span> Consulted — provides input</div>
+      <div class="rl-item"><span class="rc rc-i" style="width:24px;height:24px;font-size:.7rem">I</span> Informed — kept updated</div>
+    </div>
+  </div>
+
+  <!-- ══ TAB 2: PRD/TRD ══ -->
+  <div class="apane" id="ap-prd">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px;margin-bottom:20px">
+      <div>
+        <div style="font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:4px">Technical Requirements Document</div>
+        <div style="font-size:1.05rem;font-weight:800;color:var(--text-1);letter-spacing:-.02em">Cloud Integration Platform — Enterprise Migration Program</div>
+        <div style="font-size:.8rem;color:var(--text-2);margin-top:3px">COM4 Global &nbsp;·&nbsp; Version 2.4 &nbsp;·&nbsp; CCB Approved</div>
+      </div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:flex-start">
+        <span style="font-size:.65rem;font-weight:700;padding:3px 10px;border-radius:12px;background:var(--c-green-bg);color:var(--c-green)">CCB Approved</span>
+        <span style="font-size:.65rem;font-weight:700;padding:3px 10px;border-radius:12px;background:var(--badge);color:var(--text-2)">Anonymized Sample</span>
+      </div>
+    </div>
+
+    <div id="doc-sections">
+      <div class="doc-section">
+        <div class="doc-sec-hd open" onclick="toggleDoc(this)">
+          <div><span class="doc-sec-num">01</span><span class="doc-sec-title">Business Problem</span></div>
+          <span class="doc-sec-arrow">▼</span>
+        </div>
+        <div class="doc-sec-body open">
+          <div class="doc-p">Eight business divisions operate on fragmented legacy technical systems with incompatible data schemas, redundant integration points, and no unified operational visibility. Manual reconciliation between systems consumes engineering capacity and introduces error risk at every cross-division boundary.</div>
+          <div class="doc-label">Strategic Objective</div>
+          <div class="doc-p">Migrate all 8 divisions onto a unified AWS cloud integration platform — eliminating operational silos, enabling real-time data flow between divisions, and reducing infrastructure maintenance overhead by consolidating onto a single governed architecture.</div>
+          <div class="doc-label">Success Definition</div>
+          <ul class="doc-list">
+            <li><div class="doc-li-dot"></div><span>All 8 divisions actively transacting on the unified platform within the program timeline</span></li>
+            <li><div class="doc-li-dot"></div><span>Zero data loss at any cutover point, validated by automated checksum verification</span></li>
+            <li><div class="doc-li-dot"></div><span>API response times within SLA thresholds under full production load</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="doc-section">
+        <div class="doc-sec-hd" onclick="toggleDoc(this)">
+          <div><span class="doc-sec-num">02</span><span class="doc-sec-title">Technical Scope</span></div>
+          <span class="doc-sec-arrow">▼</span>
+        </div>
+        <div class="doc-sec-body">
+          <div class="doc-label">In Scope</div>
+          <ul class="doc-list">
+            <li><div class="doc-li-dot"></div><span>AWS API Gateway configuration and unified integration contract across all 8 division systems</span></li>
+            <li><div class="doc-li-dot"></div><span>Data migration from each legacy system with integrity validation at each cutover</span></li>
+            <li><div class="doc-li-dot"></div><span>ETL pipeline re-engineering for cross-division data flows</span></li>
+            <li><div class="doc-li-dot"></div><span>Executive reporting dashboard with real-time platform health visibility</span></li>
+          </ul>
+          <div class="doc-label">Out of Scope</div>
+          <ul class="doc-list">
+            <li><div class="doc-li-dot"></div><span>Application-layer feature development or UI changes to division systems</span></li>
+            <li><div class="doc-li-dot"></div><span>Net-new infrastructure capabilities beyond migration parity</span></li>
+            <li><div class="doc-li-dot"></div><span>Decommissioning of legacy systems (separate program phase)</span></li>
+          </ul>
+          <div class="doc-label">Constraints</div>
+          <ul class="doc-list">
+            <li><div class="doc-li-dot"></div><span>Zero disruption to production operations during cutover windows</span></li>
+            <li><div class="doc-li-dot"></div><span>All infrastructure changes subject to CCB review before deployment</span></li>
+            <li><div class="doc-li-dot"></div><span>Existing data integrity and compliance standards must be maintained throughout</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="doc-section">
+        <div class="doc-sec-hd" onclick="toggleDoc(this)">
+          <div><span class="doc-sec-num">03</span><span class="doc-sec-title">API &amp; Integration Dependencies</span></div>
+          <span class="doc-sec-arrow">▼</span>
+        </div>
+        <div class="doc-sec-body">
+          <div style="overflow-x:auto">
+            <table class="dep-tbl">
+              <thead>
+                <tr><th>Division System</th><th>Integration Type</th><th>Protocol</th><th>Risk Level</th><th>Status</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Legacy CRM (Div 1)</td><td>REST API</td><td>JSON / HTTPS</td><td><span class="risk-chip rc-hi">High</span></td><td class="status-ok">Validated</td></tr>
+                <tr><td>Legacy ERP (Div 2)</td><td>SOAP Web Service</td><td>XML / HTTPS</td><td><span class="risk-chip rc-cr">Critical</span></td><td class="status-ok">Resolved</td></tr>
+                <tr><td>Finance Platform (Div 3)</td><td>Direct DB Link</td><td>SQL / JDBC</td><td><span class="risk-chip rc-hi">High</span></td><td class="status-ok">Validated</td></tr>
+                <tr><td>HR System (Div 4)</td><td>File Transfer</td><td>CSV / SFTP</td><td><span class="risk-chip rc-me">Medium</span></td><td class="status-ok">Validated</td></tr>
+                <tr><td>Ops Platform (Div 5)</td><td>Event Streaming</td><td>Apache Kafka</td><td><span class="risk-chip rc-hi">High</span></td><td class="status-ok">Validated</td></tr>
+                <tr><td>Reporting Suite (Div 6)</td><td>REST API</td><td>JSON / HTTPS</td><td><span class="risk-chip rc-me">Medium</span></td><td class="status-ok">Validated</td></tr>
+                <tr><td>Data Warehouse (Div 7)</td><td>ETL Pipeline</td><td>AWS Glue / S3</td><td><span class="risk-chip rc-cr">Critical</span></td><td class="status-ok">Resolved</td></tr>
+                <tr><td>Integration Bus (Div 8)</td><td>Message Queue</td><td>AWS SQS / SNS</td><td><span class="risk-chip rc-cr">Critical</span></td><td class="status-ok">Resolved</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p style="font-size:.72rem;color:var(--text-3);margin-top:8px">All Critical-rated integration dependencies identified and resolved via technical risk matrix before go-live — preventing $40K+ in post-deployment remediation costs.</p>
+        </div>
+      </div>
+
+      <div class="doc-section">
+        <div class="doc-sec-hd" onclick="toggleDoc(this)">
+          <div><span class="doc-sec-num">04</span><span class="doc-sec-title">Acceptance Criteria</span></div>
+          <span class="doc-sec-arrow">▼</span>
+        </div>
+        <div class="doc-sec-body">
+          <ul class="doc-list">
+            <li><div class="doc-check"></div><span>All 8 divisions transacting on unified AWS platform (validated by business division sign-off)</span></li>
+            <li><div class="doc-check"></div><span>Zero data loss at each cutover — validated by automated checksum comparison between source and target systems</span></li>
+            <li><div class="doc-check"></div><span>API response time ≤ 200ms at p99 under full production load (load testing pre-cutover)</span></li>
+            <li><div class="doc-check"></div><span>Infrastructure uptime ≥ 99.9% in first 30 days post-cutover (monitored via CloudWatch)</span></li>
+            <li><div class="doc-check"></div><span>Executive reporting dashboard live with real-time data flowing from all 8 divisions</span></li>
+            <li><div class="doc-check"></div><span>All vendor SLA delivery certificates confirmed and filed before program close</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="doc-section">
+        <div class="doc-sec-hd" onclick="toggleDoc(this)">
+          <div><span class="doc-sec-num">05</span><span class="doc-sec-title">Risk Matrix Reference</span></div>
+          <span class="doc-sec-arrow">▼</span>
+        </div>
+        <div class="doc-sec-body">
+          <div class="doc-p">Full RAID log maintained in program risk register (see Section 3 — Risk Intelligence). Top risks by score at program inception:</div>
+          <ul class="doc-list">
+            <li><div class="doc-li-dot"></div><span><strong>R-01 (Score 20 — Critical):</strong> API conflicts between legacy and target systems undetected before go-live. Mitigated: pre-go-live validation via technical risk matrix.</span></li>
+            <li><div class="doc-li-dot"></div><span><strong>R-03 (Score 20 — Critical):</strong> Schedule delay from resource constraint at data warehouse workstream. Resolved: resource matrix restructured, sprints re-sequenced.</span></li>
+            <li><div class="doc-li-dot"></div><span><strong>R-04 (Score 16 — High):</strong> Unauthorized infrastructure changes bypassing CCB. Mitigated: CCB ownership enforced as gating requirement on all deployments.</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="doc-section">
+        <div class="doc-sec-hd" onclick="toggleDoc(this)">
+          <div><span class="doc-sec-num">06</span><span class="doc-sec-title">Sign-off &amp; Governance</span></div>
+          <span class="doc-sec-arrow">▼</span>
+        </div>
+        <div class="doc-sec-body">
+          <ul class="doc-list">
+            <li><div class="doc-li-dot"></div><span><strong>CCB Approval (TPM — Chair):</strong> Required before any infrastructure-impacting deployment. CCB decision logged in ServiceNow.</span></li>
+            <li><div class="doc-li-dot"></div><span><strong>Engineering Lead Architecture Review:</strong> Required for any new integration pattern or schema change before CCB submission.</span></li>
+            <li><div class="doc-li-dot"></div><span><strong>Division Head UAT Sign-off:</strong> Each division must confirm UAT completion before their cutover is declared production-ready.</span></li>
+            <li><div class="doc-li-dot"></div><span><strong>Executive Sponsor Final Approval:</strong> Required at Phase Gate reviews (post-Phase 1 and post-Phase 2) before proceeding to next migration phase.</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ TAB 3: GANTT ══ -->
+  <div class="apane" id="ap-gantt">
+    <p style="font-size:.82rem;color:var(--text-2);margin-bottom:20px;line-height:1.65">Multi-phase release plan for the COM4 Global 8-Division Cloud Migration Program (Apr 2023 – Oct 2025). Key milestones and risk events are marked on the timeline.</p>
+    <div class="gantt-scroll">
+      <table class="gantt-tbl">
+        <thead>
+          <tr>
+            <th>Activity / Workstream</th>
+            <th>Q2 '23</th><th>Q3 '23</th><th>Q4 '23</th>
+            <th>Q1 '24</th><th>Q2 '24</th><th>Q3 '24</th><th>Q4 '24</th>
+            <th>Q1 '25</th><th>Q2 '25</th><th>Q3 '25</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Program Kickoff &amp; Discovery</td>
+            <td class="gbar gbar-slate" colspan="2"><div class="gbar-inner">Kickoff</div></td>
+            <td class="goff" colspan="8"></td>
+          </tr>
+          <tr>
+            <td>API &amp; Systems Integration Layer</td>
+            <td class="gbar gbar-teal" colspan="3"><div class="gbar-inner">API Integration Layer Design &amp; Build</div></td>
+            <td class="goff" colspan="7"></td>
+          </tr>
+          <tr>
+            <td>Pre–Go-Live Risk Validation</td>
+            <td class="goff"></td>
+            <td class="gbar gbar-amber" colspan="2"><div class="gbar-inner">Risk Matrix Validation &nbsp;◆ $40K risk caught</div></td>
+            <td class="goff" colspan="7"></td>
+          </tr>
+          <tr>
+            <td>Phase 1 Cutover — Divisions 1–4</td>
+            <td class="goff" colspan="2"></td>
+            <td class="gbar gbar-teal" colspan="4"><div class="gbar-inner">Phase 1: CRM · ERP · Finance · HR &nbsp;◆ Ahead of schedule</div></td>
+            <td class="goff" colspan="4"></td>
+          </tr>
+          <tr>
+            <td>Phase 1 Validation &amp; UAT Sign-off</td>
+            <td class="goff" colspan="3"></td>
+            <td class="gbar gbar-slate" colspan="3"><div class="gbar-inner">Phase 1 UAT &amp; Sign-off</div></td>
+            <td class="goff" colspan="4"></td>
+          </tr>
+          <tr>
+            <td>Phase 2 Cutover — Divisions 5–8</td>
+            <td class="goff" colspan="4"></td>
+            <td class="gbar gbar-teal" colspan="6"><div class="gbar-inner">Phase 2: Ops · Reporting · Data WH · Integration Bus &nbsp;⚠ Delay recovered Q4'24</div></td>
+          </tr>
+          <tr>
+            <td>Platform Integration Testing</td>
+            <td class="goff" colspan="8"></td>
+            <td class="gbar gbar-slate" colspan="2"><div class="gbar-inner">Integration QA</div></td>
+          </tr>
+          <tr>
+            <td>Program Go-Live &amp; Handoff</td>
+            <td class="goff" colspan="9"></td>
+            <td class="gbar gbar-green" colspan="1"><div class="gbar-inner">◆ Go-Live</div></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="gantt-legend">
+      <div class="gl-item"><div class="gl-bar" style="background:var(--accent)"></div> Execution Phase</div>
+      <div class="gl-item"><div class="gl-bar" style="background:var(--c-green)"></div> Go-Live / Complete</div>
+      <div class="gl-item"><div class="gl-bar" style="background:var(--acc2)"></div> Risk / Validation Gate</div>
+      <div class="gl-item"><div class="gl-bar" style="background:var(--text-3)"></div> Foundation / Support</div>
+      <div class="gl-item"><span style="font-weight:700;color:var(--c-green)">◆</span>&nbsp;Success Milestone</div>
+      <div class="gl-item"><span style="font-weight:700;color:var(--acc2)">⚠</span>&nbsp;Risk Event</div>
+    </div>
+  </div>
+
+  <!-- ══ TAB 4: POST-MORTEM ══ -->
+  <div class="apane" id="ap-rca">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px;margin-bottom:20px">
+      <div>
+        <div style="font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:4px">Root Cause Analysis Report</div>
+        <div style="font-size:1.05rem;font-weight:800;color:var(--text-1);letter-spacing:-.02em">3-Week Program Delay — Phase 2 Infrastructure Migration</div>
+        <div style="font-size:.8rem;color:var(--text-2);margin-top:3px">COM4 Global &nbsp;·&nbsp; Q4 2024 (Illustrative) &nbsp;·&nbsp; Status: Resolved</div>
+      </div>
+      <span style="font-size:.65rem;font-weight:700;padding:3px 10px;border-radius:12px;background:var(--c-green-bg);color:var(--c-green);align-self:flex-start">Fully Resolved</span>
+    </div>
+
+    <div class="rca-stats">
+      <div class="rca-stat">
+        <div class="rca-stat-val" style="color:var(--acc2)">High</div>
+        <div class="rca-stat-lbl">Severity</div>
+      </div>
+      <div class="rca-stat">
+        <div class="rca-stat-val" style="color:var(--text-1)">Schedule</div>
+        <div class="rca-stat-lbl">Impact Type</div>
+      </div>
+      <div class="rca-stat">
+        <div class="rca-stat-val" style="color:var(--c-green)">$0</div>
+        <div class="rca-stat-lbl">Budget Overrun</div>
+      </div>
+    </div>
+
+    <div class="rca-section">
+      <div class="rca-sec-title">What Happened</div>
+      <p class="rca-text">A 3-week program delay was detected during Phase 2 migration of Divisions 5–8. The delay originated at the data warehouse workstream (Division 7), where a resource capacity constraint compressed the infrastructure verification sprint timeline. The delivery dashboard surfaced the velocity drop in Week 1, enabling rapid diagnosis and a structured recovery response.</p>
+    </div>
+
+    <div class="rca-section">
+      <div class="rca-sec-title">Timeline of Events</div>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-dot warn">W1</div>
+          <div class="tl-content">
+            <div class="tl-week">Week 1 — Detection</div>
+            <div class="tl-desc">Sprint velocity drop flagged in real-time delivery dashboard. Data warehouse workstream velocity at 60% of baseline. Blocker count rising.</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot warn">W2</div>
+          <div class="tl-content">
+            <div class="tl-week">Week 2 — Root Cause Identified</div>
+            <div class="tl-desc">Root cause confirmed: one senior engineer simultaneously assigned to data warehouse verification and new integration bus testing — creating a critical-path capacity constraint. Cross-workstream dependency unaccounted for in sprint sequencing.</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot">W3</div>
+          <div class="tl-content">
+            <div class="tl-week">Week 3 — Recovery Plan Approved</div>
+            <div class="tl-desc">Resource allocation matrix restructured. Non-critical verification tasks re-prioritized. Integration bus testing deferred to post-data-warehouse sequence. Recovery timeline committed: 5 weeks to full recovery. Budget impact: $0.</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot">W4</div>
+          <div class="tl-content">
+            <div class="tl-week">Weeks 4–5 — Recovery Execution</div>
+            <div class="tl-desc">Verification sprints re-sequenced and executed on revised timeline. Daily stand-ups added to monitor velocity against recovery plan. Engineering capacity restored to baseline by end of Week 5.</div>
+          </div>
+        </div>
+        <div class="tl-item" style="padding-bottom:0">
+          <div class="tl-dot ok">W6</div>
+          <div class="tl-content">
+            <div class="tl-week">Week 6 — Fully Recovered</div>
+            <div class="tl-desc">Program timeline fully recovered. Phase 2 delivery dates maintained. $0 over baseline budget. All remaining cutover milestones unaffected.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="rca-section">
+      <div class="rca-sec-title">Root Cause Analysis</div>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div class="action-item" style="border-left-color:var(--c-red)">
+          <div class="action-num" style="color:var(--c-red)">Primary</div>
+          <div>Engineering resource over-allocation — one senior engineer assigned across two critical-path workstreams (data warehouse verification and integration bus testing) simultaneously, creating a capacity constraint at the bottleneck.</div>
+        </div>
+        <div class="action-item" style="border-left-color:var(--acc2)">
+          <div class="action-num" style="color:var(--acc2)">Contributing</div>
+          <div>Sprint sequencing did not account for the cross-workstream dependency between data warehouse verification and integration bus cutover. Both workstreams required the same senior engineering resource, but this was not flagged during sprint planning.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="rca-section">
+      <div class="rca-sec-title">Impact Assessment</div>
+      <div class="impact-grid">
+        <div class="impact-cell">
+          <div class="impact-label">Schedule Impact</div>
+          <div class="impact-val" style="color:var(--acc2)">3-week delay, fully recovered</div>
+        </div>
+        <div class="impact-cell">
+          <div class="impact-label">Budget Impact</div>
+          <div class="impact-val" style="color:var(--c-green)">$0 over baseline</div>
+        </div>
+        <div class="impact-cell">
+          <div class="impact-label">Scope Impact</div>
+          <div class="impact-val" style="color:var(--c-green)">None — no scope changes required</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="rca-section">
+      <div class="rca-sec-title">Corrective Actions Taken</div>
+      <div class="action-list">
+        <div class="action-item"><div class="action-num">1</div><div>Restructured resource allocation matrix — decoupled data warehouse and integration bus workstreams to separate engineering resources, eliminating the dual-assignment constraint on the critical path.</div></div>
+        <div class="action-item"><div class="action-num">2</div><div>Re-sequenced infrastructure verification sprints — moved non-critical verification tasks to post-cutover validation period, freeing critical-path capacity for data warehouse completion.</div></div>
+        <div class="action-item"><div class="action-num">3</div><div>Added daily stand-ups during the 5-week recovery window to monitor velocity against the recovery timeline and surface any further blockers immediately.</div></div>
+      </div>
+    </div>
+
+    <div class="rca-section">
+      <div class="rca-sec-title">Prevention Measures — Integrated into Standard Process</div>
+      <div class="action-list">
+        <div class="action-item"><div class="action-num">1</div><div>Cross-workstream dependency check added to sprint planning template. Any task sharing a resource across two critical-path workstreams now requires TPM review before sprint commitment.</div></div>
+        <div class="action-item"><div class="action-num">2</div><div>Resource utilization tracking added to delivery dashboard. Engineers allocated &gt;80% capacity across two simultaneous workstreams flagged as a risk-level blocker automatically.</div></div>
+        <div class="action-item"><div class="action-num">3</div><div>Sprint buffer added to all verification phases in the remaining program schedule — absorbing future single-sprint capacity shocks without impacting delivery milestones.</div></div>
+      </div>
+    </div>
+
+    <div class="rca-section" style="margin-bottom:0">
+      <div class="rca-sec-title">Outcome</div>
+      <div class="outcome-box">
+        <p>Program timeline fully recovered in 5 weeks. All Phase 2 cutover deadlines maintained. $0 increase to baseline budget. Prevention measures were integrated into standard sprint planning and delivery dashboard configuration, reducing the probability of a recurrence. This incident is cited in the RAID log as R-03 — Score 20 → Status: Resolved.</p>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /ablock -->
+</div><!-- /page -->
+
+<script>
+function switchArt(id, btn) {
+  document.querySelectorAll('.atab').forEach(t => t.classList.remove('on'));
+  document.querySelectorAll('.apane').forEach(p => p.classList.remove('on'));
+  btn.classList.add('on');
+  document.getElementById('ap-' + id).classList.add('on');
+}
+
+function toggleDoc(hd) {
+  const body = hd.nextElementSibling;
+  const isOpen = body.classList.contains('open');
+  hd.classList.toggle('open', !isOpen);
+  body.classList.toggle('open', !isOpen);
+}
+</script>
